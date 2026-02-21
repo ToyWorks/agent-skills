@@ -20,22 +20,22 @@ Guarantee that **no branded data** (brand names, trademarks, company names, doma
 
 ## File naming (see [file-naming-convention.md](file-naming-convention.md))
 
-| 编号 | 文件名 | 说明 |
-|------|--------|------|
-| 00 | `00-isolation-manifest.md` | 隔离声明 |
-| 01 | `01-level0-source-urls.md` | 按 S1..Sn 表格，含 URL、类型、status |
-| 02 | `02-level0-extracts.md` | 按 S1..Sn 分块原始文本 |
-| 10 | `10-level1-brand-blinded-fact-sheet.json` | 去品牌化事实表 |
-| 11 | `11-level1-objective-data-and-completeness.json` | 客观数据完整性 |
-| 20 | `20-auditor-tool.initial.json` | Tool 初评 |
-| 21 | `21-auditor-toy.initial.json` | Toy 初评 |
-| 22 | `22-auditor-trash.initial.json` | Trash 初评 |
+| # | Filename | Description |
+|---|----------|-------------|
+| 00 | `00-isolation-manifest.md` | Isolation statement |
+| 01 | `01-level0-source-urls.md` | S1..Sn table: URL, type, status |
+| 02 | `02-level0-extracts.md` | Raw extracts per S1..Sn |
+| 10 | `10-level1-brand-blinded-fact-sheet.json` | Brand-blinded fact sheet |
+| 11 | `11-level1-objective-data-and-completeness.json` | Objective data completeness |
+| 20 | `20-auditor-tool.initial.json` | Tool initial score |
+| 21 | `21-auditor-toy.initial.json` | Toy initial score |
+| 22 | `22-auditor-trash.initial.json` | Trash initial score |
 | 30 | `30-peer-review.cross-reviews.json` | Peer Review |
-| 40 | `40-auditor-tool.optimized.json` | Tool 优化 |
-| 41 | `41-auditor-toy.optimized.json` | Toy 优化 |
-| 42 | `42-auditor-trash.optimized.json` | Trash 优化 |
+| 40 | `40-auditor-tool.optimized.json` | Tool optimized |
+| 41 | `41-auditor-toy.optimized.json` | Toy optimized |
+| 42 | `42-auditor-trash.optimized.json` | Trash optimized |
 | 50 | `50-final-judge.json` | Final Judge |
-| 99 | `99-audit-report.md` | 唯一最终报告（含 YAML + 文字分析） |
+| 99 | `99-audit-report.md` | Single final report (YAML + narrative) |
 
 ## File access rules
 

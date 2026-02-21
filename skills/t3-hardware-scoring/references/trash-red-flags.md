@@ -1,137 +1,137 @@
-# Trash Auditor 高敏感触发清单（火眼金睛）
+# Trash Auditor High-Sensitivity Trigger List (Eagle Eye)
 
-## 目的
+## Purpose
 
-在标准 Dieter Rams 检查清单基础上，识别**高 Trash 风险**的产品模式与证据，避免评分过于宽松。当下列触发条件满足时，Trash Auditor 应**主动上调配分**并强化证据引用。
-
----
-
-## 一、诚实原则强化（1.5 诚实）
-
-### 触发条件
-
-| 触发模式 | 证据类型 | 建议上调配分 |
-|----------|----------|--------------|
-| **隐私宣称 vs 实现张力** | 营销宣称「本地/无云/不存储」+ 产品需持续采集敏感信号（声学、生物识别） | +1~2 |
-| **口径不一致** | 不同来源（产品页 vs 隐私政策、FAQ）对同一事实表述冲突 | +1~2 |
-| **「绝不/从不」型承诺** | 宣称「从不收听/存储/分享」等绝对表述，但技术实现需采集或传输该类型数据 | +1~2 |
-
-### 评分锚定
-
-- **无触发**：按原有 0–5 分区间评分
-- **满足 1 项**：诚实项建议 ≥ 3 分
-- **满足 2 项以上**：诚实项建议 ≥ 4 分
-- **若存在明显矛盾且无法合理解释**：诚实项可给满分 5 分
-
-### 客观数据要求
-
-- 引用具体来源 ID 及原文/摘要
-- 标注冲突的两方表述
-- 不推测未披露事实，仅基于已披露信息判断
+Beyond the standard Dieter Rams checklist, identify **high Trash risk** product patterns and evidence to avoid overly lenient scoring. When the following trigger conditions are satisfied, the Trash Auditor should **proactively adjust scores upward** and strengthen evidence citations.
 
 ---
 
-## 二、有用性原则强化（1.2 有用）
+## I. Honesty Principle Reinforcement (1.5 Honest)
 
-### 触发条件
+### Trigger Conditions
 
-| 触发模式 | 证据类型 | 建议上调配分 |
-|----------|----------|--------------|
-| **核心能力被用户负面反馈** | 用户评价明确质疑产品宣称的核心功能（准确度、可靠性、效果） | +1~2 |
-| **宣称 vs 无验证** | 产品宣称某能力（如情绪识别、AI 洞察），但无第三方/独立验证、无准确度数据 | +1 |
-| **伪痛点/伪需求** | 解决的「痛点」缺乏可验证的需求证据，或可被低成本方式替代 | +1~2 |
-| **健康/心理类无医学背书** | 宣称健康/情绪/心理相关能力，但明确声明非医疗设备，且无临床或学术验证 | +1 |
+| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
+|-----------------|--------------|----------------------------|
+| **Privacy claim vs. implementation tension** | Marketing claims "local/no-cloud/doesn't store" + product requires continuous collection of sensitive signals (acoustic, biometric) | +1~2 |
+| **Inconsistent claims** | Conflicting statements from different sources (product page vs. privacy policy, FAQ) on the same fact | +1~2 |
+| **"Never/Not ever" type promise** | Claims "never listen/store/share" etc., but technical implementation requires collecting or transmitting that type of data | +1~2 |
 
-### 评分锚定
+### Scoring Anchors
 
-- **无触发**：按原有 0–5 分区间评分
-- **核心能力被负面反馈**：有用性建议 ≥ 3 分
-- **核心能力被负面反馈 + 无验证**：有用性建议 ≥ 4 分
-- **多种触发叠加**：可考虑 5 分（完全违背有用原则）
+- **No trigger**: Score within original 0–5 range
+- **Satisfies 1 item**: Honesty item recommendation ≥ 3 points
+- **Satisfies 2+ items**: Honesty item recommendation ≥ 4 points
+- **If obvious contradiction exists with no reasonable explanation**: Honesty item may receive full 5 points
 
-### 客观数据要求
+### Objective Data Requirements
 
-- 引用具体用户反馈原文或摘要
-- 标注「宣称的能力」与「验证状态」的差距
-- 区分「无数据」与「有负面数据」— 后者权重更高
-
----
-
-## 三、价值缺失强化（3.2 性价比、3.3 可持续价值）
-
-### 触发条件
-
-| 触发模式 | 证据类型 | 建议上调配分 |
-|----------|----------|--------------|
-| **高价格 + 核心能力存疑** | 价格 ≥ $200 且核心功能被用户质疑或缺乏验证 | 3.2 +1~2 |
-| **承诺与交付落差** | 营销承诺明确，但用户反馈「未达到承诺」「名不副实」 | 3.2 +1~2 |
-| **依赖未验证算法** | 长期价值依赖算法/AI 效果，但无准确度、留存、效果数据 | 3.3 +1~2 |
-
-### 评分锚定
-
-- **高价格 + 核心能力存疑**：3.2 建议 ≥ 6 分（性价比低）
-- **承诺与交付落差**：3.2 建议 ≥ 7 分
-- **依赖未验证算法 + 无长期数据**：3.3 建议 ≥ 4 分
+- Cite specific source ID and original text/summary
+- Annotate conflicting statements from both sides
+- Do not speculate on undisclosed facts; judge only based on disclosed information
 
 ---
 
-## 四、问题制造强化（2.1 制造新问题）
+## II. Usefulness Principle Reinforcement (1.2 Useful)
 
-### 触发条件
+### Trigger Conditions
 
-| 触发模式 | 证据类型 | 建议上调配分 |
-|----------|----------|--------------|
-| **期望 vs 现实落差** | 用户因产品未达预期而产生失望、信任受损 | +1~2 |
-| **隐私/安全潜在风险** | 产品持续采集敏感数据（声音、生物识别），但实现不透明或有口径冲突 | +1~2 |
-| **增加维护负担** | 需充电、配对、固件更新、多设备协同，且故障排查文档存在 | +1 |
+| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
+|-----------------|--------------|----------------------------|
+| **Core capability negatively reviewed by users** | User reviews explicitly question product's claimed core functionality (accuracy, reliability, effectiveness) | +1~2 |
+| **Claimed vs. unverified** | Product claims capability (e.g., emotion recognition, AI insight) but has no third-party/independent verification or accuracy data | +1 |
+| **False pain point/false need** | "Pain point" addressed lacks verifiable demand evidence, or can be replaced by low-cost means | +1~2 |
+| **Health/psychological claims without medical backing** | Claims health/emotion/psychological-related capability but explicitly disclaims non-medical device, and has no clinical or academic verification | +1 |
 
-### 评分锚定
+### Scoring Anchors
 
-- **期望落差 + 涉及核心价值**：2.1 建议 ≥ 6 分
-- **隐私/安全风险 + 口径冲突**：2.1 建议 ≥ 7 分
+- **No trigger**: Score within original 0–5 range
+- **Core capability negatively reviewed**: Usefulness recommendation ≥ 3 points
+- **Core capability negatively reviewed + unverified**: Usefulness recommendation ≥ 4 points
+- **Multiple triggers stacked**: Consider 5 points (complete violation of useful principle)
 
----
+### Objective Data Requirements
 
-## 五、可替代性强化（4.1、4.2）
-
-### 触发条件
-
-| 触发模式 | 证据类型 | 建议上调配分 |
-|----------|----------|--------------|
-| **无独特验证** | 宣称独特能力，但无第三方准确度、认证、对比数据 | +1~2 |
-| **低成本替代存在** | 日记 App、冥想 App、现有可穿戴等可部分实现相同目的 | +1 |
-| **存在理由依赖未验证假设** | 「若算法有效则有价值」— 但有效性未验证 | +1~2 |
-
-### 评分锚定
-
-- **无独特验证 + 有替代方案**：4.1、4.2 各建议 ≥ 6 分
-- **存在理由完全依赖未验证假设**：4.2 建议 ≥ 7 分
+- Cite specific user feedback original text or summary
+- Annotate gap between "claimed capability" and "verification status"
+- Distinguish "no data" from "negative data"—the latter carries higher weight
 
 ---
 
-## 六、执行流程
+## III. Value Deficit Reinforcement (3.2 Cost-effectiveness, 3.3 Sustainable Value)
 
-### Trash Auditor 工作流中的插入点
+### Trigger Conditions
 
-1. **第一遍**：按 Dieter Rams 检查清单完成常规评分
-2. **第二遍**：对照本「火眼金睛」触发清单，逐项检查是否满足触发条件
-3. **上调配分**：对满足条件的检查项，在合理范围内上调配分，并补充证据
-4. **记录说明**：在 `reason` 中注明「触发 [具体触发模式]，上调配分」
+| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
+|-----------------|--------------|----------------------------|
+| **High price + core capability in doubt** | Price ≥ $200 and core functionality questioned by users or lacks verification | 3.2 +1~2 |
+| **Promise vs. delivery gap** | Clear marketing promise, but user feedback "didn't meet promise", "overhyped" | 3.2 +1~2 |
+| **Reliance on unverified algorithm** | Long-term value depends on algorithm/AI effectiveness, but no accuracy, retention, or effectiveness data | 3.3 +1~2 |
 
-### 报告中的体现
+### Scoring Anchors
 
-- 在 `checklist_items` 的 `reason` 字段中引用触发模式（如「触发：核心能力被用户负面反馈」）
-- 在 `critical_issues` 中列出满足的高敏感触发项
-- 保持客观：仅基于 Brand-Blinded 信息中的客观事实，不猜测未披露内容
+- **High price + core capability in doubt**: 3.2 recommendation ≥ 6 points (low cost-effectiveness)
+- **Promise vs. delivery gap**: 3.2 recommendation ≥ 7 points
+- **Reliance on unverified algorithm + no long-term data**: 3.3 recommendation ≥ 4 points
 
 ---
 
-## 七、反例：避免过度上调配分
+## IV. Problem Creation Reinforcement (2.1 Creating New Problems)
 
-以下情况**不应**仅凭推测触发上调配分：
+### Trigger Conditions
 
-- 无用户反馈时，单纯因「无验证」而大幅扣有用性（可适度 +1，勿过度）
-- 无口径冲突证据时，不因「可能云处理」等假设触发诚实项满分
-- 产品有明确优势（如硬件规格、售后）时，需在 `strengths` 和 `cross_category_evidence` 中如实记录
+| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
+|-----------------|--------------|----------------------------|
+| **Expectation vs. reality gap** | User disappointment, trust damage due to product not meeting expectations | +1~2 |
+| **Privacy/security potential risk** | Product continuously collects sensitive data (audio, biometric), but implementation is opaque or claims conflict | +1~2 |
+| **Increased maintenance burden** | Requires charging, pairing, firmware updates, multi-device sync, and troubleshooting documentation exists | +1 |
 
-**原则**：火眼金睛 = 对**已有证据**更敏感，而非对**缺失证据**过度推断。
+### Scoring Anchors
+
+- **Expectation gap + involves core value**: 2.1 recommendation ≥ 6 points
+- **Privacy/security risk + claim conflict**: 2.1 recommendation ≥ 7 points
+
+---
+
+## V. Replaceability Reinforcement (4.1, 4.2)
+
+### Trigger Conditions
+
+| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
+|-----------------|--------------|----------------------------|
+| **No unique verification** | Claims unique capability but no third-party accuracy, certification, or comparison data | +1~2 |
+| **Low-cost alternatives exist** | Journal app, meditation app, existing wearables, etc. can partly achieve same purpose | +1 |
+| **Reason to exist depends on unverified assumption** | "If algorithm works then valuable"—but effectiveness unverified | +1~2 |
+
+### Scoring Anchors
+
+- **No unique verification + alternatives exist**: 4.1, 4.2 each recommendation ≥ 6 points
+- **Reason to exist entirely depends on unverified assumption**: 4.2 recommendation ≥ 7 points
+
+---
+
+## VI. Execution Flow
+
+### Insert Point in Trash Auditor Workflow
+
+1. **First pass**: Complete routine scoring per Dieter Rams checklist
+2. **Second pass**: Check against this Eagle Eye trigger list item by item
+3. **Score adjustment**: For satisfied items, adjust scores upward within reasonable range and add evidence
+4. **Documentation**: Note in `reason` "Triggered [specific trigger pattern], score adjusted upward"
+
+### Reflection in Report
+
+- In `checklist_items` `reason` field, cite trigger pattern (e.g., "Triggered: Core capability negatively reviewed by users")
+- List satisfied high-sensitivity triggers in `critical_issues`
+- Remain objective: Based only on objective facts in Brand-Blinded information; do not guess undisclosed content
+
+---
+
+## VII. Counterexamples: Avoid Over-Adjustment
+
+The following situations **should not** trigger score adjustment based on speculation alone:
+
+- When no user feedback exists, do not heavily penalize usefulness solely for "no verification" (may moderately +1, avoid excessive)
+- When no claim conflict evidence exists, do not trigger full Honesty score for assumptions like "possible cloud processing"
+- When product has clear advantages (e.g., hardware specs, after-sales), must record in `strengths` and `cross_category_evidence` honestly
+
+**Principle**: Eagle Eye = more sensitive to **existing evidence**, not over-inferring from **missing evidence**.

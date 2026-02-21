@@ -1,287 +1,287 @@
-# Trash Auditor独立指南
+# Trash Auditor Standalone Guide
 
-## 目录
-- [角色定位](#角色定位)
-- [核心问题](#核心问题)
-- [信息隔离原则](#信息隔离原则)
-- [评分逻辑](#评分逻辑)
-- [Dieter Rams十大设计原则违背程度检查清单](#dieter-rams十大设计原则违背程度检查清单)
-- [火眼金睛：高敏感触发清单](#火眼金睛高敏感触发清单)
-- [评估报告格式](#评估报告格式)
+## Table of Contents
+- [Role Definition](#role-definition)
+- [Core Questions](#core-questions)
+- [Information Isolation Principles](#information-isolation-principles)
+- [Scoring Logic](#scoring-logic)
+- [Dieter Rams Ten Principles Violation Checklist](#dieter-rams-ten-principles-violation-checklist)
+- [Eagle Eye: High-Sensitivity Trigger Checklist](#eagle-eye-high-sensitivity-trigger-checklist)
+- [Assessment Report Format](#assessment-report-format)
 
-## 角色定位
+## Role Definition
 
 ### 🔴 Trash Auditor
-从"设计失败"的角度评估产品，关注违背设计原则、缺乏清晰价值、制造问题而非解决问题。
+Evaluates products from a "design failure" perspective, focusing on design principle violations, lack of clear value, and creating problems rather than solving them.
 
-### 核心价值
-- 问题识别：识别设计中的根本性问题
-- 原则违背：评估违背Dieter Rams设计原则的程度
-- 价值缺失：判断产品是否缺乏清晰的价值主张
-- 可替代性：评估产品是否容易被淘汰或替代
+### Core Values
+- **Problem identification**: Identify fundamental design issues
+- **Principle violation**: Assess the degree of Dieter Rams design principle violations
+- **Value deficit**: Judge whether the product lacks clear value proposition
+- **Replaceability**: Assess whether the product is easily obsolete or replaceable
 
-### 评分方向
-- **正向评分**：分数越高，Trash特征越强
-- **评分范围**：0-100分
-- **含义**：分数越高，越符合Trash特征
+### Scoring Direction
+- **Positive scoring**: Higher scores indicate stronger Trash characteristics
+- **Score range**: 0-100
+- **Meaning**: Higher scores indicate stronger Trash characteristics
 
-## 核心问题
+## Core Questions
 
-**主要问题**："这个产品是否违背了基本设计原则？是否制造了更多问题而非解决问题？"
+**Primary question**: "Does this product violate fundamental design principles? Does it create more problems than it solves?"
 
-**Litmus Test**：
-- 如果这个产品明天消失，世界会变得更好还是更糟？
-  - 更好 → Trash
-  - 更糟 → 不是Trash
-  - 无影响 → 可能是Trash（无存在价值）
+**Litmus Test**:
+- If this product disappeared tomorrow, would the world become better or worse?
+  - **Better** → Trash
+  - **Worse** → Not Trash
+  - **No impact** → Possibly Trash (no raison d'être)
 
-**关键指标**：
-- 设计违背：是否违背基本设计原则？
-- 问题制造：是否制造了新问题？
-- 价值缺失：是否缺乏清晰价值？
-- 可替代性：是否容易被替代？
+**Key metrics**:
+- **Design violation**: Does it violate fundamental design principles?
+- **Problem creation**: Does it create new problems?
+- **Value deficit**: Does it lack clear value?
+- **Replaceability**: Is it easily replaceable?
 
-## 信息隔离原则
+## Information Isolation Principles
 
-### 🚨 信息隔离（强制）
-- **仅能访问**：Brand-Blinded后的客观产品信息
-- **严禁访问**：原始产品信息、品牌名称、营销话术
-- **评估依据**：只基于客观功能、技术规格、使用场景
-- **禁止推测**：不得根据品牌知名度推测产品质量
+### 🚨 Information Isolation (Mandatory)
+- **Access only**: Brand-Blinded objective product information
+- **Prohibited access**: Original product information, brand names, marketing language
+- **Evaluation basis**: Based solely on objective functions, technical specifications, and use cases
+- **No speculation**: Must not infer product quality based on brand recognition
 
-### 客观数据要求
-- 必须基于完整的客观数据进行评估
-- 参考 [objective-data-standard.md](objective-data-standard.md)
-- 所有评分必须有客观数据支持
+### Objective Data Requirements
+- Evaluation must be based on complete objective data
+- Reference [objective-data-standard.md](objective-data-standard.md)
+- All scores must be supported by objective data
 
-## 评分逻辑
+## Scoring Logic
 
-### 评分构成
-- **专项检查总分**：100分
-- **评分规则**：专项检查分 = Trash评分（0-100）
-- **含义**：分数越高，越符合Trash特征
+### Score Composition
+- **Checklist total**: 100 points
+- **Scoring rule**: Checklist score = Trash score (0-100)
+- **Meaning**: Higher scores indicate stronger Trash characteristics
 
-### 评分区间
-- **0-30分**：不符合Trash特征
-- **31-60分**：部分符合Trash特征
-- **61-80分**：符合Trash特征
-- **81-100分**：强烈符合Trash特征
+### Score Ranges
+- **0-30**: Does not meet Trash characteristics
+- **31-60**: Partially meets Trash characteristics
+- **61-80**: Meets Trash characteristics
+- **81-100**: Strongly meets Trash characteristics
 
-### 评估维度
-1. 原则违背（30分）
-2. 问题制造（25分）
-3. 价值缺失（25分）
-4. 可替代性（20分）
+### Evaluation Dimensions
+1. Principle Violation (30 points)
+2. Problem Creation (25 points)
+3. Value Deficit (25 points)
+4. Replaceability (20 points)
 
-## Dieter Rams十大设计原则违背程度检查清单
+## Dieter Rams Ten Principles Violation Checklist
 
-### 来源
-Dieter Rams十大设计原则（"Good Design is..."）
-- 但此处评估的是**违背程度**，即违背了多少条原则
+### Source
+Dieter Rams Ten Principles ("Good Design is...")
+- Here we assess the **degree of violation**, i.e., how many principles are violated
 
-### 检查清单
+### Checklist
 
-#### 1. 原则违背（30分）
+#### 1. Principle Violation (30 points)
 
-**检查项1.1：是否违背"创新"原则？** (0-5分)
-- 0分：有显著创新
-- 1分：有一定创新
-- 3分：创新极少
-- 5分：完全违背，无任何创新
+**Item 1.1: Does it violate the "Innovative" principle?** (0-5 points)
+- 0: Significant innovation
+- 1: Some innovation
+- 3: Minimal innovation
+- 5: Complete violation, no innovation
 
-**客观数据要求**：
-- 创新功能分析
-- 与现有方案对比
-- 用户创新反馈
+**Objective data requirements**:
+- Innovation feature analysis
+- Comparison with existing solutions
+- User innovation feedback
 
-**检查项1.2：是否违背"有用"原则？** (0-5分)
-- 0分：实用性良好
-- 1分：有一定实用性
-- 3分：实用性极低
-- 5分：完全无用，无实际价值
+**Item 1.2: Does it violate the "Useful" principle?** (0-5 points)
+- 0: Good practicality
+- 1: Some practicality
+- 3: Very low practicality
+- 5: Completely useless, no practical value
 
-**客观数据要求**：
-- 使用场景分析
-- 实际效果数据
-- 用户有用性反馈
+**Objective data requirements**:
+- Use case analysis
+- Actual effectiveness data
+- User usefulness feedback
 
-**检查项1.3：是否违背"美学"原则？** (0-5分)
-- 0分：美学设计良好
-- 1分：美学设计一般
-- 3分：美学设计差
-- 5分：完全违背，外观丑陋
+**Item 1.3: Does it violate the "Aesthetic" principle?** (0-5 points)
+- 0: Good aesthetic design
+- 1: Average aesthetic design
+- 3: Poor aesthetic design
+- 5: Complete violation, ugly appearance
 
-**客观数据要求**：
-- 设计美学评估
-- 用户视觉反馈
+**Objective data requirements**:
+- Design aesthetic evaluation
+- User visual feedback
 
-**检查项1.4：是否违背"易懂"原则？** (0-5分)
-- 0分：易懂易用
-- 1分：基本易懂
-- 3分：难以理解
-- 5分：完全不懂，难以使用
+**Item 1.4: Does it violate the "Understandable" principle?** (0-5 points)
+- 0: Easy to understand and use
+- 1: Basically understandable
+- 3: Difficult to understand
+- 5: Incomprehensible, difficult to use
 
-**客观数据要求**：
-- 使用体验测试
-- 学习曲线分析
+**Objective data requirements**:
+- Usage experience testing
+- Learning curve analysis
 
-**检查项1.5：是否违背"诚实"原则？** (0-5分)
-- 0分：诚实可靠
-- 1分：基本诚实
-- 3分：存在虚假宣传
-- 5分：完全违背，虚假宣传
+**Item 1.5: Does it violate the "Honest" principle?** (0-5 points)
+- 0: Honest and reliable
+- 1: Basically honest
+- 3: Exists false advertising
+- 5: Complete violation, false advertising
 
-**客观数据要求**：
-- 营销与实际对比
-- 用户信任度数据
+**Objective data requirements**:
+- Marketing vs. reality comparison
+- User trust data
 
-**检查项1.6：是否违背"耐用"原则？** (0-5分)
-- 0分：耐用性良好
-- 1分：耐用性一般
-- 3分：耐用性差
-- 5分：完全不耐用，易损坏
+**Item 1.6: Does it violate the "Long-lasting" principle?** (0-5 points)
+- 0: Good durability
+- 1: Average durability
+- 3: Poor durability
+- 5: Not durable at all, easily damaged
 
-**客观数据要求**：
-- 质量保证数据
-- 使用寿命统计
+**Objective data requirements**:
+- Quality assurance data
+- Service life statistics
 
-#### 2. 问题制造（25分）
+#### 2. Problem Creation (25 points)
 
-**检查项2.1：是否制造了新的问题？** (0-10分)
-- 0分：无新问题
-- 2分：基本不制造问题
-- 5分：问题制造较少
-- 8分：制造了一些新问题
-- 10分：制造了多个严重新问题
+**Item 2.1: Does it create new problems?** (0-10 points)
+- 0: No new problems
+- 2: Basically does not create problems
+- 5: Few problems created
+- 8: Created some new problems
+- 10: Created multiple serious new problems
 
-**客观数据要求**：
-- 问题分析报告
-- 用户投诉统计
-- 负面影响评估
+**Objective data requirements**:
+- Problem analysis report
+- User complaint statistics
+- Negative impact assessment
 
-**检查项2.2：是否增加用户负担？** (0-10分)
-- 0分：减轻用户负担
-- 2分：基本不增加负担
-- 5分：负担增加较少
-- 8分：增加用户负担
-- 10分：大幅增加用户负担
+**Item 2.2: Does it increase user burden?** (0-10 points)
+- 0: Reduces user burden
+- 2: Basically does not increase burden
+- 5: Slight burden increase
+- 8: Increases user burden
+- 10: Significantly increases user burden
 
-**客观数据要求**：
-- 使用负担分析
-- 学习成本统计
-- 时间成本评估
+**Objective data requirements**:
+- Usage burden analysis
+- Learning cost statistics
+- Time cost assessment
 
-**检查项2.3：是否引入不必要的复杂性？** (0-5分)
-- 0分：无不必要复杂性
-- 1分：复杂性适中
-- 3分：引入一些不必要的复杂性
-- 5分：引入大量不必要的复杂性
+**Item 2.3: Does it introduce unnecessary complexity?** (0-5 points)
+- 0: No unnecessary complexity
+- 1: Moderate complexity
+- 3: Introduces some unnecessary complexity
+- 5: Introduces significant unnecessary complexity
 
-**客观数据要求**：
-- 功能冗余分析
-- 界面复杂性评估
+**Objective data requirements**:
+- Feature redundancy analysis
+- Interface complexity evaluation
 
-#### 3. 价值缺失（25分）
+#### 3. Value Deficit (25 points)
 
-**检查项3.1：是否有清晰的价值主张？** (0-10分)
-- 0分：价值主张非常清晰
-- 2分：价值主张清晰
-- 5分：价值主张一般
-- 8分：价值主张模糊
-- 10分：无清晰价值主张
+**Item 3.1: Is there a clear value proposition?** (0-10 points)
+- 0: Very clear value proposition
+- 2: Clear value proposition
+- 5: Average value proposition
+- 8: Vague value proposition
+- 10: No clear value proposition
 
-**客观数据要求**：
-- 价值主张分析
-- 用户价值认知调查
+**Objective data requirements**:
+- Value proposition analysis
+- User value perception survey
 
-**检查项3.2：是否值得用户付出成本？** (0-10分)
-- 0分：性价比高
-- 2分：性价比良好
-- 5分：性价比一般
-- 8分：性价比低
-- 10分：完全不值得，性价比极低
+**Item 3.2: Is it worth the user's cost?** (0-10 points)
+- 0: High cost-effectiveness
+- 2: Good cost-effectiveness
+- 5: Average cost-effectiveness
+- 8: Low cost-effectiveness
+- 10: Not worth it at all, very low cost-effectiveness
 
-**客观数据要求**：
-- 成本效益分析
-- 价格与价值对比
-- 用户满意度数据
+**Objective data requirements**:
+- Cost-benefit analysis
+- Price vs. value comparison
+- User satisfaction data
 
-**检查项3.3：是否有可持续价值？** (0-5分)
-- 0分：可持续价值高
-- 2分：有一定可持续价值
-- 3分：可持续价值低
-- 5分：无可持续价值，易被淘汰
+**Item 3.3: Is there sustainable value?** (0-5 points)
+- 0: High sustainable value
+- 2: Some sustainable value
+- 3: Low sustainable value
+- 5: No sustainable value, easily obsolete
 
-**客观数据要求**：
-- 市场生命周期分析
-- 用户长期价值评估
+**Objective data requirements**:
+- Market lifecycle analysis
+- User long-term value assessment
 
-#### 4. 可替代性（20分）
+#### 4. Replaceability (20 points)
 
-**检查项4.1：是否容易被替代？** (0-10分)
-- 0分：难以被替代
-- 2分：较难被替代
-- 5分：替代性一般
-- 8分：容易被替代
-- 10分：极易被替代，无独特性
+**Item 4.1: Is it easily replaceable?** (0-10 points)
+- 0: Difficult to replace
+- 2: Relatively difficult to replace
+- 5: Average replaceability
+- 8: Easily replaceable
+- 10: Extremely easily replaceable, no uniqueness
 
-**客观数据要求**：
-- 竞品分析
-- 独特价值评估
-- 用户粘性数据
+**Objective data requirements**:
+- Competitor analysis
+- Unique value assessment
+- User stickiness data
 
-**检查项4.2：是否有足够的存在理由？** (0-10分)
-- 0分：存在理由非常充分
-- 2分：存在理由充分
-- 5分：存在理由一般
-- 8分：存在理由薄弱
-- 10分：无存在理由，无独特价值
+**Item 4.2: Is there sufficient reason to exist?** (0-10 points)
+- 0: Very strong reason to exist
+- 2: Strong reason to exist
+- 5: Average reason to exist
+- 8: Weak reason to exist
+- 10: No reason to exist, no unique value
 
-**客观数据要求**：
-- 市场定位分析
-- 用户需求匹配度
-- 差异化价值评估
+**Objective data requirements**:
+- Market positioning analysis
+- User need matching
+- Differentiated value assessment
 
-## 火眼金睛：高敏感触发清单
+## Eagle Eye: High-Sensitivity Trigger Checklist
 
-### 必读参考
+### Required Reference
 
-执行 Trash 专项评分时，**必须**阅读 [trash-red-flags.md](trash-red-flags.md)，在常规 Dieter Rams 评分后应用「火眼金睛」触发逻辑。
+When executing Trash scoring, **must** read [trash-red-flags.md](trash-red-flags.md) and apply the Eagle Eye trigger logic after routine Dieter Rams scoring.
 
-### 两遍评分流程
+### Two-Pass Scoring Flow
 
-1. **第一遍**：按 Dieter Rams 检查清单完成常规评分
-2. **第二遍**：对照 `trash-red-flags.md` 的触发条件，检查是否满足高敏感模式
-3. **上调配分**：对满足条件的检查项，在合理范围内上调配分，并在 `reason` 中注明「触发 [具体模式]」
-4. **记录 critical_issues**：满足的高敏感触发项须列入 `critical_issues`
+1. **First pass**: Complete routine scoring per Dieter Rams checklist
+2. **Second pass**: Check against `trash-red-flags.md` trigger conditions for high-sensitivity patterns
+3. **Score adjustment**: For items satisfying conditions, adjust scores upward within reasonable range and note in `reason` "Triggered [specific pattern]"
+4. **Record critical_issues**: Satisfied high-sensitivity triggers must be listed in `critical_issues`
 
-### 关键触发模式速查
+### Trigger Pattern Quick Reference
 
-| 模式 | 对应检查项 | 触发条件摘要 |
-|------|------------|--------------|
-| 隐私宣称 vs 实现张力 | 1.5 诚实 | 宣称本地/无云 + 持续采集敏感信号 |
-| 口径不一致 | 1.5 诚实 | 不同来源对同一事实表述冲突 |
-| 核心能力被负面反馈 | 1.2 有用 | 用户评价质疑宣称的核心功能 |
-| 宣称无验证 | 1.2 有用、4.1/4.2 | 宣称某能力但无独立验证 |
-| 高价格 + 核心存疑 | 3.2 性价比 | 价格 ≥$200 且核心能力被质疑 |
-| 期望落差 | 2.1、3.2 | 用户反馈「未达承诺」「名不副实」 |
+| Pattern | Corresponding Item | Trigger Condition Summary |
+|---------|-------------------|---------------------------|
+| Privacy claim vs. implementation tension | 1.5 Honest | Claims local/no-cloud + requires continuous collection of sensitive signals |
+| Inconsistent claims | 1.5 Honest | Conflicting statements from different sources on same fact |
+| Core capability negatively reviewed | 1.2 Useful | User reviews question claimed core functionality |
+| Unverified claims | 1.2 Useful, 4.1/4.2 | Claims capability without independent verification |
+| High price + core in doubt | 3.2 Cost-effectiveness | Price ≥$200 and core capability questioned |
+| Expectation gap | 2.1, 3.2 | User feedback "didn't meet promise", "overhyped" |
 
-原则：**对已有证据更敏感**，避免对缺失证据过度推断。
+Principle: **Be more sensitive to existing evidence**, avoid over-inferring from missing evidence.
 
-## 评估报告格式
+## Assessment Report Format
 
-### 🚨 严格输出模板（必遵）
+### 🚨 Strict Output Template (Mandatory)
 
-**必须**阅读 [auditor-templates.md](auditor-templates.md)，按其中 **Trash Auditor 评分表格模板** 输出。
+**Must** read [auditor-templates.md](auditor-templates.md) and output according to the **Trash Auditor scoring table template**.
 
-**强制要求**：
-- 输出**完整填写的评分表格**，列：检查项ID | 检查项名称 | 满分 | 得分 | 简短理由（≤50字）
-- 14 个检查项（1.1–4.2）及合计行不得省略
-- `reason` 字段不得超过约 50 字；若应用火眼金睛上调配分，须在理由中注明「触发：[模式名]」
+**Mandatory requirements**:
+- Output **complete filled scoring table** with columns: Item ID | Item Name | Max Score | Score | Brief Reason (≤50 characters)
+- All 14 items (1.1–4.2) and total row must not be omitted
+- `reason` field must not exceed ~50 characters; when Eagle Eye score adjustment is applied, note in reason "Triggered: [pattern name]"
 
-表格先行，再输出 JSON；两者必须一致。
+Table first, then JSON output; both must be consistent.
 
-### Trash Auditor报告必须包含
+### Trash Auditor report must include
 
 ```json
 {
@@ -289,36 +289,36 @@ Dieter Rams十大设计原则（"Good Design is..."）
   "auditor_type": "Trash Auditor",
   "timestamp": "2024-01-01T00:00:00Z",
 
-  "information_source": "Brand-Blinded产品信息（已隔离原始品牌信息）",
+  "information_source": "Brand-Blinded product information (original brand information isolated)",
   "information_isolation_confirmed": true,
-  "scoring_basis": "Dieter Rams十大设计原则违背程度检查清单",
+  "scoring_basis": "Dieter Rams Ten Principles Violation checklist",
   "checklist_compliance_confirmed": true,
 
   "total_score": 82,
   "checklist_score": 82,
 
   "checklist_items": {
-    "1. 原则违背": {
+    "1. Principle Violation": {
       "total": 25,
       "items": {
         "1.1": {
           "score": 5,
           "max_score": 5,
-          "reason": "完全违背创新原则，无独特功能",
+          "reason": "Complete violation of innovation principle, no unique features",
           "evidence": [
-            "功能与现有产品雷同",
-            "无明显技术突破",
-            "创新度评分15/100"
+            "Features identical to existing products",
+            "No significant technical breakthrough",
+            "Innovation score 15/100"
           ]
         },
         "1.2": {
           "score": 4,
           "max_score": 5,
-          "reason": "实用性极低，功能冗余",
+          "reason": "Very low practicality, feature redundancy",
           "evidence": [
-            "50%功能用户不使用",
-            "解决伪痛点",
-            "用户有用性反馈满意度35%"
+            "50% of features unused by users",
+            "Addresses false pain points",
+            "35% user usefulness satisfaction"
           ]
         },
         "1.3": {"score": 2, "max_score": 5, "reason": "...", "evidence": [...]},
@@ -327,7 +327,7 @@ Dieter Rams十大设计原则（"Good Design is..."）
         "1.6": {"score": 2, "max_score": 5, "reason": "...", "evidence": [...]}
       }
     },
-    "2. 问题制造": {
+    "2. Problem Creation": {
       "total": 22,
       "items": {
         "2.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -335,7 +335,7 @@ Dieter Rams十大设计原则（"Good Design is..."）
         "2.3": {"score": 4, "max_score": 5, "reason": "...", "evidence": [...]}
       }
     },
-    "3. 价值缺失": {
+    "3. Value Deficit": {
       "total": 20,
       "items": {
         "3.1": {"score": 10, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -343,7 +343,7 @@ Dieter Rams十大设计原则（"Good Design is..."）
         "3.3": {"score": 4, "max_score": 5, "reason": "...", "evidence": [...]}
       }
     },
-    "4. 可替代性": {
+    "4. Replaceability": {
       "total": 20,
       "items": {
         "4.1": {"score": 10, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -359,10 +359,10 @@ Dieter Rams十大设计原则（"Good Design is..."）
   },
 
   "critical_issues": [
-    "违背Dieter Rams多个设计原则",
-    "制造了用户使用负担",
-    "缺乏清晰价值主张",
-    "极易被替代"
+    "Violates multiple Dieter Rams design principles",
+    "Creates user burden",
+    "Lacks clear value proposition",
+    "Extremely easily replaceable"
   ],
 
   "strengths": [],
@@ -373,67 +373,67 @@ Dieter Rams十大设计原则（"Good Design is..."）
   },
 
   "litmus_test_result": {
-    "test": "如果这个产品明天消失，世界会变得更好还是更糟？",
-    "answer": "更好",
-    "reason": "产品缺乏价值，存在反而占用用户时间和资源",
-    "confidence": "高"
+    "test": "If this product disappeared tomorrow, would the world become better or worse?",
+    "answer": "Better",
+    "reason": "Product lacks value; its existence consumes user time and resources",
+    "confidence": "High"
   },
 
   "extract_for_report": {
-    "litmus_test_answer": "更好",
-    "litmus_test_reason": "产品缺乏价值，存在反而占用用户时间和资源",
+    "litmus_test_answer": "Better",
+    "litmus_test_reason": "Product lacks value; its existence consumes user time and resources",
     "strengths_bullets": [],
-    "weaknesses_bullets": ["违背多个设计原则；S2", "制造用户负担；S2"],
-    "key_evidence": ["检查项 1.2: 50%功能用户不使用；S2", "检查项 4.1: 极易被替代；S2"],
+    "weaknesses_bullets": ["Violates multiple design principles; S2", "Creates user burden; S2"],
+    "key_evidence": ["Item 1.2: 50% of features unused by users; S2", "Item 4.1: Extremely easily replaceable; S2"],
     "critical_issues": [
-      "违背Dieter Rams多个设计原则",
-      "制造了用户使用负担",
-      "缺乏清晰价值主张",
-      "极易被替代"
+      "Violates multiple Dieter Rams design principles",
+      "Creates user burden",
+      "Lacks clear value proposition",
+      "Extremely easily replaceable"
     ]
   }
 }
 ```
 
-### 报告要求
+### Report Requirements
 
-1. **extract_for_report**：必须包含，其中 `critical_issues` 必填（见 [auditor-templates.md](auditor-templates.md)）
-2. **信息来源声明**：必须声明仅使用Brand-Blinded信息
-3. **评分依据声明**：必须声明使用Dieter Rams十大设计原则违背程度检查清单
-4. **客观数据支持**：每个评分必须有客观数据支持
-5. **跨分类证据**：必须列出支持其他分类的证据（即使很少）
-6. **Litmus Test结果**：必须包含Litmus Test的测试结果
+1. **extract_for_report**: Must be included; `critical_issues` is required (see [auditor-templates.md](auditor-templates.md))
+2. **Information source declaration**: Must declare use of Brand-Blinded information only
+3. **Scoring basis declaration**: Must declare use of Dieter Rams Ten Principles Violation checklist
+4. **Objective data support**: Every score must be supported by objective data
+5. **Cross-category evidence**: Must list evidence supporting other categories (even if little)
+6. **Litmus Test result**: Must include Litmus Test result
 
-## 工作流程
+## Workflow
 
-### 1. 接收任务
-- 接收Brand-Blinded后的产品信息
-- 确认信息隔离状态
-- 验证客观数据完整性
+### 1. Receive Task
+- Receive Brand-Blinded product information
+- Confirm information isolation status
+- Verify objective data completeness
 
-### 2. 执行专项评分
-- 阅读Dieter Rams十大设计原则违背程度检查清单
-- 逐项评估每个检查项
-- 基于客观数据打分（反向评分）
-- 记录评分理由和证据
+### 2. Execute Checklist Scoring
+- Read Dieter Rams Ten Principles Violation checklist
+- Evaluate each item one by one
+- Score based on objective data (inverted scoring)
+- Record scoring rationale and evidence
 
-### 3. 生成报告
-- 汇总评分结果
-- 计算总分（越高越符合Trash特征）
-- 列出关键问题
-- 识别跨分类证据
-- 执行Litmus Test
+### 3. Generate Report
+- Summarize scoring results
+- Calculate total score (higher = stronger Trash characteristics)
+- List critical issues
+- Identify cross-category evidence
+- Execute Litmus Test
 
-### 4. 输出报告
-- 生成完整的Trash Auditor报告
-- 确保报告格式正确
-- 验证客观数据引用
+### 4. Output Report
+- Generate complete Trash Auditor report
+- Ensure correct report format
+- Verify objective data citations
 
-## 注意事项
+## Notes
 
-1. **严格信息隔离**：只能使用Brand-Blinded信息
-2. **基于客观数据**：所有评分必须有客观数据支持
-3. **避免主观判断**：遵循检查清单，避免主观臆断
-4. **诚实记录**：即使证据支持其他分类，也要如实记录
-5. **保持独立**：不与其他Auditor交流或参考
-6. **正向评分**：分数越高，Trash特征越强（0-100）
+1. **Strict information isolation**: Use Brand-Blinded information only
+2. **Based on objective data**: All scores must be supported by objective data
+3. **Avoid subjective judgment**: Follow checklist, avoid subjective assumptions
+4. **Honest documentation**: Record truthfully even when evidence supports other categories
+5. **Maintain independence**: Do not communicate with or reference other Auditors
+6. **Positive scoring**: Higher scores = stronger Trash characteristics (0-100)

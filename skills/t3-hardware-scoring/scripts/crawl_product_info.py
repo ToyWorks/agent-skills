@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-产品信息爬取脚本（增强版）
-使用Jina AI Reader API提取网页内容并解析产品信息，完整收集客观数据
+Product info crawler (enhanced)
+Uses Jina AI Reader API to extract web content and parse product info; collects complete objective data
 """
 
 import argparse
@@ -15,16 +15,16 @@ from bs4 import BeautifulSoup
 
 def crawl_webpage(url: str) -> dict:
     """
-    使用Jina AI Reader API爬取网页内容
+    Crawl webpage content using Jina AI Reader API.
 
-    参数:
-        url: 产品页面URL
+    Args:
+        url: Product page URL
 
-    返回:
-        包含网页内容和元数据的字典
+    Returns:
+        Dict with webpage content and metadata
     """
     try:
-        # 使用Jina AI Reader API
+        # Use Jina AI Reader API
         jina_api_url = f"https://r.jina.ai/http://{url}"
 
         headers = {
@@ -45,23 +45,23 @@ def crawl_webpage(url: str) -> dict:
         return {
             "status": "error",
             "url": url,
-            "error": f"爬取失败: {str(e)}"
+            "error": f"Crawl failed: {str(e)}"
         }
 
 
 def extract_objective_specs(text_content: str) -> dict:
     """
-    从文本中提取客观数据
+    Extract objective data from text.
 
-    参数:
-        text_content: 网页文本内容
+    Args:
+        text_content: Webpage text content
 
-    返回:
-        客观数据字典
+    Returns:
+        Dict of objective data
     """
     specs = {}
 
-    # 处理器信息
+    # Processor info
     processor_patterns = [
         r'(\w+)\s+(\d+)-core\s*(?:processor|CPU)',
         r'(Intel\s+\w+\s+\w+|AMD\s+\w+\s+\w+|Snapdragon\s+\w+)',
@@ -73,7 +73,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['processor'] = matches[0] if isinstance(matches[0], str) else ' '.join(matches[0])
             break
 
-    # 存储容量
+    # Storage capacity
     storage_patterns = [
         r'(\d+)\s*(?:GB|TB)\s*(?:SSD|HDD|storage|memory)',
         r'(\d+)\s*GB\s*(?:ROM|Storage)',
@@ -84,7 +84,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['storage'] = matches[0]
             break
 
-    # 内存
+    # RAM
     ram_patterns = [
         r'(\d+)\s*GB\s*(?:RAM|memory)',
         r'(\d+)GB\s+LPDDR\d+',
@@ -95,7 +95,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['ram'] = matches[0]
             break
 
-    # 屏幕参数
+    # Screen params
     screen_patterns = [
         r'(\d+\.?\d*)\s*(?:inch|")\s*(\d+x\d+)',
         r'(\d+Hz)\s*refresh\s*rate',
@@ -114,7 +114,7 @@ def extract_objective_specs(text_content: str) -> dict:
                 else:
                     specs['screen']['refresh_rate'] = match
 
-    # 电池容量
+    # Battery capacity
     battery_patterns = [
         r'(\d+)\s*mAh',
         r'(\d+)\s*Wh',
@@ -125,7 +125,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['battery_capacity'] = matches[0]
             break
 
-    # 续航时间
+    # Battery life
     battery_life_patterns = [
         r'(?:up\s*to\s*)?(\d+)\s*hours?\s*(?:battery|life)',
         r'(\d+)\s*h\s*battery',
@@ -136,7 +136,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['battery_life_claimed'] = f"{matches[0]} hours"
             break
 
-    # 防护等级
+    # IP rating
     ip_patterns = [
         r'IP(\d+)',
     ]
@@ -146,7 +146,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['ip_rating'] = f"IP{matches[0]}"
             break
 
-    # WiFi版本
+    # WiFi version
     wifi_patterns = [
         r'Wi-Fi\s*(\d+)',
         r'WiFi\s*(\d+)',
@@ -157,7 +157,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['wifi_version'] = f"Wi-Fi {matches[0]}"
             break
 
-    # 蓝牙版本
+    # Bluetooth version
     bluetooth_patterns = [
         r'Bluetooth\s*(\d+\.\d+)',
         r'BT\s*(\d+\.\d+)',
@@ -168,7 +168,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['bluetooth_version'] = f"Bluetooth {matches[0]}"
             break
 
-    # 传感器列表
+    # Sensor list
     sensor_keywords = ['accelerometer', 'gyroscope', 'heart rate', 'blood oxygen',
                       'temperature', 'humidity', 'GPS', 'proximity', 'ambient light']
     sensors = []
@@ -178,7 +178,7 @@ def extract_objective_specs(text_content: str) -> dict:
     if sensors:
         specs['sensors'] = sensors
 
-    # 重量
+    # Weight
     weight_patterns = [
         r'(\d+\.?\d*)\s*(?:g|kg|grams?|kilograms?)',
     ]
@@ -188,7 +188,7 @@ def extract_objective_specs(text_content: str) -> dict:
             specs['weight'] = matches[0]
             break
 
-    # 尺寸
+    # Dimensions
     dimension_patterns = [
         r'(\d+\.?\d*)\s*[x×]\s*(\d+\.?\d*)\s*[x×]\s*(\d+\.?\d*)\s*(?:mm|cm)',
     ]
@@ -203,18 +203,18 @@ def extract_objective_specs(text_content: str) -> dict:
 
 def extract_market_data(soup: BeautifulSoup, url: str) -> dict:
     """
-    提取市场数据
+    Extract market data.
 
-    参数:
-        soup: BeautifulSoup对象
-        url: 原始URL
+    Args:
+        soup: BeautifulSoup object
+        url: Original URL
 
-    返回:
-        市场数据字典
+    Returns:
+        Market data dict
     """
     market_data = {}
 
-    # 用户评价数量
+    # Review count
     review_patterns = [
         r'(\d+(?:,\d+)*)\s*reviews?',
         r'(\d+(?:,\d+)*)\s*ratings?',
@@ -226,7 +226,7 @@ def extract_market_data(soup: BeautifulSoup, url: str) -> dict:
             market_data['review_count'] = matches[0].replace(',', '')
             break
 
-    # 平均评分
+    # Average rating
     rating_patterns = [
         r'(\d\.?\d*)\s* out of \d+',
         r'(\d\.?\d*)\s*/\s*\d+',
@@ -237,7 +237,7 @@ def extract_market_data(soup: BeautifulSoup, url: str) -> dict:
             market_data['average_rating'] = matches[0]
             break
 
-    # 上市日期（从URL或内容中推断）
+    # Release date (infer from URL or content)
     date_patterns = [
         r'(\d{4})',
         r'(?:released|launched)\s*(?:in\s*)?(\d{4})',
@@ -245,7 +245,7 @@ def extract_market_data(soup: BeautifulSoup, url: str) -> dict:
     for pattern in date_patterns:
         matches = re.findall(pattern, text_content, re.IGNORECASE)
         if matches:
-            # 取最大的年份（最近的产品）
+            # Take max year (most recent product)
             years = [int(m) if isinstance(m, str) else m for m in matches]
             max_year = max([y for y in years if 2000 <= y <= 2030])
             market_data['release_year'] = max_year
@@ -256,17 +256,17 @@ def extract_market_data(soup: BeautifulSoup, url: str) -> dict:
 
 def extract_reliability_data(text_content: str) -> dict:
     """
-    提取可靠性数据
+    Extract reliability data.
 
-    参数:
-        text_content: 文本内容
+    Args:
+        text_content: Text content
 
-    返回:
-        可靠性数据字典
+    Returns:
+        Reliability data dict
     """
     reliability = {}
 
-    # 质保期
+    # Warranty
     warranty_patterns = [
         r'(\d+)-year\s*warranty',
         r'(\d+)\s*year\s*warranty',
@@ -282,25 +282,24 @@ def extract_reliability_data(text_content: str) -> dict:
                 reliability['warranty_years'] = warranty_value
             break
 
-    # 防护等级（已在上一步提取，这里只标记）
-    #防水等级等
+    # IP rating (extracted above)
 
     return reliability
 
 
 def extract_sustainability_data(text_content: str) -> dict:
     """
-    提取可持续性数据
+    Extract sustainability data.
 
-    参数:
-        text_content: 文本内容
+    Args:
+        text_content: Text content
 
-    返回:
-        可持续性数据字典
+    Returns:
+        Sustainability data dict
     """
     sustainability = {}
 
-    # 材料关键词
+    # Material keywords
     material_keywords = {
         'aluminum': 'aluminum',
         'steel': 'steel',
@@ -320,14 +319,14 @@ def extract_sustainability_data(text_content: str) -> dict:
     if materials:
         sustainability['materials'] = materials
 
-    # 能耗相关
+    # Energy efficiency
     energy_keywords = ['energy star', 'energy efficient', 'low power', 'energy saving']
     for keyword in energy_keywords:
         if keyword.lower() in text_content.lower():
             sustainability['energy_efficient'] = True
             break
 
-    # 维修性
+    # Repairability
     repair_keywords = ['repairable', 'replaceable battery', 'modular', 'user-replaceable']
     for keyword in repair_keywords:
         if keyword.lower() in text_content.lower():
@@ -339,38 +338,38 @@ def extract_sustainability_data(text_content: str) -> dict:
 
 def extract_product_info(url: str, content: str) -> dict:
     """
-    从网页内容中提取产品信息（增强版）
+    Extract product info from webpage content (enhanced).
 
-    参数:
-        url: 原始URL
-        content: 网页内容
+    Args:
+        url: Original URL
+        content: Webpage content
 
-    返回:
-        结构化的产品信息字典（包含完整客观数据）
+    Returns:
+        Structured product info dict (including complete objective data)
     """
-    # 使用BeautifulSoup解析HTML
+    # Parse HTML with BeautifulSoup
     soup = BeautifulSoup(content, 'html.parser')
 
-    # 提取标题
+    # Extract title
     title = ""
     if soup.title:
         title = soup.title.string.strip()
     elif soup.h1:
         title = soup.h1.get_text().strip()
 
-    # 提取meta描述
+    # Extract meta description
     description = ""
     meta_desc = soup.find('meta', attrs={'name': 'description'})
     if meta_desc:
         description = meta_desc.get('content', '')
 
-    # 提取主要内容段落
+    # Extract main content paragraphs
     main_content = ""
     paragraphs = soup.find_all('p')
     if paragraphs:
         main_content = "\n\n".join([p.get_text().strip() for p in paragraphs[:10] if p.get_text().strip()])
 
-    # 提取价格
+    # Extract price
     price = ""
     price_patterns = [
         r'\$\d+[\d,]*(?:\.\d{2})?',
@@ -385,7 +384,7 @@ def extract_product_info(url: str, content: str) -> dict:
             price = matches[0]
             break
 
-    # 提取特性列表
+    # Extract feature list
     features = []
     feature_lists = soup.find_all(['ul', 'ol'])
     for ul in feature_lists:
@@ -395,25 +394,25 @@ def extract_product_info(url: str, content: str) -> dict:
 
     features = features[:20] if len(features) > 20 else features
 
-    # 提取域名
+    # Extract domain
     domain = urlparse(url).netloc
 
-    # 🆕 提取客观数据
+    # Extract objective data
     text_content_lower = text_content.lower()
 
-    # 技术规格
+    # Technical specs
     objective_specs = extract_objective_specs(text_content)
 
-    # 市场数据
+    # Market data
     market_data = extract_market_data(soup, url)
 
-    # 可靠性数据
+    # Reliability data
     reliability_data = extract_reliability_data(text_content)
 
-    # 可持续性数据
+    # Sustainability data
     sustainability_data = extract_sustainability_data(text_content)
 
-    # 成本相关
+    # Cost data
     cost_data = {}
     subscription_patterns = [
         r'\$(\d+(?:\.\d+)?)\s*(?:per month|monthly|subscription)',
@@ -436,7 +435,7 @@ def extract_product_info(url: str, content: str) -> dict:
         "extraction_method": "beautifulsoup",
         "content_length": len(content),
 
-        # 🆕 客观数据汇总
+        # Objective data summary
         "objective_data": {
             "technical_specs": objective_specs,
             "market_data": market_data,
@@ -445,38 +444,38 @@ def extract_product_info(url: str, content: str) -> dict:
             "cost_data": cost_data
         },
 
-        # 数据完整性标记
+        # Data completeness
         "data_completeness": {
-            "technical_specs_score": len(objective_specs) / 10,  # 假设10个关键规格
-            "market_data_score": len(market_data) / 4,  # 假设4个关键市场数据
+            "technical_specs_score": len(objective_specs) / 10,
+            "market_data_score": len(market_data) / 4,
             "reliability_data_score": len(reliability_data) / 3,
             "sustainability_data_score": len(sustainability_data) / 3,
-            "overall_score": 0  # 将在下面计算
+            "overall_score": 0  # computed below
         }
     }
 
 
 def main():
-    parser = argparse.ArgumentParser(description='爬取产品页面信息（增强版）')
-    parser.add_argument('--url', required=True, help='产品页面URL')
-    parser.add_argument('--output', '-o', help='输出文件路径（JSON格式）')
-    parser.add_argument('--pretty', action='store_true', help='美化JSON输出')
+    parser = argparse.ArgumentParser(description='Crawl product page info (enhanced)')
+    parser.add_argument('--url', required=True, help='Product page URL')
+    parser.add_argument('--output', '-o', help='Output file path (JSON)')
+    parser.add_argument('--pretty', action='store_true', help='Pretty-print JSON output')
 
     args = parser.parse_args()
 
-    # 爬取网页内容
-    print(f"正在爬取: {args.url}", file=sys.stderr)
+    # Crawl webpage
+    print(f"Crawling: {args.url}", file=sys.stderr)
     result = crawl_webpage(args.url)
 
     if result["status"] == "error":
-        print(f"错误: {result['error']}", file=sys.stderr)
+        print(f"Error: {result['error']}", file=sys.stderr)
         sys.exit(1)
 
-    # 提取产品信息
-    print("正在解析产品信息...", file=sys.stderr)
+    # Extract product info
+    print("Parsing product info...", file=sys.stderr)
     product_info = extract_product_info(args.url, result["content"])
 
-    # 计算整体数据完整性分数
+    # Compute overall data completeness score
     completeness = product_info["data_completeness"]
     completeness["overall_score"] = (
         completeness["technical_specs_score"] * 0.4 +
@@ -485,20 +484,20 @@ def main():
         completeness["sustainability_data_score"] * 0.2
     )
 
-    # 输出结果
+    # Output result
     if args.pretty:
         print(json.dumps(product_info, ensure_ascii=False, indent=2))
     else:
         print(json.dumps(product_info, ensure_ascii=False))
 
-    # 保存到文件（可选）
+    # Save to file (optional)
     if args.output:
         with open(args.output, 'w', encoding='utf-8') as f:
             if args.pretty:
                 json.dump(product_info, f, ensure_ascii=False, indent=2)
             else:
                 json.dump(product_info, f, ensure_ascii=False)
-        print(f"\n结果已保存到: {args.output}", file=sys.stderr)
+        print(f"\nResult saved to: {args.output}", file=sys.stderr)
 
 
 if __name__ == "__main__":

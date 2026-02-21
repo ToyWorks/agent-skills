@@ -1,197 +1,197 @@
-# 客观数据标准
+# Objective Data Standard
 
-## 目录
-- [概述](#概述)
-- [客观数据分类](#客观数据分类)
-- [数据格式规范](#数据格式规范)
-- [数据来源要求](#数据来源要求)
-- [验证标准](#验证标准)
+## Table of Contents
+- [Overview](#overview)
+- [Objective Data Categories](#objective-data-categories)
+- [Data Format Specification](#data-format-specification)
+- [Data Source Requirements](#data-source-requirements)
+- [Validation Standards](#validation-standards)
 
-## 概述
+## Overview
 
-### 目的
-确保T3审计系统中使用的所有数据都是客观、可验证、完整的，避免主观臆断和营销话术的干扰。
+### Purpose
+Ensure all data used in the T3 audit system is objective, verifiable, and complete; avoid subjective assumptions and marketing language interference.
 
-### 核心原则
-- **客观性**：数据必须是事实，而非观点或推测
-- **可验证性**：数据必须能通过第三方验证
-- **完整性**：必须收集尽可能多的客观数据
-- **一致性**：数据格式和来源必须保持一致
+### Core Principles
+- **Objectivity**: Data must be facts, not opinions or speculation
+- **Verifiability**: Data must be verifiable by third parties
+- **Completeness**: Collect as much objective data as possible
+- **Consistency**: Data format and sources must be consistent
 
-### 信息隔离
-- 客观数据在Brand Blinding阶段**必须保留**
-- 区分"客观数据"和"营销话术"
-- 客观数据是评分的重要证据
-
----
-
-## 客观数据分类
-
-### 1. 技术规格（Technical Specs）
-
-#### 1.1 处理器
-- **必填**：处理器型号、核心数、主频
-- **格式**：`{"processor": "Apple M2", "cores": 8, "base_frequency": "3.5 GHz"}`
-- **来源**：官方规格表、第三方评测
-
-#### 1.2 存储
-- **必填**：存储容量、存储类型
-- **格式**：`{"storage": "256GB", "storage_type": "SSD"}`
-- **来源**：官方规格表
-
-#### 1.3 内存
-- **必填**：内存容量、内存类型
-- **格式**：`{"ram": "8GB", "ram_type": "LPDDR5"}`
-- **来源**：官方规格表
-
-#### 1.4 屏幕
-- **必填**：屏幕尺寸、分辨率
-- **可选**：刷新率、亮度、面板类型
-- **格式**：`{"screen": {"size": "6.1 inch", "resolution": "2532x1170", "refresh_rate": "60 Hz"}}`
-- **来源**：官方规格表
-
-#### 1.5 电池
-- **必填**：电池容量、宣称续航时间
-- **可选**：充电功率、充电接口
-- **格式**：`{"battery_capacity": "3279 mAh", "battery_life_claimed": "17 hours", "charging_power": "20W", "charging_port": "USB-C"}`
-- **来源**：官方规格表、第三方测试
-
-#### 1.6 连接性
-- **必填**：WiFi版本、蓝牙版本
-- **可选**：NFC、蜂窝网络
-- **格式**：`{"wifi_version": "Wi-Fi 6", "bluetooth_version": "Bluetooth 5.3", "nfc": true}`
-- **来源**：官方规格表
-
-#### 1.7 传感器
-- **必填**：所有传感器列表
-- **格式**：`{"sensors": ["accelerometer", "gyroscope", "heart rate", "blood oxygen"]}`
-- **来源**：官方规格表
-
-#### 1.8 防护等级
-- **必填**：IP等级（如果有）
-- **格式**：`{"ip_rating": "IP68"}`
-- **来源**：官方规格表
-
-#### 1.9 物理规格
-- **必填**：重量、尺寸
-- **格式**：`{"weight": "170g", "dimensions": "146.7x71.5x7.65mm"}`
-- **来源**：官方规格表
-
-### 2. 性能数据（Performance Data）
-
-#### 2.1 运行性能
-- **必填**：响应时间、处理能力
-- **格式**：`{"response_time": "< 100ms", "processing_capability": "High"}`
-- **来源**：第三方评测（如AnTuTu、Geekbench）
-
-#### 2.2 功耗数据
-- **可选**：待机功耗、工作功耗
-- **格式**：`{"standby_power": "0.1W", "active_power": "5W"}`
-- **来源**：第三方测试
-
-#### 2.3 发热情况
-- **可选**：最高温度、温度分布
-- **格式**：`{"max_temperature": "45°C", "thermal_distribution": "uniform"}`
-- **来源**：第三方评测
-
-#### 2.4 噪音水平
-- **可选**：工作噪音
-- **格式**：`{"noise_level": "< 30 dB"}`
-- **来源**：第三方测试
-
-### 3. 可靠性数据（Reliability Data）
-
-#### 3.1 故障率
-- **可选**：MTBF（平均故障间隔时间）
-- **格式**：`{"mtbf": "50,000 hours"}`
-- **来源**：官方质保数据、第三方统计
-
-#### 3.2 质保期
-- **必填**：质保时长
-- **格式**：`{"warranty_years": 2, "warranty_months": 24}`
-- **来源**：官方质保政策
-
-#### 3.3 返修率
-- **可选**：返修率数据
-- **格式**：`{"return_rate": "2%"}`
-- **来源**：第三方统计、用户报告
-
-#### 3.4 用户投诉率
-- **可选**：投诉率数据
-- **格式**：`{"complaint_rate": "5%"}`
-- **来源**：消费者报告、用户评价分析
-
-### 4. 市场数据（Market Data）
-
-#### 4.1 上市时间
-- **必填**：上市年份/日期
-- **格式**：`{"release_date": "2023-09", "release_year": 2023}`
-- **来源**：官方发布信息
-
-#### 4.2 销量数据
-- **可选**：销量、市场份额
-- **格式**：`{"sales_volume": "10M units", "market_share": "15%"}`
-- **来源**：市场调研报告
-
-#### 4.3 用户评价
-- **必填**：评价数量、平均评分
-- **格式**：`{"review_count": 50000, "average_rating": 4.5, "rating_scale": 5}`
-- **来源**：电商平台、第三方评测网站
-
-#### 4.4 第三方评分
-- **可选**：专业评测网站评分
-- **格式**：`{"professional_ratings": {"site1": 8.5, "site2": 9.0}}`
-- **来源**：专业评测网站
-
-### 5. 可持续性数据（Sustainability Data）
-
-#### 5.1 材料成分
-- **必填**：主要材料列表
-- **格式**：`{"materials": ["aluminum", "glass", "recyclable_plastic"]}`
-- **来源**：官方材料说明
-
-#### 5.2 可回收性
-- **可选**：可回收比例
-- **格式**：`{"recyclable_percentage": "85%"}`
-- **来源**：官方环保说明
-
-#### 5.3 能耗等级
-- **可选**：能耗等级、碳足迹
-- **格式**：`{"energy_rating": "A+", "carbon_footprint": "50kg CO2"}`
-- **来源**：官方环保数据、第三方认证
-
-#### 5.4 维修性
-- **必填**：是否可维修/可拆解
-- **格式**：`{"repairable": true, "replaceable_battery": true, "repairability_score": 8}`
-- **来源**：官方说明、iFixit评分
-
-### 6. 成本数据（Cost Data）
-
-#### 6.1 购买成本
-- **必填**：标价、折扣后价格
-- **格式**：`{"list_price": "$999", "discounted_price": "$899"}`
-- **来源**：官方定价、电商平台
-
-#### 6.2 维护成本
-- **可选**：年维护成本
-- **格式**：`{"annual_maintenance_cost": "$50"}`
-- **来源**：官方说明
-
-#### 6.3 配件成本
-- **可选**：常用配件价格
-- **格式**：`{"accessory_costs": {"charger": "$29", "case": "$49"}}`
-- **来源**：官方配件定价
-
-#### 6.4 订阅费用
-- **可选**：月费/年费
-- **格式**：`{"subscription_cost_monthly": "$9.99", "subscription_cost_yearly": "$99.99"}`
-- **来源**：官方订阅政策
+### Information Isolation
+- Objective data **must be retained** during Brand Blinding
+- Distinguish "objective data" from "marketing language"
+- Objective data is critical evidence for scoring
 
 ---
 
-## 数据格式规范
+## Objective Data Categories
 
-### JSON结构
+### 1. Technical Specs
+
+#### 1.1 Processor
+- **Required**: Model, core count, base frequency
+- **Format**: `{"processor": "Apple M2", "cores": 8, "base_frequency": "3.5 GHz"}`
+- **Source**: Official spec sheet, third-party reviews
+
+#### 1.2 Storage
+- **Required**: Capacity, storage type
+- **Format**: `{"storage": "256GB", "storage_type": "SSD"}`
+- **Source**: Official spec sheet
+
+#### 1.3 Memory
+- **Required**: Capacity, memory type
+- **Format**: `{"ram": "8GB", "ram_type": "LPDDR5"}`
+- **Source**: Official spec sheet
+
+#### 1.4 Display
+- **Required**: Size, resolution
+- **Optional**: Refresh rate, brightness, panel type
+- **Format**: `{"screen": {"size": "6.1 inch", "resolution": "2532x1170", "refresh_rate": "60 Hz"}}`
+- **Source**: Official spec sheet
+
+#### 1.5 Battery
+- **Required**: Capacity, claimed battery life
+- **Optional**: Charging power, charging interface
+- **Format**: `{"battery_capacity": "3279 mAh", "battery_life_claimed": "17 hours", "charging_power": "20W", "charging_port": "USB-C"}`
+- **Source**: Official spec sheet, third-party tests
+
+#### 1.6 Connectivity
+- **Required**: WiFi version, Bluetooth version
+- **Optional**: NFC, cellular
+- **Format**: `{"wifi_version": "Wi-Fi 6", "bluetooth_version": "Bluetooth 5.3", "nfc": true}`
+- **Source**: Official spec sheet
+
+#### 1.7 Sensors
+- **Required**: Complete sensor list
+- **Format**: `{"sensors": ["accelerometer", "gyroscope", "heart rate", "blood oxygen"]}`
+- **Source**: Official spec sheet
+
+#### 1.8 Protection Rating
+- **Required**: IP rating (if applicable)
+- **Format**: `{"ip_rating": "IP68"}`
+- **Source**: Official spec sheet
+
+#### 1.9 Physical Specs
+- **Required**: Weight, dimensions
+- **Format**: `{"weight": "170g", "dimensions": "146.7x71.5x7.65mm"}`
+- **Source**: Official spec sheet
+
+### 2. Performance Data
+
+#### 2.1 Runtime Performance
+- **Required**: Response time, processing capability
+- **Format**: `{"response_time": "< 100ms", "processing_capability": "High"}`
+- **Source**: Third-party reviews (e.g., AnTuTu, Geekbench)
+
+#### 2.2 Power Consumption
+- **Optional**: Standby power, active power
+- **Format**: `{"standby_power": "0.1W", "active_power": "5W"}`
+- **Source**: Third-party tests
+
+#### 2.3 Thermal
+- **Optional**: Max temperature, temperature distribution
+- **Format**: `{"max_temperature": "45°C", "thermal_distribution": "uniform"}`
+- **Source**: Third-party reviews
+
+#### 2.4 Noise Level
+- **Optional**: Operating noise
+- **Format**: `{"noise_level": "< 30 dB"}`
+- **Source**: Third-party tests
+
+### 3. Reliability Data
+
+#### 3.1 Failure Rate
+- **Optional**: MTBF (Mean Time Between Failures)
+- **Format**: `{"mtbf": "50,000 hours"}`
+- **Source**: Official warranty data, third-party statistics
+
+#### 3.2 Warranty
+- **Required**: Warranty duration
+- **Format**: `{"warranty_years": 2, "warranty_months": 24}`
+- **Source**: Official warranty policy
+
+#### 3.3 Return Rate
+- **Optional**: Return rate data
+- **Format**: `{"return_rate": "2%"}`
+- **Source**: Third-party statistics, user reports
+
+#### 3.4 User Complaint Rate
+- **Optional**: Complaint rate data
+- **Format**: `{"complaint_rate": "5%"}`
+- **Source**: Consumer reports, user review analysis
+
+### 4. Market Data
+
+#### 4.1 Launch Date
+- **Required**: Launch year/date
+- **Format**: `{"release_date": "2023-09", "release_year": 2023}`
+- **Source**: Official release information
+
+#### 4.2 Sales Data
+- **Optional**: Sales volume, market share
+- **Format**: `{"sales_volume": "10M units", "market_share": "15%"}`
+- **Source**: Market research reports
+
+#### 4.3 User Reviews
+- **Required**: Review count, average rating
+- **Format**: `{"review_count": 50000, "average_rating": 4.5, "rating_scale": 5}`
+- **Source**: E-commerce platforms, third-party review sites
+
+#### 4.4 Third-Party Ratings
+- **Optional**: Professional review site ratings
+- **Format**: `{"professional_ratings": {"site1": 8.5, "site2": 9.0}}`
+- **Source**: Professional review sites
+
+### 5. Sustainability Data
+
+#### 5.1 Material Composition
+- **Required**: Primary materials list
+- **Format**: `{"materials": ["aluminum", "glass", "recyclable_plastic"]}`
+- **Source**: Official material documentation
+
+#### 5.2 Recyclability
+- **Optional**: Recyclable proportion
+- **Format**: `{"recyclable_percentage": "85%"}`
+- **Source**: Official environmental documentation
+
+#### 5.3 Energy Rating
+- **Optional**: Energy rating, carbon footprint
+- **Format**: `{"energy_rating": "A+", "carbon_footprint": "50kg CO2"}`
+- **Source**: Official environmental data, third-party certification
+
+#### 5.4 Repairability
+- **Required**: Repairable/disassemblable
+- **Format**: `{"repairable": true, "replaceable_battery": true, "repairability_score": 8}`
+- **Source**: Official documentation, iFixit score
+
+### 6. Cost Data
+
+#### 6.1 Purchase Cost
+- **Required**: List price, discounted price
+- **Format**: `{"list_price": "$999", "discounted_price": "$899"}`
+- **Source**: Official pricing, e-commerce platforms
+
+#### 6.2 Maintenance Cost
+- **Optional**: Annual maintenance cost
+- **Format**: `{"annual_maintenance_cost": "$50"}`
+- **Source**: Official documentation
+
+#### 6.3 Accessory Cost
+- **Optional**: Common accessory prices
+- **Format**: `{"accessory_costs": {"charger": "$29", "case": "$49"}}`
+- **Source**: Official accessory pricing
+
+#### 6.4 Subscription Cost
+- **Optional**: Monthly/yearly fee
+- **Format**: `{"subscription_cost_monthly": "$9.99", "subscription_cost_yearly": "$99.99"}`
+- **Source**: Official subscription policy
+
+---
+
+## Data Format Specification
+
+### JSON Structure
 ```json
 {
   "objective_data": {
@@ -214,121 +214,121 @@
 }
 ```
 
-### 数据完整性评分
-- **0.0-0.2**：数据缺失严重
-- **0.3-0.5**：数据不足
-- **0.6-0.8**：数据基本完整
-- **0.9-1.0**：数据完整
+### Data Completeness Score
+- **0.0-0.2**: Severe data gaps
+- **0.3-0.5**: Insufficient data
+- **0.6-0.8**: Basically complete
+- **0.9-1.0**: Complete
 
-### 数据优先级
-1. **一级（必填）**：技术规格、成本数据
-2. **二级（重要）**：市场数据、可靠性数据
-3. **三级（可选）**：性能数据、可持续性数据
-
----
-
-## 数据来源要求
-
-### 可接受的来源
-1. **官方来源**：
-   - 官方产品页面
-   - 官方规格表
-   - 官方技术文档
-
-2. **第三方评测**：
-   - 专业评测网站（如AnTuTu、Geekbench、Tom's Hardware）
-   - 媒体评测（如The Verge、TechCrunch）
-   - 独立评测机构
-
-3. **用户数据**：
-   - 电商平台用户评价（需统计汇总）
-   - 社交媒体用户反馈（需去重和验证）
-   - 消费者报告
-
-4. **认证数据**：
-   - 行业认证（如Energy Star、CE、FCC）
-   - 第三方认证机构数据
-
-### 不可接受的来源
-1. **营销话术**：广告、宣传文案
-2. **未验证的宣称**：无证据支持的声明
-3. **匿名评价**：无法验证的用户评价
-4. **竞品对比**：竞争对手的宣传材料
-
-### 数据验证
-- **交叉验证**：多个来源一致的数据更可信
-- **时间戳**：注明数据收集时间
-- **来源标注**：每个数据必须标注来源
+### Data Priority
+1. **Tier 1 (Required)**: Technical specs, cost data
+2. **Tier 2 (Important)**: Market data, reliability data
+3. **Tier 3 (Optional)**: Performance data, sustainability data
 
 ---
 
-## 验证标准
+## Data Source Requirements
 
-### 客观性验证
-- [ ] 数据是否为事实，而非观点？
-- [ ] 数据是否可独立验证？
-- [ ] 数据是否包含主观形容词？
+### Acceptable Sources
+1. **Official sources**:
+   - Official product page
+   - Official spec sheet
+   - Official technical documentation
 
-### 完整性验证
-- [ ] 是否包含所有必填数据项？
-- [ ] 数据完整性评分是否>0.6？
-- [ ] 缺失的数据是否影响评估？
+2. **Third-party reviews**:
+   - Professional review sites (e.g., AnTuTu, Geekbench, Tom's Hardware)
+   - Media reviews (e.g., The Verge, TechCrunch)
+   - Independent review institutions
 
-### 一致性验证
-- [ ] 数据格式是否符合规范？
-- [ ] 单位是否统一？
-- [ ] 数值范围是否合理？
+3. **User data**:
+   - E-commerce user reviews (aggregated)
+   - Social media user feedback (deduplicated and verified)
+   - Consumer reports
 
-### 时效性验证
-- [ ] 数据是否为最新版本？
-- [ ] 数据收集时间是否在6个月内？
-- [ ] 产品是否已更新？
+4. **Certification data**:
+   - Industry certification (e.g., Energy Star, CE, FCC)
+   - Third-party certification data
+
+### Unacceptable Sources
+1. **Marketing language**: Ads, promotional copy
+2. **Unverified claims**: Assertions without evidence
+3. **Anonymous reviews**: Unverifiable user reviews
+4. **Competitor comparison**: Competitor promotional materials
+
+### Data Verification
+- **Cross-validation**: Data consistent across sources is more credible
+- **Timestamp**: Note data collection time
+- **Source attribution**: Every data point must cite source
 
 ---
 
-## Brand Blinding中的客观数据处理
+## Validation Standards
 
-### 必须保留的客观数据
-- 所有技术规格（处理器、内存、存储等）
-- 所有性能数据（测试结果、实测数据）
-- 所有可靠性数据（故障率、质保期）
-- 所有市场数据（销量、评价）
-- 所有可持续性数据（材料、能耗）
-- 所有成本数据（价格、费用）
+### Objectivity Validation
+- [ ] Is data factual rather than opinion?
+- [ ] Can data be independently verified?
+- [ ] Does data include subjective adjectives?
 
-### 必须移除的内容
-- 品牌名称
-- 营销话术（"revolutionary"、"game-changing"等）
-- 情感化描述（"amazing"、"stunning"等）
-- 未验证的宣称
-- 夸大的宣传
+### Completeness Validation
+- [ ] Are all required data items present?
+- [ ] Is data completeness score > 0.6?
+- [ ] Does missing data affect assessment?
 
-### 处理示例
+### Consistency Validation
+- [ ] Does data format comply with specification?
+- [ ] Are units consistent?
+- [ ] Are value ranges reasonable?
+
+### Timeliness Validation
+- [ ] Is data current?
+- [ ] Was data collected within 6 months?
+- [ ] Has product been updated?
+
+---
+
+## Objective Data Handling in Brand Blinding
+
+### Objective Data to Retain
+- All technical specs (processor, memory, storage, etc.)
+- All performance data (test results, measured data)
+- All reliability data (failure rate, warranty)
+- All market data (sales, reviews)
+- All sustainability data (materials, energy)
+- All cost data (price, fees)
+
+### Content to Remove
+- Brand names
+- Marketing language ("revolutionary", "game-changing", etc.)
+- Emotional descriptions ("amazing", "stunning", etc.)
+- Unverified claims
+- Exaggerated claims
+
+### Processing Example
 ```
-原始：Apple M2 chip delivers revolutionary performance
-客观数据：processor: "M2", performance_score: "high"
-移除：brand name, "revolutionary" (marketing)
-保留：processor model, performance data
+Original: Apple M2 chip delivers revolutionary performance
+Objective data: processor: "M2", performance_score: "high"
+Remove: brand name, "revolutionary" (marketing)
+Retain: processor model, performance data
 ```
 
 ---
 
-## 使用指南
+## Usage Guide
 
-### 对于Auditor
-1. **必须使用客观数据**：所有评分必须基于客观数据
-2. **引用数据来源**：每个评分必须注明客观数据来源
-3. **验证数据完整性**：检查数据完整性评分
-4. **标注数据缺失**：如果数据缺失，在报告中说明
+### For Auditors
+1. **Use objective data only**: All scores must be based on objective data
+2. **Cite data sources**: Every score must cite objective data source
+3. **Verify data completeness**: Check data completeness score
+4. **Note data gaps**: If data is missing, state in report
 
-### 对于Brand Blinding
-1. **保留所有客观数据**：不要移除任何客观数据
-2. **区分客观数据vs营销话术**：仔细区分
-3. **保持数据格式**：保持客观数据的原始格式
-4. **标注数据来源**：保留客观数据的来源标注
+### For Brand Blinding
+1. **Retain all objective data**: Do not remove any objective data
+2. **Distinguish objective data vs. marketing**: Distinguish carefully
+3. **Preserve data format**: Keep original format of objective data
+4. **Source attribution**: Retain source attribution for objective data
 
-### 对于Final Judge
-1. **检查数据完整性**：验证所有客观数据是否完整
-2. **验证数据来源**：确认数据来源可靠
-3. **检查数据一致性**：验证数据格式一致
-4. **评估数据影响**：评估数据缺失对判断的影响
+### For Final Judge
+1. **Check data completeness**: Verify all objective data is complete
+2. **Verify data sources**: Confirm source reliability
+3. **Check data consistency**: Verify data format consistency
+4. **Assess data impact**: Assess impact of data gaps on judgment

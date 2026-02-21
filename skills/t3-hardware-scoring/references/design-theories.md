@@ -1,283 +1,283 @@
-# 三大设计理论核心要点
+# Core Points of the Three Design Theories
 
-## 目录
-- [Tony Fadell的Build设计理论](#tony-fadell的build设计理论)
-- [Don Norman的设计心理学](#don-norman的设计心理学)
-- [Dieter Rams的十大设计原则](#dieter-rams的十大设计原则)
-- [理论在T3评分中的应用](#理论在t3评分中的应用)
+## Table of Contents
+- [Tony Fadell's Build Design Theory](#tony-fadell-build-design-theory)
+- [Don Norman's Design Psychology](#don-norman-design-psychology)
+- [Dieter Rams' Ten Principles of Good Design](#dieter-rams-ten-principles-of-good-design)
+- [Application of Theories in T3 Scoring](#application-of-theories-in-t3-scoring)
 
-## Tony Fadell的Build设计理论
+## Tony Fadell's Build Design Theory
 
-### 核心理念
-Tony Fadell在《Build: An Unorthodox Guide to Making Things Worth Making》中提出的实用主义设计哲学。
+### Core Concept
+Pragmatic design philosophy from Tony Fadell's *Build: An Unorthodox Guide to Making Things Worth Making*.
 
-### 关键原则
+### Key Principles
 
-#### 1. 解决真实问题
-- **痛点导向**：设计必须解决用户的真实痛点，而非想象的问题
-- **止痛药vs维生素**：Tool应该是止痛药，直接解决痛苦
-- **第一性原理**：从根本原因出发，而非表面症状
+#### 1. Solve Real Problems
+- **Pain-point driven**: Design must solve users' real pain points, not imagined problems
+- **Painkiller vs. vitamin**: Tools should be painkillers that directly address pain
+- **First principles**: Start from root cause, not surface symptoms
 
-**应用示例**：
-- Dyson吸尘器：解决了传统吸尘器吸力衰减的痛点
-- Nest恒温器：解决了 thermostat 使用复杂的痛点
+**Examples**:
+- Dyson vacuum: Addresses suction decay in traditional vacuums
+- Nest thermostat: Addresses thermostat complexity
 
-#### 2. 注重细节和一致性
-- **细节决定成败**：每个交互细节都经过精心设计
-- **一致性体验**：所有触点保持一致的设计语言
-- **隐藏复杂性**：复杂的技术应该对用户透明
+#### 2. Attention to Detail and Consistency
+- **Details determine success**: Every interaction detail is carefully designed
+- **Consistent experience**: Consistent design language across touchpoints
+- **Hide complexity**: Complex technology should be transparent to users
 
-**应用示例**：
-- iPhone的充电提示音和振动反馈
-- 统一的图标风格和动画效果
+**Examples**:
+- iPhone charging sound and haptic feedback
+- Unified icon style and animation
 
-#### 3. 简洁性和高效性
-- **减法思维**：去除一切不必要的元素
-- **高效操作**：最少步骤完成任务
-- **不引人注目**：好的设计应该是隐形的
+#### 3. Simplicity and Efficiency
+- **Subtraction mindset**: Remove all unnecessary elements
+- **Efficient operation**: Complete tasks with minimal steps
+- **Unobtrusive**: Good design should be invisible
 
-**应用示例**：
-- Google搜索首页的极简设计
-- 机械键盘的简洁布局
+**Examples**:
+- Google search homepage minimalism
+- Mechanical keyboard simple layout
 
-#### 4. 可靠性和质量
-- **工程可靠性**：产品必须稳定可靠
-- **质量控制**：每个组件都必须经过严格测试
-- **长期耐用性**：产品应能长期稳定工作
+#### 4. Reliability and Quality
+- **Engineering reliability**: Product must be stable and reliable
+- **Quality control**: Every component must pass rigorous testing
+- **Long-term durability**: Product should work reliably over time
 
-**应用示例**：
-- Dyson的五年质保承诺
-- 日本家电的可靠性口碑
+**Examples**:
+- Dyson five-year warranty
+- Japanese home appliance reliability reputation
 
-### 在T3评分中的应用
-- **Tool实用性**：评估是否解决真实痛点
-- **Tool可靠性**：评估工程质量和稳定性
-- **Tool设计效率**：评估操作是否简洁高效
-
----
-
-## Don Norman的设计心理学
-
-### 核心理念
-Don Norman在《The Design of Everyday Things》中提出的以用户为中心的设计哲学。
-
-### 关键原则
-
-#### 1. 可视性（Visibility）
-- **状态可见**：用户应能清楚看到系统的当前状态
-- **操作可见**：可执行的操作应该显而易见
-- **反馈可见**：操作的后果应该清晰可见
-
-**应用示例**：
-- iOS的状态栏显示时间、电池、信号
-- 电器的指示灯和显示屏
-
-#### 2. 反馈（Feedback）
-- **即时反馈**：每个操作都应有即时、明确的反馈
-- **信息反馈**：反馈应传达相关信息
-- **及时反馈**：反馈应在合理时间内提供
-
-**应用示例**：
-- 点击按钮时的视觉变化
-- 触摸屏的振动反馈
-
-#### 3. 限制因素（Constraints）
-- **物理限制**：通过物理设计防止错误操作
-- **逻辑限制**：通过逻辑流程引导正确操作
-- **文化限制**：利用文化习惯降低学习成本
-
-**应用示例**：
-- USB接口的唯一插入方向
-- 软件表单的必填项验证
-
-#### 4. 映射（Mapping）
-- **自然映射**：控制元素与效果之间的自然对应关系
-- **直观映射**：控制布局与功能布局一致
-- **预期映射**：符合用户的心理模型
-
-**应用示例**：
-- 炉灶旋钮与炉灶位置对应
-- 方向键的上下左右映射
-
-#### 5. 一致性（Consistency）
-- **内部一致性**：同一产品内保持一致
-- **外部一致性**：与行业标准和用户习惯一致
-- **概念一致性**：核心概念保持一致
-
-**应用示例**：
-- 统一的颜色编码（绿色=确认，红色=取消）
-- 统一的图标含义
-
-#### 6. 情感设计（Emotional Design）
-- **本能层**：外观的即时吸引力
-- **行为层**：使用的愉悦感
-- **反思层**：自我认同和意义
-
-**应用示例**：
-- Apple产品的高级感（反思层）
-- 乐高的创意乐趣（行为层）
-
-### 在T3评分中的应用
-- **Tool设计效率**：评估可视性、反馈、映射等
-- **Toy情感价值**：评估情感设计的三层体验
-- **Trash设计违背性**：评估是否违反设计心理学原则
+### Application in T3 Scoring
+- **Tool practicality**: Assess whether real pain points are solved
+- **Tool reliability**: Assess engineering quality and stability
+- **Tool design efficiency**: Assess operation simplicity and efficiency
 
 ---
 
-## Dieter Rams的十大设计原则
+## Don Norman's Design Psychology
 
-### 核心理念
-Dieter Rams提出的"好的设计是尽可能少的设计"（Good design is as little design as possible）。
+### Core Concept
+User-centered design philosophy from Don Norman's *The Design of Everyday Things*.
 
-### 十大原则
+### Key Principles
 
-#### 1. 好的设计是创新的（Good design is innovative）
-- 技术进步提供创新机会
-- 创新不等于复杂
-- 创新应该解决实际问题
+#### 1. Visibility
+- **State visible**: Users should clearly see system state
+- **Actions visible**: Executable actions should be obvious
+- **Feedback visible**: Consequences of actions should be clear
 
-**应用示例**：
-- 智能手机的触控交互
-- 无线充电技术
+**Examples**:
+- iOS status bar (time, battery, signal)
+- Appliance indicators and displays
 
-#### 2. 好的设计让产品有用（Good design makes a product useful）
-- 功能满足实际需求
-- 避免无用功能
-- 强调实用性
+#### 2. Feedback
+- **Immediate feedback**: Every action should have immediate, clear feedback
+- **Informative feedback**: Feedback should convey relevant information
+- **Timely feedback**: Feedback within reasonable time
 
-**应用示例**：
-- 瑞士军刀的多功能设计
-- 模块化家具的灵活性
+**Examples**:
+- Button click visual change
+- Touchscreen haptic feedback
 
-#### 3. 好的设计是美观的（Good design is aesthetic）
-- 美观不是装饰
-- 美观提升使用体验
-- 美观反映产品质量
+#### 3. Constraints
+- **Physical constraints**: Prevent errors via physical design
+- **Logical constraints**: Guide correct operation via logic
+- **Cultural constraints**: Reduce learning cost via cultural habits
 
-**应用示例**：
-- 博朗家电的极简美学
-- 苹果产品的设计语言
+**Examples**:
+- USB port insertion direction
+- Form required-field validation
 
-#### 4. 好的设计让产品易于理解（Good design makes a product understandable）
-- 功能清晰明了
-- 操作直观易懂
-- 传达设计意图
+#### 4. Mapping
+- **Natural mapping**: Natural correspondence between controls and effects
+- **Intuitive mapping**: Control layout matches function layout
+- **Expected mapping**: Aligns with user mental model
 
-**应用示例**：
-- IKEA家具的组装说明
-- 简洁的用户界面
+**Examples**:
+- Stove knobs matching burner positions
+- Arrow key directional mapping
 
-#### 5. 好的设计是不引人注目的（Good design is unobtrusive）
-- 设计服务于用户
-- 不干扰用户注意力
-- 长期使用不厌倦
+#### 5. Consistency
+- **Internal consistency**: Consistent within product
+- **External consistency**: Consistent with industry standards and user habits
+- **Conceptual consistency**: Core concepts consistent
 
-**应用示例**：
-- 隐藏式门把手
-- 简洁的界面设计
+**Examples**:
+- Unified color coding (green=confirm, red=cancel)
+- Unified icon meanings
 
-#### 6. 好的设计是诚实的（Good design is honest）
-- 不夸大产品价值
-- 不误导用户预期
-- 诚实的表达
+#### 6. Emotional Design
+- **Visceral level**: Immediate appeal of appearance
+- **Behavioral level**: Pleasure of use
+- **Reflective level**: Self-identity and meaning
 
-**应用示例**：
-- 清晰的产品规格说明
-- 真实的续航时间宣传
+**Examples**:
+- Apple products premium feel (reflective)
+- Lego creative fun (behavioral)
 
-#### 7. 好的设计是持久的（Good design is long-lasting）
-- 避免过时设计
-- 耐用的材料和质量
-- 长期的用户体验
-
-**应用示例**：
-- Leica相机的经典设计
-- 传统手工家具
-
-#### 8. 好的设计追求极致细节（Good design is thorough down to the last detail）
-- 没有任何细节被忽视
-- 细节体现品质
-- 一致性的细节处理
-
-**应用示例**：
-- 奢侈手表的打磨工艺
-- 汽车内饰的细节设计
-
-#### 9. 好的设计对环境友好（Good design is environmentally friendly）
-- 可持续的材料选择
-- 低能耗设计
-- 易于回收和维修
-
-**应用示例**：
-- 模块化电子设备
-- 可生物降解的材料
-
-#### 10. 好的设计是尽可能少的设计（Good design is as little design as possible）
-- 去除一切不必要的元素
-- 专注于本质
-- 简洁而强大
-
-**应用示例**：
-- 谷歌搜索首页
-- 极简主义的建筑设计
-
-### 在T3评分中的应用
-- **Tool实用性**：原则2（有用）、原则4（易于理解）
-- **Tool可靠性**：原则7（持久）、原则8（细节）
-- **Toy美学设计**：原则3（美观）、原则5（不引人注目）
-- **Trash设计违背性**：原则6（诚实）、原则9（环境友好）
+### Application in T3 Scoring
+- **Tool design efficiency**: Assess visibility, feedback, mapping
+- **Toy emotional value**: Assess three levels of emotional design
+- **Trash design violation**: Assess violation of design psychology principles
 
 ---
 
-## 理论在T3评分中的应用
+## Dieter Rams' Ten Principles of Good Design
 
-### Tool评分的理论基础
+### Core Concept
+Dieter Rams: "Good design is as little design as possible."
 
-| 维度 | Tony Fadell | Don Norman | Dieter Rams |
-|------|-------------|------------|-------------|
-| 实用性 | 解决真实痛点 | - | 让产品有用 |
-| 可靠性 | 工程可靠性 | - | 持久 |
-| 工作流依赖性 | 高效性 | 易用性 | - |
-| 设计效率 | 简洁性 | 可视性/反馈 | 尽可能少的设计 |
+### Ten Principles
 
-### Toy评分的理论基础
+#### 1. Good design is innovative
+- Technical progress enables innovation
+- Innovation ≠ complexity
+- Innovation should solve real problems
 
-| 维度 | Tony Fadell | Don Norman | Dieter Rams |
-|------|-------------|------------|-------------|
-| 情感价值 | - | 情感设计（反思层） | - |
-| 美学设计 | 注重细节 | 本能层 | 美观 |
-| 互动乐趣 | - | 行为层 | - |
-| 社交属性 | - | - | - |
+**Examples**:
+- Smartphone touch interaction
+- Wireless charging
 
-### Trash评分的理论基础
+#### 2. Good design makes a product useful
+- Function meets actual needs
+- Avoid useless functions
+- Emphasize practicality
 
-| 维度 | Tony Fadell | Don Norman | Dieter Rams |
-|------|-------------|------------|-------------|
-| 逻辑缺陷 | 第一性原理 | 一致性 | 有用性 |
-| 营销真实性 | - | - | 诚实 |
-| 可持续性 | 可靠性 | - | 环境友好 |
-| 设计违背性 | - | 映射/限制 | 十大原则 |
+**Examples**:
+- Swiss Army knife multi-function
+- Modular furniture flexibility
 
-### 综合分析框架
+#### 3. Good design is aesthetic
+- Beauty is not decoration
+- Beauty improves experience
+- Beauty reflects product quality
 
-当分析一个产品时，应该：
+**Examples**:
+- Braun appliance minimal aesthetic
+- Apple product design language
 
-1. **从Tony Fadell角度**：
-   - 是否解决真实痛点？
-   - 设计是否简洁高效？
-   - 质量是否可靠？
+#### 4. Good design makes a product understandable
+- Clear functionality
+- Intuitive, easy operation
+- Communicates design intent
 
-2. **从Don Norman角度**：
-   - 用户体验是否流畅？
-   - 是否符合用户心理模型？
-   - 是否提供情感价值？
+**Examples**:
+- IKEA assembly instructions
+- Simple user interfaces
 
-3. **从Dieter Rams角度**：
-   - 是否满足十大设计原则？
-   - 设计是否诚实持久？
-   - 对环境是否友好？
+#### 5. Good design is unobtrusive
+- Design serves users
+- Does not distract
+- Not tiresome over long use
 
-4. **综合判断T3分类**：
-   - 如果三者都符合 → 强Tool
-   - 如果情感设计突出 → Toy
-   - 如果违背原则 → Trash
+**Examples**:
+- Hidden door handles
+- Minimal interfaces
+
+#### 6. Good design is honest
+- Does not exaggerate value
+- Does not mislead expectations
+- Honest expression
+
+**Examples**:
+- Clear product specs
+- Honest battery life claims
+
+#### 7. Good design is long-lasting
+- Avoid dated design
+- Durable materials and quality
+- Long-term user experience
+
+**Examples**:
+- Leica camera classic design
+- Traditional handcrafted furniture
+
+#### 8. Good design is thorough down to the last detail
+- No detail overlooked
+- Details reflect quality
+- Consistent detail treatment
+
+**Examples**:
+- Luxury watch finishing
+- Automotive interior details
+
+#### 9. Good design is environmentally friendly
+- Sustainable material choice
+- Low-energy design
+- Easy to recycle and repair
+
+**Examples**:
+- Modular electronics
+- Biodegradable materials
+
+#### 10. Good design is as little design as possible
+- Remove all unnecessary elements
+- Focus on essence
+- Simple yet powerful
+
+**Examples**:
+- Google search homepage
+- Minimalist architecture
+
+### Application in T3 Scoring
+- **Tool practicality**: Principles 2 (useful), 4 (understandable)
+- **Tool reliability**: Principles 7 (long-lasting), 8 (thorough)
+- **Toy aesthetic design**: Principles 3 (aesthetic), 5 (unobtrusive)
+- **Trash design violation**: Principles 6 (honest), 9 (environmentally friendly)
+
+---
+
+## Application of Theories in T3 Scoring
+
+### Theoretical Basis for Tool Scoring
+
+| Dimension | Tony Fadell | Don Norman | Dieter Rams |
+|-----------|-------------|------------|-------------|
+| Practicality | Solve real pain points | - | Make product useful |
+| Reliability | Engineering reliability | - | Long-lasting |
+| Workflow dependency | Efficiency | Usability | - |
+| Design efficiency | Simplicity | Visibility/feedback | As little design as possible |
+
+### Theoretical Basis for Toy Scoring
+
+| Dimension | Tony Fadell | Don Norman | Dieter Rams |
+|-----------|-------------|------------|-------------|
+| Emotional value | - | Emotional design (reflective) | - |
+| Aesthetic design | Attention to detail | Visceral level | Aesthetic |
+| Interactive fun | - | Behavioral level | - |
+| Social attribute | - | - | - |
+
+### Theoretical Basis for Trash Scoring
+
+| Dimension | Tony Fadell | Don Norman | Dieter Rams |
+|-----------|-------------|------------|-------------|
+| Logic defects | First principles | Consistency | Usefulness |
+| Marketing authenticity | - | - | Honest |
+| Sustainability | Reliability | - | Environmentally friendly |
+| Design violation | - | Mapping/constraints | Ten principles |
+
+### Integrated Analysis Framework
+
+When analyzing a product:
+
+1. **From Tony Fadell**:
+   - Does it solve real pain points?
+   - Is design simple and efficient?
+   - Is quality reliable?
+
+2. **From Don Norman**:
+   - Is user experience smooth?
+   - Does it match user mental model?
+   - Does it provide emotional value?
+
+3. **From Dieter Rams**:
+   - Does it satisfy the ten principles?
+   - Is design honest and long-lasting?
+   - Is it environmentally friendly?
+
+4. **T3 classification**:
+   - If all three align → Strong Tool
+   - If emotional design stands out → Toy
+   - If principles violated → Trash

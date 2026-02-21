@@ -1,255 +1,256 @@
-# T3分类与Final Judge指南
+# T3 Classification and Final Judge Guide
 
-## 目录
-- [T3分类定义](#t3分类定义)
+## Table of Contents
+- [T3 Classification Definition](#t3-classification-definition)
 - [Litmus Test](#litmus-test)
-- [Final Judge角色](#final-judge角色)
-- [分类判断逻辑](#分类判断逻辑)
-- [综合评分计算](#综合评分计算)
-- [分类决策流程](#分类决策流程)
+- [Final Judge Role](#final-judge-role)
+- [Classification Decision Logic](#classification-decision-logic)
+- [Composite Score Calculation](#composite-score-calculation)
+- [Classification Decision Flow](#classification-decision-flow)
 
-## T3分类定义
+## T3 Classification Definition
 
-### Tool（工具）
-**核心特征**：解决实际、明确的问题
+### Tool
+**Core characteristic**: Solves real, well-defined problems
 
-**关键指标**：
-- 实用性：解决真实痛点
-- 可靠性：高稳定性，不引人注目
-- 效率：成为用户工作流的一部分
-- 依赖性：用户需要定期使用
+**Key metrics**:
+- **Practicality**: Solves real pain points
+- **Reliability**: High stability, unobtrusive
+- **Efficiency**: Becomes part of user workflow
+- **Dependency**: User needs to use regularly
 
-**示例**：
-- 🟢 高端工具：Apple AirPods、Dyson吸尘器
-- 🟡 兼具Toy属性：高端咖啡机（好用+美观）
+**Examples**:
+- 🟢 Premium tools: Apple AirPods, Dyson vacuum
+- 🟡 With Toy attributes: Premium coffee maker (functional + beautiful)
 
-### Toy（玩具）
-**核心特征**：带来感官愉悦、惊喜和情感满足
+### Toy
+**Core characteristic**: Brings sensory pleasure, surprise, and emotional satisfaction
 
-**关键指标**：
-- 乐趣：带来直接的情感满足
-- 惊喜：超出预期的正面体验
-- 情感联结：建立情感联系和记忆
-- 可探索性：提供探索和发现的空间
+**Key metrics**:
+- **Fun**: Direct emotional satisfaction
+- **Surprise**: Exceeds expectations with positive experiences
+- **Emotional connection**: Establishes emotional bonds and memories
+- **Explorability**: Provides space for exploration and discovery
 
-**示例**：
-- 🟡 兼具Tool属性：游戏主机（娱乐+功能）
-- 🔴 接近Trash：无实用价值的网红产品
+**Examples**:
+- 🟡 With Tool attributes: Game console (entertainment + functionality)
+- 🔴 Approaching Trash: Viral products with no practical value
 
-### Trash（垃圾）
-**核心特征**：违背设计原则，缺乏清晰价值，制造问题而非解决问题
+### Trash
+**Core characteristic**: Violates design principles, lacks clear value, creates problems rather than solving them
 
-**关键指标**：
-- 设计违背：违背基本设计原则
-- 问题制造：制造新问题
-- 价值缺失：缺乏清晰价值主张
-- 可替代性：容易被替代或淘汰
+**Key metrics**:
+- **Design violation**: Violates fundamental design principles
+- **Problem creation**: Creates new problems
+- **Value deficit**: Lacks clear value proposition
+- **Replaceability**: Easily replaceable or obsolete
 
-**示例**：
-- 🔴 纯粹Trash：山寨产品、伪创新产品
-- 🟡 接近Trash：过度营销的平庸产品
+**Examples**:
+- 🔴 Pure Trash: Knockoff products, pseudo-innovation
+- 🟡 Approaching Trash: Over-marketed mediocre products
 
-### 混合分类
-现实中的产品往往兼具多个分类特征：
+### Mixed Classifications
 
-**Tool + Toy**（最多见）
-- 示例：Apple AirPods、高端咖啡机、智能手表
-- 特征：既实用又美观，既解决问题又带来愉悦
+Real-world products often have multiple classification characteristics:
+
+**Tool + Toy** (most common)
+- Examples: Apple AirPods, premium coffee maker, smartwatch
+- Characteristics: Both practical and beautiful; solves problems and brings pleasure
 
 **Toy + Trash**
-- 示例：网红小家电（好看但无实用价值）
-- 特征：外观吸引人，但缺乏实际功能
+- Examples: Viral small appliances (attractive but no practical value)
+- Characteristics: Appealing appearance but lacks actual functionality
 
 **Tool + Trash**
-- 示例：必需但设计糟糕的产品
-- 特征：功能必需，但用户体验差
+- Examples: Essential but poorly designed products
+- Characteristics: Functionally necessary but poor user experience
 
 ## Litmus Test
 
 ### Tool Litmus Test
-**问题**："如果明天它坏了，用户的工作流会停滞吗？"
-- **是** → Tool
-- **否** → 不是纯粹的Tool
+**Question**: "If it broke tomorrow, would the user's workflow come to a halt?"
+- **Yes** → Tool
+- **No** → Not a pure Tool
 
 ### Toy Litmus Test
-**问题**："用户是否会把它放在显眼的位置'炫耀'或收藏？"
-- **是** → Toy
-- **否** → 不是纯粹的Toy
+**Question**: "Would users display it prominently to 'show off' or collect it?"
+- **Yes** → Toy
+- **No** → Not a pure Toy
 
 ### Trash Litmus Test
-**问题**："如果这个产品明天消失，世界会变得更好还是更糟？"
-- **更好** → Trash
-- **更糟** → 不是Trash
-- **无影响** → 可能是Trash（无存在价值）
+**Question**: "If this product disappeared tomorrow, would the world become better or worse?"
+- **Better** → Trash
+- **Worse** → Not Trash
+- **No impact** → Possibly Trash (no raison d'être)
 
-## Final Judge角色
+## Final Judge Role
 
-### 核心职责
-Final Judge（最终裁决者）基于三个独立Auditor的报告，综合评估并做出最终分类决策。
+### Core Responsibilities
+The Final Judge (final arbiter) makes the final classification decision based on three independent Auditor reports.
 
-### 工作原则
-1. **客观公正**：基于客观数据和事实，避免主观偏见
-2. **信息隔离**：不访问原始品牌信息，仅基于Brand-Blinded信息
-3. **综合权衡**：综合考虑三个Auditor的评分和证据
-4. **透明决策**：分类决策必须有明确的理由和依据
+### Working Principles
+1. **Objective and fair**: Based on objective data and facts; avoid subjective bias
+2. **Information isolation**: Does not access original brand information; uses Brand-Blinded information only
+3. **Comprehensive weighing**: Consider scores and evidence from all three Auditors
+4. **Transparent decisions**: Classification decisions must have clear rationale and basis
 
-### 输入信息
-- Tool Auditor报告（总分0-100）
-- Toy Auditor报告（总分0-100）
-- Trash Auditor报告（总分0-100，反向评分）
+### Input
+- Tool Auditor report (total score 0-100)
+- Toy Auditor report (total score 0-100)
+- Trash Auditor report (total score 0-100, inverted scoring)
 
-### 输出信息
-- 最终分类结果
-- 分类理由
-- 主导分类
-- 次要分类（如有）
-- 综合评分
+### Output
+- Final classification result
+- Classification rationale
+- Primary classification
+- Secondary classification (if any)
+- Composite score
 
-## 分类判断逻辑
+## Classification Decision Logic
 
-### Step 1: 计算综合评分
+### Step 1: Calculate Composite Score
 
 ```python
 def calculate_composite_score(tool_score, toy_score, trash_score):
     """
-    计算综合评分
+    Calculate composite score
 
     Args:
-        tool_score: Tool Auditor评分（0-100，正向）
-        toy_score: Toy Auditor评分（0-100，正向）
-        trash_score: Trash Auditor评分（0-100，正向）
+        tool_score: Tool Auditor score (0-100, positive)
+        toy_score: Toy Auditor score (0-100, positive)
+        trash_score: Trash Auditor score (0-100, positive)
 
     Returns:
-        composite_score: 综合评分（-100到100）
+        composite_score: Composite score (-100 to 100)
     """
-    # 综合评分 = max(Tool, Toy) - Trash
-    # 产品以 Tool 或 Toy 为主导，取主导优势减去 Trash 负向分
+    # Composite = max(Tool, Toy) - Trash
+    # Product led by Tool or Toy, take dominant advantage minus Trash negative score
     composite = max(tool_score, toy_score) - trash_score
     return composite
 ```
 
-**评分解释**：
-- **综合评分 > 30**：强烈偏向Tool/Toy
-- **综合评分 0-30**：偏向Tool/Toy
-- **综合评分 -30-0**：偏向Trash
-- **综合评分 < -30**：强烈偏向Trash
+**Score interpretation**:
+- **Composite > 30**: Strong Tool/Toy bias
+- **Composite 0-30**: Tool/Toy bias
+- **Composite -30 to 0**: Trash bias
+- **Composite < -30**: Strong Trash bias
 
-### Step 2: 确定主导分类
+### Step 2: Determine Primary Classification
 
-#### 判断Tool是否为主导
-**条件**（满足2个以上）：
-- Tool评分 ≥ 70
-- Tool评分 > Toy评分 + 15
-- Tool评分 > Trash评分 + 15
-- Litmus Test结果为"是"
+#### Determine if Tool is primary
+**Conditions** (satisfy 2+):
+- Tool score ≥ 70
+- Tool score > Toy score + 15
+- Tool score > Trash score + 15
+- Litmus Test result is "Yes"
 
-#### 判断Toy是否为主导
-**条件**（满足2个以上）：
-- Toy评分 ≥ 70
-- Toy评分 > Tool评分 + 15
-- Toy评分 > Trash评分 + 15
-- Litmus Test结果为"是"
+#### Determine if Toy is primary
+**Conditions** (satisfy 2+):
+- Toy score ≥ 70
+- Toy score > Tool score + 15
+- Toy score > Trash score + 15
+- Litmus Test result is "Yes"
 
-#### 判断Trash是否为主导
-**条件**（满足2个以上）：
-- Trash评分 ≥ 70（正向评分，越高越Trash）
-- Trash评分 > Tool评分 + 15
-- Trash评分 > Toy评分 + 15
-- Litmus Test结果为"更好"
+#### Determine if Trash is primary
+**Conditions** (satisfy 2+):
+- Trash score ≥ 70 (positive scoring; higher = more Trash)
+- Trash score > Tool score + 15
+- Trash score > Toy score + 15
+- Litmus Test result is "Better"
 
-### Step 3: 确定次要分类
+### Step 3: Determine Secondary Classification
 
-**Tool主导时，次要分类判断**：
-- Toy评分 ≥ 60 且 Toy评分 > Trash评分 + 15 → 次要分类：Toy
-- Trash评分 ≥ 60 且 Trash评分 > Toy评分 + 15 → 次要分类：Trash
+**When Tool is primary, secondary classification**:
+- Toy score ≥ 60 and Toy score > Trash score + 15 → Secondary: Toy
+- Trash score ≥ 60 and Trash score > Toy score + 15 → Secondary: Trash
 
-**Toy主导时，次要分类判断**：
-- Tool评分 ≥ 60 且 Tool评分 > Trash评分 + 15 → 次要分类：Tool
-- Trash评分 ≥ 60 且 Trash评分 > Tool评分 + 15 → 次要分类：Trash
+**When Toy is primary, secondary classification**:
+- Tool score ≥ 60 and Tool score > Trash score + 15 → Secondary: Tool
+- Trash score ≥ 60 and Trash score > Toy score + 15 → Secondary: Trash
 
-**Trash主导时，次要分类判断**：
-- Tool评分 ≥ 50 → 次要分类：Tool
-- Toy评分 ≥ 50 → 次要分类：Toy
-- Tool和Toy都 ≥ 50 → 次要分类：Tool + Toy
+**When Trash is primary, secondary classification**:
+- Tool score ≥ 50 → Secondary: Tool
+- Toy score ≥ 50 → Secondary: Toy
+- Both Tool and Toy ≥ 50 → Secondary: Tool + Toy
 
-### Step 4: 特殊情况处理
+### Step 4: Special Case Handling
 
-**无明确主导**：
-- 三个评分都接近（差异<15）→ 混合分类
-- 综合评分在-15到15之间 → 混合分类
+**No clear primary**:
+- All three scores close (difference <15) → Mixed classification
+- Composite between -15 and 15 → Mixed classification
 
-**矛盾评分**：
-- Tool评分高但Trash Litmus Test为"更好" → 深入审查
-- Toy评分高但Trash评分低 → 深入审查
-- 需要重新审视客观数据
+**Contradictory scores**:
+- High Tool score but Trash Litmus Test "Better" → Deep review
+- High Toy score but low Trash score → Deep review
+- Need to re-examine objective data
 
-## 综合评分计算
+## Composite Score Calculation
 
-### 评分权重
-- **Tool Auditor**：1.0（正向）
-- **Toy Auditor**：1.0（正向）
-- **Trash Auditor**：-1.0（反向）
+### Score Weights
+- **Tool Auditor**: 1.0 (positive)
+- **Toy Auditor**: 1.0 (positive)
+- **Trash Auditor**: -1.0 (negative)
 
-### 计算公式
+### Formula
 ```
-综合评分 = max(Tool评分, Toy评分) - Trash评分
+Composite Score = max(Tool Score, Toy Score) - Trash Score
 ```
 
-### 评分范围
-- **最小值**：-100（max(Tool,Toy)=0, Trash=100）
-- **最大值**：100（max(Tool,Toy)=100, Trash=0）
-- **中值**：0（max(Tool,Toy)=Trash，如三者均为50）
+### Score Range
+- **Minimum**: -100 (max(Tool,Toy)=0, Trash=100)
+- **Maximum**: 100 (max(Tool,Toy)=100, Trash=0)
+- **Midpoint**: 0 (max(Tool,Toy)=Trash, e.g., all three = 50)
 
-### 评分解释
+### Score Interpretation
 
-| 综合评分区间 | 分类倾向 | 说明 |
-|------------|---------|------|
-| 70-100 | 强烈Tool/Toy | 明确的Tool或Toy特征 |
-| 40-69 | 明显Tool/Toy | Tool/Toy特征明显 |
-| 15-39 | 偏向Tool/Toy | Tool/Toy特征占优 |
-| -14-14 | 混合 | 各特征均衡，无明显倾向 |
-| -39--15 | 偏向Trash | Trash特征占优 |
-| -69--40 | 明显Trash | Trash特征明显 |
-| -100--70 | 强烈Trash | 明确的Trash特征 |
+| Composite Score Range | Classification Bias | Description |
+|-----------------------|---------------------|-------------|
+| 70-100 | Strong Tool/Toy | Clear Tool or Toy characteristics |
+| 40-69 | Clear Tool/Toy | Obvious Tool/Toy characteristics |
+| 15-39 | Tool/Toy bias | Tool/Toy characteristics dominant |
+| -14 to 14 | Mixed | Balanced characteristics, no clear bias |
+| -39 to -15 | Trash bias | Trash characteristics dominant |
+| -69 to -40 | Clear Trash | Obvious Trash characteristics |
+| -100 to -70 | Strong Trash | Clear Trash characteristics |
 
-## 分类决策流程
+## Classification Decision Flow
 
-### 完整流程图
+### Complete Flow Diagram
 
 ```
 ┌─────────────────────────────────────┐
-│ 1. 接收三个Auditor报告              │
+│ 1. Receive three Auditor reports    │
 └─────────────────┬───────────────────┘
                   │
                   ▼
 ┌─────────────────────────────────────┐
-│ 2. 计算综合评分                     │
-│    Composite = max(Tool, Toy) - Trash │
+│ 2. Calculate composite score        │
+│    Composite = max(Tool, Toy) - Trash│
 └─────────────────┬───────────────────┘
                   │
                   ▼
 ┌─────────────────────────────────────┐
-│ 3. 确定主导分类                     │
-│    - 检查每个分类的判断条件         │
-│    - 确定1个主导分类                │
+│ 3. Determine primary classification │
+│    - Check conditions for each type   │
+│    - Determine 1 primary             │
 └─────────────────┬───────────────────┘
                   │
                   ▼
 ┌─────────────────────────────────────┐
-│ 4. 确定次要分类（如有）             │
-│    - 检查其他分类的评分             │
-│    - 确定是否满足次要分类条件       │
+│ 4. Determine secondary (if any)      │
+│    - Check other category scores     │
+│    - Check secondary conditions      │
 └─────────────────┬───────────────────┘
                   │
                   ▼
 ┌─────────────────────────────────────┐
-│ 5. 生成最终分类决策                 │
-│    - 记录分类理由                   │
-│    - 生成分类报告                   │
+│ 5. Generate final classification     │
+│    - Record rationale               │
+│    - Generate classification report  │
 └─────────────────────────────────────┘
 ```
 
-### 决策模板
+### Decision Template
 
 ```json
 {
@@ -258,15 +259,15 @@ def calculate_composite_score(tool_score, toy_score, trash_score):
     "auditor_reports": {
       "tool": {
         "total_score": 82,
-        "litmus_test": {"answer": "是", "confidence": "高"}
+        "litmus_test": {"answer": "Yes", "confidence": "High"}
       },
       "toy": {
         "total_score": 75,
-        "litmus_test": {"answer": "是", "confidence": "中等"}
+        "litmus_test": {"answer": "Yes", "confidence": "Medium"}
       },
       "trash": {
         "total_score": 25,
-        "litmus_test": {"answer": "无影响", "confidence": "中等"}
+        "litmus_test": {"answer": "No impact", "confidence": "Medium"}
       }
     },
     "composite_score": 44.0,
@@ -276,53 +277,53 @@ def calculate_composite_score(tool_score, toy_score, trash_score):
       "final_label": "Tool + Toy"
     },
     "decision_reasoning": {
-      "primary_reason": "Tool评分最高（82），且显著高于Trash评分（差异57），明确符合Tool特征",
-      "secondary_reason": "Toy评分较高（75），仅次于Tool评分，产品兼具Toy属性",
-      "composite_interpretation": "综合评分44，偏向Tool/Toy",
-      "litmus_test_consistency": "Tool和Toy的Litmus Test结果均为'是'，与分类一致"
+      "primary_reason": "Tool score highest (82), significantly above Trash (57-point gap), clearly meets Tool characteristics",
+      "secondary_reason": "Toy score relatively high (75), second only to Tool, product has Toy attributes",
+      "composite_interpretation": "Composite 44, Tool/Toy bias",
+      "litmus_test_consistency": "Both Tool and Toy Litmus Test results 'Yes', consistent with classification"
     },
-    "confidence": "高",
-    "information_source": "Brand-Blinded产品信息（三个独立Auditor报告）"
+    "confidence": "High",
+    "information_source": "Brand-Blinded product information (three independent Auditor reports)"
   }
 }
 ```
 
-## 分类报告格式
+## Classification Report Format
 
-### 必须包含的信息
+### Required Information
 
-1. **基本信息**
-   - 时间戳
-   - 产品标识（Brand-Blinded）
-   - 信息来源声明
+1. **Basic information**
+   - Timestamp
+   - Product identifier (Brand-Blinded)
+   - Information source declaration
 
-2. **Auditor报告汇总**
-   - 三个Auditor的总分
-   - 三个Litmus Test结果
+2. **Auditor report summary**
+   - Three Auditors' total scores
+   - Three Litmus Test results
 
-3. **综合评分**
-   - 综合评分计算结果
-   - 评分解释
+3. **Composite score**
+   - Composite score calculation result
+   - Score interpretation
 
-4. **分类决策**
-   - 主导分类
-   - 次要分类（如有）
-   - 最终分类标签
+4. **Classification decision**
+   - Primary classification
+   - Secondary classification (if any)
+   - Final classification label
 
-5. **决策理由**
-   - 主导分类理由
-   - 次要分类理由（如有）
-   - 综合评分解释
-   - Litmus Test一致性分析
+5. **Decision rationale**
+   - Primary classification rationale
+   - Secondary classification rationale (if any)
+   - Composite score interpretation
+   - Litmus Test consistency analysis
 
-6. **置信度**
-   - 决策置信度（高/中/低）
-   - 不确定因素（如有）
+6. **Confidence**
+   - Decision confidence (High/Medium/Low)
+   - Uncertain factors (if any)
 
-## 注意事项
+## Notes
 
-1. **信息隔离**：Final Judge也只能访问Brand-Blinded信息
-2. **客观数据**：分类决策必须基于客观数据
-3. **透明决策**：分类理由必须清晰明确
-4. **处理矛盾**：遇到矛盾评分时，需要深入审查
-5. **记录完整**：所有决策过程必须完整记录
+1. **Information isolation**: Final Judge may only access Brand-Blinded information
+2. **Objective data**: Classification decisions must be based on objective data
+3. **Transparent decisions**: Classification rationale must be clear and explicit
+4. **Handle contradictions**: When encountering contradictory scores, conduct deep review
+5. **Complete documentation**: All decision process must be fully recorded

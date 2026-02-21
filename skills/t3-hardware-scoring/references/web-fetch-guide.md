@@ -1,397 +1,397 @@
-# Agent网页信息提取完整指南
+# Agent Web Information Extraction Complete Guide
 
-## Shopify 与 Kickstarter 固定爬取清单
+## Shopify and Kickstarter Mandatory Crawl List
 
-**必须**阅读 [mandatory-page-list.md](mandatory-page-list.md)，按站点类型执行固定爬取清单，确保每次审计的数据输入一致。
+**Must** read [mandatory-page-list.md](mandatory-page-list.md) and execute the mandatory crawl list per site type to ensure consistent data input for each audit.
 
-### 执行要点
+### Execution Points
 
-1. **识别站点类型**：URL 含 `kickstarter.com/projects/` → Kickstarter；否则默认按 Shopify 处理
-2. **按清单顺序 fetch**：S1、S2 为必需；S3 及以后按顺序尝试，404 或无法访问则标注 `status: unavailable`
-3. **输出格式固定**：
-   - `01-level0-source-urls.md`：表格列 `ID | Type | URL | Status`
-   - `02-level0-extracts.md`：按 `## S1 — [类型]`、`## S2 — [类型]` 等分块；未获取的写 `(未获取)`
-4. **不得自行增减页面类型**：清单外的页面可作为补充，但 S1–Sn 的结构必须保留
+1. **Identify site type**: URL contains `kickstarter.com/projects/` → Kickstarter; otherwise default to Shopify
+2. **Fetch in list order**: S1, S2 are required; S3 and beyond try in order; 404 or inaccessible = mark `status: unavailable`
+3. **Fixed output format**:
+   - `01-level0-source-urls.md`: Table columns `ID | Type | URL | Status`
+   - `02-level0-extracts.md`: Blocks by `## S1 — [Type]`, `## S2 — [Type]`, etc.; write `(not retrieved)` for failed fetches
+4. **Do not add/remove page types**: Pages outside the list may supplement, but S1–Sn structure must be preserved
 
-### URL 派生与 404 处理
+### URL Derivation and 404 Handling
 
-- **Shopify**：从用户 URL 解析 `{domain}`，按 `mandatory-page-list.md` 构造 S3–S8 的 URL（如 `{domain}/pages/how-it-works`）
-- **Kickstarter**：S1 为用户输入的项目 URL；S2 尝试 `{project_url}/posts`
-- **404**：该页 `status: unavailable`，`02-level0-extracts.md` 对应区块写 `(未获取)`，不省略区块
+- **Shopify**: Parse `{domain}` from user URL; construct S3–S8 URLs per `mandatory-page-list.md` (e.g., `{domain}/pages/how-it-works`)
+- **Kickstarter**: S1 = user-provided project URL; S2 try `{project_url}/posts`
+- **404**: That page `status: unavailable`; in `02-level0-extracts.md` write `(not retrieved)` for that block; do not omit the block
 
 ---
 
-## 目录
-- [Shopify 与 Kickstarter 固定爬取清单](#shopify-与-kickstarter-固定爬取清单)
-- [常见问题](#常见问题)
-- [多策略提取方法](#多策略提取方法)
-- [关键信息提取清单](#关键信息提取清单)
-- [不同网站类型的应对策略](#不同网站类型的应对策略)
-- [数据完整性验证](#数据完整性验证)
+## Table of Contents
+- [Shopify and Kickstarter Mandatory Crawl List](#shopify-and-kickstarter-mandatory-crawl-list)
+- [Common Issues](#common-issues)
+- [Multi-Strategy Extraction Methods](#multi-strategy-extraction-methods)
+- [Key Information Extraction Checklist](#key-information-extraction-checklist)
+- [Strategies by Website Type](#strategies-by-website-type)
+- [Data Completeness Validation](#data-completeness-validation)
 
-## 常见问题
+## Common Issues
 
-### 为什么Agent拿到的信息不完整？
+### Why is Agent Information Incomplete?
 
-**原因分析**：
+**Cause analysis**:
 
-1. **动态加载内容**
-   - 价格、库存等信息可能通过JavaScript动态加载
-   - web_fetch工具可能只能获取初始HTML
-   - 解决方案：访问多个页面或使用分页参数
+1. **Dynamic content loading**
+   - Price, inventory, etc. may load via JavaScript
+   - web_fetch may only get initial HTML
+   - Solution: Visit multiple pages or use pagination parameters
 
-2. **页面结构复杂**
-   - 电商网站可能使用复杂的CSS/JS渲染
-   - 关键信息可能在iframe、弹窗或标签页中
-   - 解决方案：尝试访问不同的URL变体
+2. **Complex page structure**
+   - E-commerce sites may use heavy CSS/JS rendering
+   - Key info may be in iframes, modals, or tabs
+   - Solution: Try different URL variants
 
-3. **反爬虫机制**
-   - 部分网站有访问频率限制
-   - 可能需要特定的User-Agent或Cookie
-   - 解决方案：多次尝试，使用不同的访问策略
+3. **Anti-scraping**
+   - Some sites limit access rate
+   - May need specific User-Agent or Cookie
+   - Solution: Retry with different access strategies
 
-4. **内容截断**
-   - web_fetch工具的limit参数可能截断内容
-   - 单次抓取可能无法获取完整页面
-   - 解决方案：使用分页抓取，增加limit参数
+4. **Content truncation**
+   - web_fetch `limit` may truncate content
+   - Single fetch may not get full page
+   - Solution: Paginated fetch, increase `limit`
 
-5. **登录墙或地区限制**
-   - 部分信息需要登录才能查看
-   - 可能根据地区显示不同内容
-   - 解决方案：寻找公开的产品规格页面
+5. **Login wall or region restriction**
+   - Some info requires login
+   - May vary by region
+   - Solution: Find public spec pages
 
-## 多策略提取方法
+## Multi-Strategy Extraction Methods
 
-### 策略1：多页面访问
+### Strategy 1: Multi-Page Access
 
-**问题**：单一产品页可能信息不完整
+**Problem**: Single product page may have incomplete info
 
-**解决方案**：访问多个相关页面
+**Solution**: Visit multiple related pages
 
 ```
-页面组合：
-1. 产品详情页 - 获取基本信息、价格、特性
-2. 产品规格页 - 获取技术参数、尺寸、重量
-3. 用户评价页 - 获取用户反馈、使用体验
-4. 对比页面 - 获取竞品对比信息
-5. 官方支持页 - 获取可靠性、保修信息
+Page combination:
+1. Product detail page - Basic info, price, features
+2. Product spec page - Tech parameters, dimensions, weight
+3. User review page - User feedback, usage experience
+4. Comparison page - Competitor comparison
+5. Official support page - Reliability, warranty
 ```
 
-**执行方式**：
+**Execution**:
 ```
-# 第一步：访问产品详情页
-web_fetch(url="产品详情页URL", limit=8000)
+# Step 1: Visit product detail page
+web_fetch(url="product_detail_url", limit=8000)
 
-# 第二步：访问规格页（如果有独立页面）
-web_fetch(url="产品规格页URL", limit=8000)
+# Step 2: Visit spec page (if separate)
+web_fetch(url="product_spec_url", limit=8000)
 
-# 第三步：访问评测页面（如果有）
-web_fetch(url="评测页面URL", limit=8000)
+# Step 3: Visit review page (if available)
+web_fetch(url="review_page_url", limit=8000)
 ```
 
-### 策略2：URL变体尝试
+### Strategy 2: URL Variant Attempts
 
-**问题**：同一产品可能有多个URL入口
+**Problem**: Same product may have multiple URL entry points
 
-**解决方案**：尝试不同的URL格式
+**Solution**: Try different URL formats
 
-**电商网站URL模式**：
+**E-commerce URL patterns**:
 ```
-基础URL：https://www.example.com/product/123
+Base URL: https://www.example.com/product/123
 
-可能的变体：
+Possible variants:
 - https://www.example.com/product/123/specs
 - https://www.example.com/product/123/reviews
 - https://www.example.com/p/123
 - https://www.example.com/item/123
-- https://m.example.com/product/123（移动版）
+- https://m.example.com/product/123 (mobile)
 ```
 
-**执行方式**：
+**Execution**:
 ```
-# 尝试不同的URL变体
-web_fetch(url="基础URL")
-web_fetch(url="基础URL/specs")
-web_fetch(url="基础URL/reviews")
-```
-
-### 策略3：分页抓取
-
-**问题**：web_fetch的limit参数可能截断内容
-
-**解决方案**：使用offset参数分页抓取
-
-```
-# 第一页
-web_fetch(url="产品URL", offset=0, limit=4000)
-
-# 第二页
-web_fetch(url="产品URL", offset=4000, limit=4000)
-
-# 第三页
-web_fetch(url="产品URL", offset=8000, limit=4000)
+# Try different URL variants
+web_fetch(url="base_url")
+web_fetch(url="base_url/specs")
+web_fetch(url="base_url/reviews")
 ```
 
-### 策略4：搜索引擎辅助
+### Strategy 3: Paginated Fetch
 
-**问题**：直接访问产品页信息不完整
+**Problem**: web_fetch `limit` may truncate content
 
-**解决方案**：通过搜索引擎找到更多信息源
+**Solution**: Use `offset` for paginated fetch
 
 ```
-# 使用web_search搜索产品信息
-web_search(query="产品型号 + specs")
-web_search(query="产品型号 + review")
-web_search(query="产品型号 + price")
+# Page 1
+web_fetch(url="product_url", offset=0, limit=4000)
 
-# 访问搜索结果中的权威页面
-web_fetch(url="搜索结果中的页面URL")
+# Page 2
+web_fetch(url="product_url", offset=4000, limit=4000)
+
+# Page 3
+web_fetch(url="product_url", offset=8000, limit=4000)
 ```
 
-## 关键信息提取清单
+### Strategy 4: Search Engine Assistance
 
-### 必须提取的信息
+**Problem**: Direct product page has incomplete info
 
-#### 1. 基本信息
-- [ ] 产品名称（完整型号）
-- [ ] 品牌（用于Brand Blinding前的记录）
-- [ ] 产品类别
-- [ ] 发布日期/上市时间
+**Solution**: Use search to find more sources
 
-#### 2. 价格信息
-- [ ] 当前售价
-- [ ] 原价/建议零售价
-- [ ] 折扣信息
-- [ ] 地区价格差异
-
-**价格提取难点及解决方案**：
 ```
-难点1：动态价格
-- 解决：查找页面中的schema.org结构化数据
-- 解决：查找JSON-LD或Microdata标记
-- 解决：查找价格历史页面
+# Use web_search for product info
+web_search(query="product_model + specs")
+web_search(query="product_model + review")
+web_search(query="product_model + price")
 
-难点2：多规格价格
-- 解决：记录基础价格和不同配置的价格
-- 解决：明确标注"起售价"
-
-难点3：地区差异
-- 解决：明确标注价格所属地区
-- 解决：记录货币单位
+# Visit authoritative pages from results
+web_fetch(url="search_result_page_url")
 ```
 
-#### 3. 技术规格
-- [ ] 核心参数（尺寸、重量、材质）
-- [ ] 性能参数（速度、容量、功率）
-- [ ] 连接方式（接口、无线协议）
-- [ ] 电池续航（如果是便携设备）
-- [ ] 兼容性要求
+## Key Information Extraction Checklist
 
-#### 4. 用户评价
-- [ ] 平均评分
-- [ ] 评价数量
-- [ ] 常见好评点
-- [ ] 常见差评点
-- [ ] 使用场景反馈
+### Required Information
 
-#### 5. 可靠性数据
-- [ ] 保修期限
-- [ ] 故障率（如果有）
-- [ ] 常见问题
-- [ ] 售后服务质量
+#### 1. Basic Information
+- [ ] Product name (full model)
+- [ ] Brand (for pre-Brand Blinding record)
+- [ ] Product category
+- [ ] Release/launch date
 
-#### 6. 可持续性信息
-- [ ] 材质（是否环保材料）
-- [ ] 能耗等级
-- [ ] 可维修性
-- [ ] 包装环保性
+#### 2. Price
+- [ ] Current price
+- [ ] Original/retail price
+- [ ] Discount info
+- [ ] Regional price differences
 
-## 不同网站类型的应对策略
-
-### 电商平台（Amazon、京东、淘宝等）
-
-**特点**：
-- 信息丰富但结构复杂
-- 动态加载较多
-- 可能有反爬虫机制
-
-**策略**：
+**Price extraction challenges and solutions**:
 ```
-1. 访问产品详情页
-2. 访问产品规格页（如果有独立页面）
-3. 访问评价页面
-4. 使用分页抓取获取完整内容
-5. 查找"商品详情"或"产品参数"区域
+Challenge 1: Dynamic price
+- Solve: Look for schema.org structured data
+- Solve: Look for JSON-LD or Microdata markup
+- Solve: Look for price history pages
+
+Challenge 2: Multi-variant price
+- Solve: Record base price and variant prices
+- Solve: Clearly mark "starting at"
+
+Challenge 3: Region difference
+- Solve: Mark price region clearly
+- Solve: Record currency
 ```
 
-**关键信息位置**：
-- 价格：通常在页面顶部，可能包含税费、运费说明
-- 规格：可能在"商品详情"、"参数"标签页
-- 评价：独立页面或页面底部
+#### 3. Technical Specs
+- [ ] Core parameters (dimensions, weight, materials)
+- [ ] Performance (speed, capacity, power)
+- [ ] Connectivity (interfaces, wireless protocols)
+- [ ] Battery life (if portable)
+- [ ] Compatibility requirements
 
-### 官网（Apple、Dyson等）
+#### 4. User Reviews
+- [ ] Average rating
+- [ ] Review count
+- [ ] Common positives
+- [ ] Common negatives
+- [ ] Use case feedback
 
-**特点**：
-- 信息准确但可能营销化
-- 设计精美但可能影响抓取
-- 可能有地区差异
+#### 5. Reliability Data
+- [ ] Warranty period
+- [ ] Failure rate (if available)
+- [ ] Common issues
+- [ ] After-sales quality
 
-**策略**：
+#### 6. Sustainability
+- [ ] Materials (eco-friendly)
+- [ ] Energy rating
+- [ ] Repairability
+- [ ] Packaging sustainability
+
+## Strategies by Website Type
+
+### E-commerce (Amazon, JD, Taobao, etc.)
+
+**Characteristics**:
+- Rich but complex structure
+- Heavy dynamic loading
+- Possible anti-scraping
+
+**Strategy**:
 ```
-1. 访问产品主页
-2. 访问"技术规格"页面
-3. 访问"对比"页面
-4. 查找PDF手册或说明书
-5. 查找支持页面获取可靠性信息
+1. Visit product detail page
+2. Visit product spec page (if separate)
+3. Visit review section
+4. Use paginated fetch for full content
+5. Find "Product details" or "Parameters" section
 ```
 
-### 评测网站（The Verge、Engadget等）
+**Key info locations**:
+- Price: Usually top of page; may include tax, shipping
+- Specs: May be in "Details", "Parameters" tab
+- Reviews: Separate section or bottom of page
 
-**特点**：
-- 信息客观深入
-- 包含专业视角
-- 可能有对比测试
+### Official Sites (Apple, Dyson, etc.)
 
-**策略**：
+**Characteristics**:
+- Accurate but possibly marketing-heavy
+- Good design may affect scraping
+- Regional differences possible
+
+**Strategy**:
 ```
-1. 访问评测主页
-2. 查找"优缺点"总结
-3. 查找性能测试数据
-4. 查找与竞品对比
+1. Visit product homepage
+2. Visit "Technical specifications" page
+3. Visit "Compare" page
+4. Find PDF manual or spec sheet
+5. Find support page for reliability
 ```
 
-## 数据完整性验证
+### Review Sites (The Verge, Engadget, etc.)
 
-### 验证清单
+**Characteristics**:
+- Objective and in-depth
+- Professional perspective
+- Possible comparison tests
 
-在完成信息提取后，Agent应该验证：
+**Strategy**:
+```
+1. Visit review homepage
+2. Find pros/cons summary
+3. Find performance test data
+4. Find competitor comparison
+```
+
+## Data Completeness Validation
+
+### Validation Checklist
+
+After extraction, Agent should verify:
 
 ```markdown
-## 数据完整性检查
+## Data Completeness Check
 
-### 基本信息（必须完整）
-- [ ] 产品名称：已获取
-- [ ] 价格：已获取 或 已说明缺失原因
-- [ ] 主要功能：已获取
+### Basic Information (must be complete)
+- [ ] Product name: Retrieved
+- [ ] Price: Retrieved OR missing reason stated
+- [ ] Main features: Retrieved
 
-### 技术规格（至少50%）
-- [ ] 核心参数：已获取___项，缺失___项
-- [ ] 缺失的关键参数：[列出缺失项]
+### Technical Specs (at least 50%)
+- [ ] Core parameters: Retrieved ___ items, missing ___ items
+- [ ] Missing key parameters: [list]
 
-### 用户反馈（至少一项）
-- [ ] 评分：已获取
-- [ ] 或评价数量：已获取
-- [ ] 或典型反馈：已获取
+### User Feedback (at least one)
+- [ ] Rating: Retrieved
+- [ ] OR review count: Retrieved
+- [ ] OR typical feedback: Retrieved
 
-### 可靠性数据（可选但重要）
-- [ ] 保修信息：已获取 或 未找到
-- [ ] 故障数据：已获取 或 未找到
+### Reliability Data (optional but important)
+- [ ] Warranty: Retrieved OR not found
+- [ ] Failure data: Retrieved OR not found
 ```
 
-### 缺失信息处理
+### Handling Missing Information
 
-**当关键信息缺失时**：
+**When key info is missing**:
 
-1. **价格缺失**
+1. **Price missing**
    ```
-   解决方案：
-   - 尝试访问购物车页面（可能显示价格）
-   - 搜索"产品名称 + price"
-   - 查找其他电商平台的同一产品
-   - 在报告中明确标注"价格信息缺失"
-   ```
-
-2. **技术规格缺失**
-   ```
-   解决方案：
-   - 查找官方PDF说明书
-   - 搜索"产品型号 + specs"
-   - 查找技术数据库（如GSMArena对于手机）
-   - 访问竞品对比页面（可能包含规格）
+   Solutions:
+   - Try cart page (may show price)
+   - Search "product name + price"
+   - Find same product on other platforms
+   - Clearly note "Price information missing" in report
    ```
 
-3. **用户评价缺失**
+2. **Technical specs missing**
    ```
-   解决方案：
-   - 查找第三方评测网站
-   - 搜索"产品型号 + review"
-   - 查找论坛讨论（Reddit、贴吧等）
-   - 在报告中标注"用户反馈样本较少"
+   Solutions:
+   - Find official PDF manual
+   - Search "product model + specs"
+   - Find tech databases (e.g., GSMArena for phones)
+   - Visit competitor comparison page (may include specs)
    ```
 
-### 补充信息来源
+3. **User reviews missing**
+   ```
+   Solutions:
+   - Find third-party review sites
+   - Search "product model + review"
+   - Find forum discussions (Reddit, etc.)
+   - Note "Limited user feedback sample" in report
+   ```
 
-当主要来源信息不完整时，Agent应该：
+### Supplementary Sources
+
+When primary source is incomplete, Agent should:
 
 ```
-补充信息来源优先级：
-1. 官方支持页面（可靠性数据）
-2. 第三方评测网站（客观评价）
-3. 用户论坛和社区（真实反馈）
-4. 技术数据库（详细规格）
-5. 竞品对比页面（相对优势）
+Supplementary source priority:
+1. Official support page (reliability data)
+2. Third-party review sites (objective reviews)
+3. User forums and communities (real feedback)
+4. Technical databases (detailed specs)
+5. Competitor comparison pages (relative advantages)
 ```
 
-## Agent执行建议
+## Agent Execution Recommendations
 
-### 最佳实践
+### Best Practices
 
-1. **多页面访问**：不要只依赖单一页面
-2. **分步提取**：先获取基础信息，再补充细节
-3. **主动验证**：提取后检查完整性，主动补充缺失信息
-4. **诚实记录**：明确标注哪些信息无法获取及原因
+1. **Multi-page access**: Do not rely on a single page
+2. **Stepwise extraction**: Get basics first, then add details
+3. **Proactive validation**: Check completeness after extraction; supplement missing info
+4. **Honest documentation**: Clearly note what could not be retrieved and why
 
-### 执行模板
+### Execution Template
 
 ```markdown
-## 产品信息提取执行记录
+## Product Information Extraction Record
 
-### 第一步：访问产品主页
-- URL: [产品URL]
-- 获取信息: [列出获取的信息]
-- 缺失信息: [列出缺失的信息]
+### Step 1: Visit product homepage
+- URL: [product_url]
+- Retrieved: [list]
+- Missing: [list]
 
-### 第二步：访问规格页面
-- URL: [规格页URL]
-- 获取信息: [补充获取的信息]
-- 缺失信息: [仍未获取的信息]
+### Step 2: Visit spec page
+- URL: [spec_url]
+- Retrieved: [list]
+- Missing: [list]
 
-### 第三步：访问评测/评价页面
-- URL: [评测页URL]
-- 获取信息: [补充获取的信息]
-- 缺失信息: [仍未获取的信息]
+### Step 3: Visit review/review page
+- URL: [review_url]
+- Retrieved: [list]
+- Missing: [list]
 
-### 第四步：搜索补充信息
-- 搜索查询: [使用的搜索词]
-- 找到的信息: [补充的信息]
+### Step 4: Search for supplementary info
+- Query: [search_terms]
+- Found: [supplementary info]
 
-### 数据完整性评估
-- 基本信息：完整/部分完整/不完整
-- 技术规格：完整/部分完整/不完整
-- 用户反馈：完整/部分完整/不完整
-- 可靠性数据：完整/部分完整/不完整
+### Data Completeness Assessment
+- Basic info: Complete / Partial / Incomplete
+- Technical specs: Complete / Partial / Incomplete
+- User feedback: Complete / Partial / Incomplete
+- Reliability data: Complete / Partial / Incomplete
 
-### 无法获取的信息及原因
-- [信息项]: [原因说明]
+### Unavailable Information and Reasons
+- [item]: [reason]
 ```
 
-## 注意事项
+## Notes
 
-1. **不要假设信息**：如果找不到价格，不要根据其他信息推测
-2. **多来源验证**：重要信息应该从多个来源验证
-3. **诚实记录缺失**：在报告中明确说明哪些信息无法获取
-4. **保持客观**：不要因为信息缺失而影响评估的客观性
-5. **利用Agent能力**：Agent可以理解上下文，比脚本更灵活
+1. **Do not assume data**: If price not found, do not infer from other info
+2. **Multi-source verification**: Important info should be verified across sources
+3. **Honest documentation of gaps**: Clearly state what could not be retrieved
+4. **Stay objective**: Do not let missing info bias assessment
+5. **Use Agent capabilities**: Agent can understand context and is more flexible than scripts
 
-## 与Brand Blinding的配合
+## Integration with Brand Blinding
 
-在完成信息提取后，需要进行Brand Blinding处理：
+After extraction, Brand Blinding is required:
 
 ```
-原始信息 → Brand Blinding处理 → Brand-Blinded信息
+Raw information → Brand Blinding → Brand-Blinded information
 
-保留：技术规格、性能数据、用户评价
-移除：品牌名称、营销话术、情感化描述
+Retain: Technical specs, performance data, user reviews
+Remove: Brand names, marketing language, emotional descriptions
 ```
 
-详细说明见 [references/defluff-guide.md](defluff-guide.md)
+See [references/defluff-guide.md](defluff-guide.md) for details.

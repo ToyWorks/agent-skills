@@ -1,225 +1,225 @@
-# Toy Auditor独立指南
+# Toy Auditor Standalone Guide
 
-## 目录
-- [角色定位](#角色定位)
-- [核心问题](#核心问题)
-- [信息隔离原则](#信息隔离原则)
-- [评分逻辑](#评分逻辑)
-- [Don Norman《设计心理学》专项检查清单](#don-norman设计心理学专项检查清单)
-- [评估报告格式](#评估报告格式)
+## Table of Contents
+- [Role Definition](#role-definition)
+- [Core Questions](#core-questions)
+- [Information Isolation Principles](#information-isolation-principles)
+- [Scoring Logic](#scoring-logic)
+- [Don Norman Design Psychology Dedicated Checklist](#don-norman-design-psychology-dedicated-checklist)
+- [Assessment Report Format](#assessment-report-format)
 
-## 角色定位
+## Role Definition
 
 ### 🟡 Toy Auditor
-从"感官愉悦"的角度评估产品，关注乐趣、惊喜、情感联结。
+Evaluates products from a "sensory pleasure" perspective, focusing on fun, surprise, and emotional connection.
 
-### 核心价值
-- 乐趣：带来直接的情感满足
-- 惊喜：超出预期的正面体验
-- 情感联结：建立情感联系和记忆
-- 可探索性：提供探索和发现的空间
+### Core Values
+- **Fun**: Delivers direct emotional satisfaction
+- **Surprise**: Exceeds expectations with positive experiences
+- **Emotional connection**: Establishes emotional bonds and memories
+- **Explorability**: Provides space for exploration and discovery
 
-### 评分方向
-- **正向评分**：分数越高，越符合Toy特征
-- **评分范围**：0-100分
+### Scoring Direction
+- **Positive scoring**: Higher scores indicate stronger Toy characteristics
+- **Score range**: 0-100
 
-## 核心问题
+## Core Questions
 
-**主要问题**："这个产品是否让用户感到快乐、惊喜或满足？是否成为用户展示个性或收藏的对象？"
+**Primary question**: "Does this product make users feel happy, surprised, or fulfilled? Does it become an object for users to display personality or collect?"
 
-**Litmus Test**：
-- 用户是否会把它放在显眼的位置"炫耀"或收藏？
-  - 是 → Toy
-  - 否 → 不是纯粹的Toy
+**Litmus Test**:
+- Would users display it prominently to "show off" or collect it?
+  - **Yes** → Toy
+  - **No** → Not a pure Toy
 
-**关键指标**：
-- 情感满足：是否带来正面情绪？
-- 社交价值：是否成为社交话题？
-- 探索空间：是否有可探索的深度？
+**Key metrics**:
+- **Emotional satisfaction**: Does it bring positive emotions?
+- **Social value**: Does it become a social topic?
+- **Exploration space**: Is there depth to explore?
 
-## 信息隔离原则
+## Information Isolation Principles
 
-### 🚨 信息隔离（强制）
-- **仅能访问**：Brand-Blinded后的客观产品信息
-- **严禁访问**：原始产品信息、品牌名称、营销话术
-- **评估依据**：只基于客观功能、技术规格、使用场景
-- **禁止推测**：不得根据品牌知名度推测产品质量
+### 🚨 Information Isolation (Mandatory)
+- **Access only**: Brand-Blinded objective product information
+- **Prohibited access**: Original product information, brand names, marketing language
+- **Evaluation basis**: Based solely on objective functions, technical specifications, and use cases
+- **No speculation**: Must not infer product quality based on brand recognition
 
-### 客观数据要求
-- 必须基于完整的客观数据进行评估
-- 参考 [objective-data-standard.md](objective-data-standard.md)
-- 所有评分必须有客观数据支持
+### Objective Data Requirements
+- Evaluation must be based on complete objective data
+- Reference [objective-data-standard.md](objective-data-standard.md)
+- All scores must be supported by objective data
 
-## 评分逻辑
+## Scoring Logic
 
-### 评分构成
-- **专项检查总分**：100分
-- **评分规则**：专项检查分 = Toy评分（0-100）
-- **含义**：分数越高，越符合Toy特征
+### Score Composition
+- **Checklist total**: 100 points
+- **Scoring rule**: Checklist score = Toy score (0-100)
+- **Meaning**: Higher scores indicate stronger Toy characteristics
 
-### 评分区间
-- **0-30分**：不符合Toy特征
-- **31-60分**：部分符合Toy特征
-- **61-80分**：符合Toy特征
-- **81-100分**：强烈符合Toy特征
+### Score Ranges
+- **0-30**: Does not meet Toy characteristics
+- **31-60**: Partially meets Toy characteristics
+- **61-80**: Meets Toy characteristics
+- **81-100**: Strongly meets Toy characteristics
 
-### 评估维度
-1. 感官愉悦（30分）
-2. 惊喜与发现（25分）
-3. 情感联结（25分）
-4. 可探索性（20分）
+### Evaluation Dimensions
+1. Sensory Pleasure (30 points)
+2. Surprise and Discovery (25 points)
+3. Emotional Connection (25 points)
+4. Explorability (20 points)
 
-## Don Norman《设计心理学》专项检查清单
+## Don Norman Design Psychology Dedicated Checklist
 
-### 来源
-Don Norman《The Design of Everyday Things》+《Emotional Design》
+### Source
+Don Norman, *The Design of Everyday Things* + *Emotional Design*
 
-### 检查清单
+### Checklist
 
-#### 1. 感官愉悦（30分）
+#### 1. Sensory Pleasure (30 points)
 
-**检查项1.1：外观设计是否美观？** (0-10分)
-- 10分：视觉设计极具吸引力
-- 8分：外观设计美观
-- 5分：外观一般
-- 2分：外观不够美观
-- 0分：外观设计粗糙
+**Item 1.1: Is the appearance design attractive?** (0-10 points)
+- 10: Highly attractive visual design
+- 8: Attractive appearance design
+- 5: Average appearance
+- 2: Unattractive appearance
+- 0: Rough appearance design
 
-**客观数据要求**：
-- 设计风格分析
-- 用户满意度调查
-- 视觉评估数据
+**Objective data requirements**:
+- Design style analysis
+- User satisfaction survey
+- Visual evaluation data
 
-**检查项1.2：材质和工艺是否精致？** (0-10分)
-- 10分：材质顶级，工艺精湛
-- 8分：材质优质，工艺良好
-- 5分：材质一般，工艺普通
-- 2分：材质较差，工艺粗糙
-- 0分：材质低劣，工艺很差
+**Item 1.2: Are materials and craftsmanship refined?** (0-10 points)
+- 10: Premium materials, exquisite craftsmanship
+- 8: Quality materials, good craftsmanship
+- 5: Average materials, ordinary craftsmanship
+- 2: Poor materials, rough craftsmanship
+- 0: Inferior materials, poor craftsmanship
 
-**客观数据要求**：
-- 材质规格数据
-- 工艺流程分析
-- 质量检查报告
+**Objective data requirements**:
+- Material specification data
+- Craftsmanship process analysis
+- Quality inspection reports
 
-**检查项1.3：交互反馈是否愉悦？** (0-10分)
-- 10分：每次交互都有愉悦反馈
-- 8分：大部分交互反馈良好
-- 5分：交互反馈一般
-- 2分：交互反馈较差
-- 0分：交互反馈糟糕
+**Item 1.3: Are interaction feedbacks pleasurable?** (0-10 points)
+- 10: Every interaction provides pleasurable feedback
+- 8: Most interactions have good feedback
+- 5: Average interaction feedback
+- 2: Poor interaction feedback
+- 0: Terrible interaction feedback
 
-**客观数据要求**：
-- 交互体验测试数据
-- 反馈设计分析
-- 用户情绪反馈统计
+**Objective data requirements**:
+- Interaction experience test data
+- Feedback design analysis
+- User emotional feedback statistics
 
-#### 2. 惊喜与发现（25分）
+#### 2. Surprise and Discovery (25 points)
 
-**检查项2.1：是否有超出预期的设计？** (0-10分)
-- 10分：多次带来惊喜
-- 8分：有明显惊喜元素
-- 5分：偶尔有惊喜
-- 2分：惊喜很少
-- 0分：无惊喜可言
+**Item 2.1: Are there designs that exceed expectations?** (0-10 points)
+- 10: Multiple surprises
+- 8: Obvious surprise elements
+- 5: Occasional surprises
+- 2: Rare surprises
+- 0: No surprises
 
-**客观数据要求**：
-- 创新功能分析
-- 用户惊喜反馈统计
+**Objective data requirements**:
+- Innovative feature analysis
+- User surprise feedback statistics
 
-**检查项2.2：是否鼓励探索和发现？** (0-10分)
-- 10分：深度探索空间极大
-- 8分：有明显的探索空间
-- 5分：探索空间一般
-- 2分：探索空间有限
-- 0分：无探索空间
+**Item 2.2: Does it encourage exploration and discovery?** (0-10 points)
+- 10: Great depth for exploration
+- 8: Obvious exploration space
+- 5: Average exploration space
+- 2: Limited exploration space
+- 0: No exploration space
 
-**客观数据要求**：
-- 功能深度分析
-- 用户探索行为数据
+**Objective data requirements**:
+- Feature depth analysis
+- User exploration behavior data
 
-**检查项2.3：是否有隐藏的"彩蛋"或细节？** (0-5分)
-- 5分：多处精心设计的隐藏细节
-- 3分：有一些隐藏细节
-- 1分：隐藏细节很少
-- 0分：无隐藏细节
+**Item 2.3: Are there hidden "Easter eggs" or details?** (0-5 points)
+- 5: Multiple well-designed hidden details
+- 3: Some hidden details
+- 1: Few hidden details
+- 0: No hidden details
 
-**客观数据要求**：
-- 设计细节分析
-- 用户发现率统计
+**Objective data requirements**:
+- Design detail analysis
+- User discovery rate statistics
 
-#### 3. 情感联结（25分）
+#### 3. Emotional Connection (25 points)
 
-**检查项3.1：是否能引发正面情绪？** (0-10分)
-- 10分：强烈引发快乐、惊喜等正面情绪
-- 8分：能引发一定正面情绪
-- 5分：情绪反应一般
-- 2分：情绪反应较弱
-- 0分：无情绪反应
+**Item 3.1: Does it evoke positive emotions?** (0-10 points)
+- 10: Strongly evokes happiness, surprise, and other positive emotions
+- 8: Evokes certain positive emotions
+- 5: Average emotional response
+- 2: Weak emotional response
+- 0: No emotional response
 
-**客观数据要求**：
-- 用户情绪反馈统计
-- 心理学测试数据
+**Objective data requirements**:
+- User emotional feedback statistics
+- Psychology test data
 
-**检查项3.2：是否能建立情感联系？** (0-10分)
-- 10分：建立强烈的情感联结
-- 8分：能建立一定的情感联系
-- 5分：情感联系较弱
-- 2分：很难建立情感联系
-- 0分：无法建立情感联系
+**Item 3.2: Does it establish emotional bonds?** (0-10 points)
+- 10: Establishes strong emotional connection
+- 8: Establishes certain emotional connection
+- 5: Weak emotional connection
+- 2: Difficult to establish emotional connection
+- 0: Cannot establish emotional connection
 
-**客观数据要求**：
-- 用户忠诚度数据
-- 长期使用行为分析
+**Objective data requirements**:
+- User loyalty data
+- Long-term usage behavior analysis
 
-**检查项3.3：是否有个性化和定制空间？** (0-5分)
-- 5分：高度个性化定制
-- 3分：有一定定制空间
-- 1分：定制空间有限
-- 0分：无定制空间
+**Item 3.3: Is there personalization and customization space?** (0-5 points)
+- 5: Highly personalized customization
+- 3: Some customization space
+- 1: Limited customization space
+- 0: No customization space
 
-**客观数据要求**：
-- 定制功能分析
-- 个性化使用数据
+**Objective data requirements**:
+- Customization feature analysis
+- Personalized usage data
 
-#### 4. 可探索性（20分）
+#### 4. Explorability (20 points)
 
-**检查项4.1：功能是否有深度？** (0-10分)
-- 10分：功能深度极大，值得长期探索
-- 8分：功能深度较大
-- 5分：功能深度一般
-- 2分：功能深度有限
-- 0分：功能浅显无深度
+**Item 4.1: Do features have depth?** (0-10 points)
+- 10: Great feature depth, worth long-term exploration
+- 8: Considerable feature depth
+- 5: Average feature depth
+- 2: Limited feature depth
+- 0: Shallow features with no depth
 
-**客观数据要求**：
-- 功能复杂性分析
-- 用户探索深度统计
+**Objective data requirements**:
+- Feature complexity analysis
+- User exploration depth statistics
 
-**检查项4.2：是否鼓励尝试和实验？** (0-10分)
-- 10分：积极鼓励各种尝试
-- 8分：鼓励一定的尝试
-- 5分：尝试空间一般
-- 2分：尝试空间有限
-- 0分：不鼓励尝试
+**Item 4.2: Does it encourage experimentation?** (0-10 points)
+- 10: Actively encourages various experiments
+- 8: Encourages certain experimentation
+- 5: Average experimentation space
+- 2: Limited experimentation space
+- 0: Does not encourage experimentation
 
-**客观数据要求**：
-- 实验性功能分析
-- 用户尝试行为数据
+**Objective data requirements**:
+- Experimental feature analysis
+- User experimentation behavior data
 
-## 评估报告格式
+## Assessment Report Format
 
-### 🚨 严格输出模板（必遵）
+### 🚨 Strict Output Template (Mandatory)
 
-**必须**阅读 [auditor-templates.md](auditor-templates.md)，按其中 **Toy Auditor 评分表格模板** 输出。
+**Must** read [auditor-templates.md](auditor-templates.md) and output according to the **Toy Auditor scoring table template**.
 
-**强制要求**：
-- 输出**完整填写的评分表格**，列：检查项ID | 检查项名称 | 满分 | 得分 | 简短理由（≤50字）
-- 11 个检查项（1.1–4.2）及合计行不得省略
-- `reason` 字段不得超过约 50 字，可另用 `evidence` 存放详细引用
+**Mandatory requirements**:
+- Output **complete filled scoring table** with columns: Item ID | Item Name | Max Score | Score | Brief Reason (≤50 characters)
+- All 11 items (1.1–4.2) and total row must not be omitted
+- `reason` field must not exceed ~50 characters; use `evidence` for detailed citations
 
-表格先行，再输出 JSON；两者必须一致。
+Table first, then JSON output; both must be consistent.
 
-### Toy Auditor报告必须包含
+### Toy Auditor report must include
 
 ```json
 {
@@ -227,51 +227,51 @@ Don Norman《The Design of Everyday Things》+《Emotional Design》
   "auditor_type": "Toy Auditor",
   "timestamp": "2024-01-01T00:00:00Z",
 
-  "information_source": "Brand-Blinded产品信息（已隔离原始品牌信息）",
+  "information_source": "Brand-Blinded product information (original brand information isolated)",
   "information_isolation_confirmed": true,
-  "scoring_basis": "Don Norman《设计心理学》专项检查清单",
+  "scoring_basis": "Don Norman Design Psychology checklist",
   "checklist_compliance_confirmed": true,
 
   "total_score": 75,
   "checklist_score": 75,
 
   "checklist_items": {
-    "1. 感官愉悦": {
+    "1. Sensory Pleasure": {
       "total": 25,
       "items": {
         "1.1": {
           "score": 9,
           "max_score": 10,
-          "reason": "外观设计极具吸引力，采用流线型设计",
+          "reason": "Highly attractive appearance with streamlined design",
           "evidence": [
-            "设计语言现代简洁",
-            "色彩搭配和谐",
-            "用户满意度调查显示92%认可外观"
+            "Modern minimalist design language",
+            "Harmonious color palette",
+            "92% user satisfaction with appearance in survey"
           ]
         },
         "1.2": {
           "score": 8,
           "max_score": 10,
-          "reason": "材质优质，工艺良好",
+          "reason": "Quality materials, good craftsmanship",
           "evidence": [
-            "采用航空级铝合金",
-            "表面处理精细",
-            "工艺流程符合高端标准"
+            "Aerospace-grade aluminum alloy",
+            "Refined surface treatment",
+            "Craftsmanship meets premium standards"
           ]
         },
         "1.3": {
           "score": 8,
           "max_score": 10,
-          "reason": "交互反馈良好，触感舒适",
+          "reason": "Good interaction feedback, comfortable touch",
           "evidence": [
-            "按键反馈清晰",
-            "触控灵敏",
-            "用户反馈满意度88%"
+            "Clear button feedback",
+            "Responsive touch",
+            "88% user feedback satisfaction"
           ]
         }
       }
     },
-    "2. 惊喜与发现": {
+    "2. Surprise and Discovery": {
       "total": 20,
       "items": {
         "2.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -279,7 +279,7 @@ Don Norman《The Design of Everyday Things》+《Emotional Design》
         "2.3": {"score": 5, "max_score": 5, "reason": "...", "evidence": [...]}
       }
     },
-    "3. 情感联结": {
+    "3. Emotional Connection": {
       "total": 20,
       "items": {
         "3.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -287,7 +287,7 @@ Don Norman《The Design of Everyday Things》+《Emotional Design》
         "3.3": {"score": 5, "max_score": 5, "reason": "...", "evidence": [...]}
       }
     },
-    "4. 可探索性": {
+    "4. Explorability": {
       "total": 10,
       "items": {
         "4.1": {"score": 5, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -303,79 +303,79 @@ Don Norman《The Design of Everyday Things》+《Emotional Design》
   },
 
   "strengths": [
-    "外观设计美观",
-    "材质精致",
-    "交互反馈良好"
+    "Attractive appearance design",
+    "Refined materials",
+    "Good interaction feedback"
   ],
 
   "weaknesses": [
-    "功能深度有限",
-    "探索空间一般"
+    "Limited feature depth",
+    "Average exploration space"
   ],
 
   "cross_category_evidence": {
     "supports_tool": [
-      "具备健康监测功能",
-      "工作稳定性好"
+      "Health monitoring features",
+      "Good operational stability"
     ],
     "supports_trash": []
   },
 
   "litmus_test_result": {
-    "test": "用户是否会把它放在显眼的位置'炫耀'或收藏？",
-    "answer": "是",
-    "reason": "外观时尚，用户倾向于放在显眼位置展示",
-    "confidence": "中等"
+    "test": "Would users display it prominently to 'show off' or collect it?",
+    "answer": "Yes",
+    "reason": "Fashionable appearance; users tend to display it prominently",
+    "confidence": "Medium"
   },
 
   "extract_for_report": {
-    "litmus_test_answer": "是",
-    "litmus_test_reason": "外观时尚，用户倾向于放在显眼位置展示",
-    "strengths_bullets": ["外观设计美观；S2", "材质精致；S2"],
-    "weaknesses_bullets": ["功能深度有限；S2", "探索空间一般；S2"],
-    "key_evidence": ["检查项 1.1: 设计语言现代简洁；S2", "检查项 1.3: 用户反馈满意度88%；S2"]
+    "litmus_test_answer": "Yes",
+    "litmus_test_reason": "Fashionable appearance; users tend to display it prominently",
+    "strengths_bullets": ["Attractive appearance design; S2", "Refined materials; S2"],
+    "weaknesses_bullets": ["Limited feature depth; S2", "Average exploration space; S2"],
+    "key_evidence": ["Item 1.1: Modern minimalist design language; S2", "Item 1.3: 88% user feedback satisfaction; S2"]
   }
 }
 ```
 
-### 报告要求
+### Report Requirements
 
-1. **extract_for_report**：必须包含，供 99-audit-report 聚合文字分析（见 [auditor-templates.md](auditor-templates.md)）
-2. **信息来源声明**：必须声明仅使用Brand-Blinded信息
-3. **评分依据声明**：必须声明使用Don Norman《设计心理学》专项检查清单
-4. **客观数据支持**：每个评分必须有客观数据支持
-5. **跨分类证据**：必须列出支持其他分类的证据
-6. **Litmus Test结果**：必须包含Litmus Test的测试结果
+1. **extract_for_report**: Must be included for 99-audit-report aggregation (see [auditor-templates.md](auditor-templates.md))
+2. **Information source declaration**: Must declare use of Brand-Blinded information only
+3. **Scoring basis declaration**: Must declare use of Don Norman Design Psychology checklist
+4. **Objective data support**: Every score must be supported by objective data
+5. **Cross-category evidence**: Must list evidence supporting other categories
+6. **Litmus Test result**: Must include Litmus Test result
 
-## 工作流程
+## Workflow
 
-### 1. 接收任务
-- 接收Brand-Blinded后的产品信息
-- 确认信息隔离状态
-- 验证客观数据完整性
+### 1. Receive Task
+- Receive Brand-Blinded product information
+- Confirm information isolation status
+- Verify objective data completeness
 
-### 2. 执行专项评分
-- 阅读Don Norman《设计心理学》专项检查清单
-- 逐项评估每个检查项
-- 基于客观数据打分
-- 记录评分理由和证据
+### 2. Execute Checklist Scoring
+- Read Don Norman Design Psychology checklist
+- Evaluate each item one by one
+- Score based on objective data
+- Record scoring rationale and evidence
 
-### 3. 生成报告
-- 汇总评分结果
-- 计算总分
-- 列出优势和劣势
-- 识别跨分类证据
-- 执行Litmus Test
+### 3. Generate Report
+- Summarize scoring results
+- Calculate total score
+- List strengths and weaknesses
+- Identify cross-category evidence
+- Execute Litmus Test
 
-### 4. 输出报告
-- 生成完整的Toy Auditor报告
-- 确保报告格式正确
-- 验证客观数据引用
+### 4. Output Report
+- Generate complete Toy Auditor report
+- Ensure correct report format
+- Verify objective data citations
 
-## 注意事项
+## Notes
 
-1. **严格信息隔离**：只能使用Brand-Blinded信息
-2. **基于客观数据**：所有评分必须有客观数据支持
-3. **避免主观判断**：遵循检查清单，避免主观臆断
-4. **诚实记录**：即使证据支持其他分类，也要如实记录
-5. **保持独立**：不与其他Auditor交流或参考
+1. **Strict information isolation**: Use Brand-Blinded information only
+2. **Based on objective data**: All scores must be supported by objective data
+3. **Avoid subjective judgment**: Follow checklist, avoid subjective assumptions
+4. **Honest documentation**: Record truthfully even when evidence supports other categories
+5. **Maintain independence**: Do not communicate with or reference other Auditors

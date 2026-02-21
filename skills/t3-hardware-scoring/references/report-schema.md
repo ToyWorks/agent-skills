@@ -1,146 +1,99 @@
 # 99-audit-report.md YAML Schema
 
-## 目的
+## Purpose
 
-供网站 leaderboard 解析 `99-audit-report.md` 的 YAML 元数据块。字段名与类型固定，便于程序化读取与校验。
+Enables leaderboard parsing of `99-audit-report.md` YAML metadata. Field names and types are fixed for programmatic use.
 
 ---
 
-## 文件结构
+## File Structure
 
 ```markdown
 ---
-# YAML 元数据块（必须可被 --- 解析）
+# YAML metadata block (parsed between ---)
 ...
 ---
 
-# 文字分析内容（Markdown）
+# Narrative content (Markdown)
 ...
 ```
 
 ---
 
-## YAML 字段规范
+## YAML Field Spec
 
-### 顶层字段
+### Top-level
 
-| 字段 | 类型 | 必需 | 说明 |
-|------|------|------|------|
-| `case_id` | string | 是 | 如 `t3-2026-02-21-case-003` |
-| `source_url` | string | 是 | 产品/项目来源 URL |
-| `audit_date` | string (YYYY-MM-DD) | 是 | 审计日期 |
-| `site_type` | string | 否 | `Shopify` \| `Kickstarter` |
-| `product_category` | string | 是 | Brand-Blinded 产品类别 |
-| `price_usd` | number \| null | 否 | 价格（USD），无则 null |
-| `classification` | object | 是 | 见下表 |
-| `scores` | object | 是 | 见下表 |
-| `chart_data` | object | 是 | 见下表 |
-| `litmus_tests` | object | 是 | 见下表 |
-| `checklist_tables` | object | 否 | 各 Auditor 完整检查项表格，便于图表 |
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `case_id` | string | Yes | e.g. `t3-2026-02-21-case-003` |
+| `source_url` | string | Yes | Product/project source URL |
+| `audit_date` | string (YYYY-MM-DD) | Yes | Audit date |
+| `site_type` | string | No | `Shopify` \| `Kickstarter` |
+| `product_category` | string | Yes | Brand-blinded product category |
+| `price_usd` | number \| null | No | Price (USD); null if unknown |
+| `classification` | object | Yes | See below |
+| `scores` | object | Yes | See below |
+| `chart_data` | object | Yes | See below |
+| `litmus_tests` | object | Yes | See below |
+| `checklist_tables` | object | No | Full Auditor checklist tables for charts |
 
 ### classification
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
+| Field | Type | Description |
+|-------|------|-------------|
 | `primary` | string | `Tool` \| `Toy` \| `Trash` |
-| `secondary` | array of string | 如 `["Toy"]` |
-| `final_label` | string | 如 `Trash + Toy` |
+| `secondary` | array of string | e.g. `["Toy"]` |
+| `final_label` | string | e.g. `Trash + Toy` |
 
 ### scores
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `tool` | number | Tool Auditor 总分 (0-100) |
-| `toy` | number | Toy Auditor 总分 (0-100) |
-| `trash` | number | Trash Auditor 总分 (0-100) |
+| Field | Type | Description |
+|-------|------|-------------|
+| `tool` | number | Tool total (0-100) |
+| `toy` | number | Toy total (0-100) |
+| `trash` | number | Trash total (0-100) |
 | `composite` | number | max(tool, toy) - trash |
 
 ### chart_data
 
-用于 radar/bar chart 的维度小分。
+Dimension subscores for radar/bar charts.
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `tool` | object | `{ total, dimensions }` |
-| `toy` | object | `{ total, dimensions }` |
-| `trash` | object | `{ total, dimensions }` |
-
-**dimensions** 键名固定：
-
-- **tool**: `痛点识别与解决`, `注重细节与一致性`, `简洁高效`, `工程可靠性`
-- **toy**: `感官愉悦`, `惊喜与发现`, `情感联结`, `可探索性`
-- **trash**: `原则违背`, `问题制造`, `价值缺失`, `可替代性`
-
-示例：
-
-```yaml
-chart_data:
-  tool:
-    total: 43
-    dimensions:
-      痛点识别与解决: 11
-      注重细节与一致性: 14
-      简洁高效: 13
-      工程可靠性: 5
-  toy:
-    total: 54
-    dimensions:
-      感官愉悦: 20
-      惊喜与发现: 14
-      情感联结: 13
-      可探索性: 7
-  trash:
-    total: 58
-    dimensions:
-      原则违背: 14
-      问题制造: 14
-      价值缺失: 16
-      可替代性: 14
-```
+**Fixed dimension keys**:
+- **tool**: `Pain point identification`, `Detail and consistency`, `Simplicity and efficiency`, `Engineering reliability`
+- **toy**: `Sensory pleasure`, `Surprise and discovery`, `Emotional connection`, `Explorability`
+- **trash**: `Principle violations`, `Problem creation`, `Value deficit`, `Replaceability`
 
 ### litmus_tests
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `tool` | string | 如 `否`、`是` |
-| `toy` | string | 如 `可能`、`是`、`否` |
-| `trash` | string | 如 `无影响或略好`、`更好`、`更糟` |
+| Field | Type | Description |
+|-------|------|-------------|
+| `tool` | string | e.g. `No`, `Yes` |
+| `toy` | string | e.g. `Maybe`, `Yes`, `No` |
+| `trash` | string | e.g. `No effect or better`, `Better`, `Worse` |
 
-### checklist_tables（可选）
+### checklist_tables (optional)
 
-完整检查项得分，便于网站渲染表格或细粒度图表。
-
-```yaml
-checklist_tables:
-  tool:
-    - { id: "1.1", name: "是否识别出明确的具体痛点？", max: 10, score: 5, reason: "..." }
-    - ...
-  toy:
-    - ...
-  trash:
-    - ...
-```
+Full checklist scores for table/chart rendering.
 
 ---
 
-## 文字分析部分结构
+## Narrative Section Structure
 
-固定章节标题，内容从 `extract_for_report` 聚合：
+Fixed section headers; content from `extract_for_report`:
 
-- `## 产品概述`
-- `## Tool 要点`
-- `## Toy 要点`
-- `## Trash 要点`
-- `## Final Judge 判断理由`
-- `## 改进建议`
+- `## Product Overview`
+- `## Tool Highlights`
+- `## Toy Highlights`
+- `## Trash Highlights`
+- `## Final Judge Reasoning`
+- `## Improvement Suggestions`
 
 ---
 
-## 校验清单
+## Validation Checklist
 
-网站解析时建议检查：
-
-- [ ] YAML 块以 `---` 开始和结束
-- [ ] `case_id`、`source_url`、`audit_date`、`classification`、`scores`、`chart_data`、`litmus_tests` 存在
-- [ ] `scores.tool`、`scores.toy`、`scores.trash` 为 0–100 数字
-- [ ] `chart_data.*.dimensions` 键名与上述固定列表一致
+- [ ] YAML block starts and ends with `---`
+- [ ] `case_id`, `source_url`, `audit_date`, `classification`, `scores`, `chart_data`, `litmus_tests` exist
+- [ ] `scores.tool`, `scores.toy`, `scores.trash` are 0–100 numbers
+- [ ] `chart_data.*.dimensions` keys match the fixed lists above

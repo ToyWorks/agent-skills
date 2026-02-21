@@ -1,192 +1,192 @@
-# Peer Review指南
+# Peer Review Guide
 
-## 目录
-- [概述](#概述)
-- [Peer Review流程](#peer-review流程)
-- [审查要点](#审查要点)
-- [优化报告格式](#优化报告格式)
-- [审查检查清单](#审查检查清单)
+## Table of Contents
+- [Overview](#overview)
+- [Peer Review Process](#peer-review-process)
+- [Review Focus Points](#review-focus-points)
+- [Optimized Report Format](#optimized-report-format)
+- [Review Checklist](#review-checklist)
 
-## 概述
+## Overview
 
-### 目的
-通过三Auditor互相审查，发现评估中的偏见、遗漏和错误，提升报告质量的一致性和准确性。
+### Purpose
+Through cross-Auditor review, identify bias, omissions, and errors in assessments to improve report consistency and accuracy.
 
-### 核心原则
-- **客观性**：审查基于事实和证据，不针对个人
-- **建设性**：提供具体的改进建议，而非批评
-- **双向反馈**：审查者提供意见，被审查者可以反驳
-- **迭代优化**：基于审查结果优化报告
+### Core Principles
+- **Objectivity**: Review based on facts and evidence; not personal
+- **Constructive**: Provide specific improvement suggestions, not criticism
+- **Bidirectional feedback**: Reviewer provides input; reviewee may rebut
+- **Iterative improvement**: Optimize reports based on review results
 
-### 信息隔离
-- Peer Review阶段，Auditor可以看到**其他Auditor的Brand-Blinded报告**
-- 但仍不能看到原始产品信息
-- 审查仅基于Brand-Blinded信息和对方报告
-
----
-
-## Peer Review流程
-
-### 第一轮：交叉审查
-
-每个Auditor审查其他两个Auditor的报告：
-
-**Tool Auditor审查**：
-- 🟡 Toy Auditor的报告
-- 🔴 Trash Auditor的报告
-
-**Toy Auditor审查**：
-- 🟢 Tool Auditor的报告
-- 🔴 Trash Auditor的报告
-
-**Trash Auditor审查**：
-- 🟢 Tool Auditor的报告
-- 🟡 Toy Auditor的报告
-
-### 第二轮：优化报告
-
-每个Auditor基于收到的审查意见，优化自己的报告：
-- 分析审查意见的合理性
-- 接受合理的建议并修改报告
-- 对于不合理的意见，提供反驳理由
-- 记录所有的修改和理由
-
-### 第三轮：最终确认
-
-每个Auditor提交优化后的最终报告：
-- 包含原始版本和修改版本
-- 记录所有修改和理由
-- 标注是否接受审查意见
+### Information Isolation
+- During Peer Review, Auditors may see **other Auditors' Brand-Blinded reports**
+- Still may not see original product information
+- Review based only on Brand-Blinded information and the other report
 
 ---
 
-## 审查要点
+## Peer Review Process
 
-### Tool Auditor审查Toy报告
+### Round 1: Cross-Review
 
-**关注点**：
-1. **情感价值是否过度评估**
-   - Toy是否将实用功能误判为情感价值？
-   - 是否混淆了"愉悦"和"高效"？
+Each Auditor reviews the other two Auditors' reports:
 
-2. **证据是否充分**
-   - 情感价值是否有具体证据？
-   - 是否凭空推测用户体验？
+**Tool Auditor reviews**:
+- 🟡 Toy Auditor's report
+- 🔴 Trash Auditor's report
 
-3. **跨分类证据识别**
-   - Toy是否忽略了支持Tool的证据？
-   - 是否遗漏了功能性的优势？
+**Toy Auditor reviews**:
+- 🟢 Tool Auditor's report
+- 🔴 Trash Auditor's report
 
-**审查问题**：
-- [ ] Toy评分是否过高？
-- [ ] 情感价值是否有证据支持？
-- [ ] 是否有被忽视的实用性证据？
+**Trash Auditor reviews**:
+- 🟢 Tool Auditor's report
+- 🟡 Toy Auditor's report
 
-### Tool Auditor审查Trash报告
+### Round 2: Report Optimization
 
-**关注点**：
-1. **逻辑缺陷是否真实存在**
-   - Trash是否将正常功能误判为逻辑缺陷？
-   - 是否过度解读"违背原则"？
+Each Auditor improves their own report based on review feedback:
+- Assess reasonableness of review comments
+- Accept reasonable suggestions and revise report
+- Provide rebuttal for unreasonable comments
+- Document all changes and rationale
 
-2. **营销真实性评估**
-   - 是否误将如实描述夸大为营销话术？
-   - 是否对品牌有偏见？
+### Round 3: Final Confirmation
 
-3. **可持续性判断**
-   - 是否基于实际情况评估可持续性？
-   - 是否有实际使用证据？
-
-**审查问题**：
-- [ ] Trash评分是否合理？
-- [ ] 逻辑缺陷是否真实？
-- [ ] 营销真实性评估是否客观？
-
-### Toy Auditor审查Tool报告
-
-**关注点**：
-1. **情感价值是否被忽视**
-   - Tool是否忽略了美学设计的价值？
-   - 是否低估了用户情感需求？
-
-2. **体验维度缺失**
-   - 是否只关注功能，忽略体验？
-   - 是否有情感化设计元素被忽视？
-
-3. **跨分类证据识别**
-   - Tool是否忽略了支持Toy的证据？
-   - 是否遗漏了美学或互动优势？
-
-**审查问题**：
-- [ ] Tool评分是否过低？
-- [ ] 是否忽视了情感价值？
-- [ ] 美学设计是否被低估？
-
-### Toy Auditor审查Trash报告
-
-**关注点**：
-1. **设计违背性是否真实**
-   - Trash是否误判正常设计为违背原则？
-   - 是否对创意设计有偏见？
-
-2. **情感价值被误判**
-   - 是否将情感价值误判为营销话术？
-   - 是否忽略了用户的情感体验？
-
-3. **证据充分性**
-   - Trash的指控是否有具体证据？
-   - 是否凭空推测设计问题？
-
-**审查问题**：
-- [ ] Trash评分是否合理？
-- [ ] 设计违背性是否真实？
-- [ ] 情感价值是否被误判？
-
-### Trash Auditor审查Tool报告
-
-**关注点**：
-1. **逻辑完整性检查**
-   - Tool是否忽略了潜在的逻辑问题？
-   - 功能之间是否有矛盾？
-
-2. **营销话术识别**
-   - Tool是否将营销话术误判为功能描述？
-   - 是否有夸大成分被忽视？
-
-3. **可持续性分析**
-   - Tool是否低估了长期使用成本？
-   - 是否有隐藏的维护负担？
-
-**审查问题**：
-- [ ] Tool是否忽略了逻辑缺陷？
-- [ ] 营销真实性是否被忽视？
-- [ ] 可持续性是否被低估？
-
-### Trash Auditor审查Toy报告
-
-**关注点**：
-1. **过度情感化**
-   - Toy是否将营销话术误判为情感价值？
-   - 是否对品牌有偏好？
-
-2. **实用性被忽视**
-   - Toy是否忽略了功能的实用性？
-   - 是否将有用功能误判为玩具特性？
-
-3. **证据充分性**
-   - 情感价值是否有可验证的证据？
-   - 是否凭空推测用户情感？
-
-**审查问题**：
-- [ ] Toy评分是否过高？
-- [ ] 情感价值是否有证据？
-- [ ] 实用性是否被忽视？
+Each Auditor submits optimized final report:
+- Include original and revised versions
+- Document all changes and rationale
+- Note whether review comments were accepted
 
 ---
 
-## 优化报告格式
+## Review Focus Points
 
-### 审查意见格式
+### Tool Auditor Reviewing Toy Report
+
+**Focus**:
+1. **Emotional value over-assessment**
+   - Does Toy misclassify practical features as emotional value?
+   - Is "pleasure" confused with "efficiency"?
+
+2. **Evidence sufficiency**
+   - Is emotional value supported by concrete evidence?
+   - Is user experience inferred without basis?
+
+3. **Cross-category evidence**
+   - Did Toy overlook Tool-supporting evidence?
+   - Were functional strengths missed?
+
+**Review questions**:
+- [ ] Is Toy score too high?
+- [ ] Is emotional value supported by evidence?
+- [ ] Is there overlooked practicality evidence?
+
+### Tool Auditor Reviewing Trash Report
+
+**Focus**:
+1. **Logic defects real or not**
+   - Does Trash misclassify normal features as logic defects?
+   - Is "principle violation" over-interpreted?
+
+2. **Marketing authenticity**
+   - Is factual description mislabeled as marketing?
+   - Is there brand bias?
+
+3. **Sustainability judgment**
+   - Is sustainability based on actual conditions?
+   - Is there actual usage evidence?
+
+**Review questions**:
+- [ ] Is Trash score reasonable?
+- [ ] Are logic defects real?
+- [ ] Is marketing authenticity assessment objective?
+
+### Toy Auditor Reviewing Tool Report
+
+**Focus**:
+1. **Emotional value overlooked**
+   - Does Tool ignore aesthetic design value?
+   - Is user emotional need underestimated?
+
+2. **Experience dimension missing**
+   - Does it only focus on function, not experience?
+   - Are emotional design elements overlooked?
+
+3. **Cross-category evidence**
+   - Did Tool overlook Toy-supporting evidence?
+   - Were aesthetic or interaction strengths missed?
+
+**Review questions**:
+- [ ] Is Tool score too low?
+- [ ] Is emotional value overlooked?
+- [ ] Is aesthetic design underestimated?
+
+### Toy Auditor Reviewing Trash Report
+
+**Focus**:
+1. **Design violation real or not**
+   - Does Trash misclassify normal design as principle violation?
+   - Is there bias against creative design?
+
+2. **Emotional value misclassified**
+   - Is emotional value mislabeled as marketing?
+   - Is user emotional experience ignored?
+
+3. **Evidence sufficiency**
+   - Do Trash allegations have concrete evidence?
+   - Is design issue inferred without basis?
+
+**Review questions**:
+- [ ] Is Trash score reasonable?
+- [ ] Are design violations real?
+- [ ] Is emotional value misclassified?
+
+### Trash Auditor Reviewing Tool Report
+
+**Focus**:
+1. **Logic completeness**
+   - Does Tool overlook potential logic issues?
+   - Are there contradictions between features?
+
+2. **Marketing language detection**
+   - Does Tool misclassify marketing as feature description?
+   - Is exaggeration overlooked?
+
+3. **Sustainability analysis**
+   - Does Tool underestimate long-term cost?
+   - Are hidden maintenance burdens present?
+
+**Review questions**:
+- [ ] Does Tool overlook logic defects?
+- [ ] Is marketing authenticity overlooked?
+- [ ] Is sustainability underestimated?
+
+### Trash Auditor Reviewing Toy Report
+
+**Focus**:
+1. **Over-emotionalization**
+   - Does Toy misclassify marketing as emotional value?
+   - Is there brand preference?
+
+2. **Practicality overlooked**
+   - Does Toy ignore feature practicality?
+   - Are useful features misclassified as toy traits?
+
+3. **Evidence sufficiency**
+   - Is emotional value verifiable?
+   - Is user emotion inferred without basis?
+
+**Review questions**:
+- [ ] Is Toy score too high?
+- [ ] Is emotional value evidenced?
+- [ ] Is practicality overlooked?
+
+---
+
+## Optimized Report Format
+
+### Review Comment Format
 
 ```json
 {
@@ -194,11 +194,11 @@
   "target": "Toy Auditor",
   "review_date": "2024-01-01",
   "overall_assessment": {
-    "rating": "部分同意",
-    "summary": "Toy评分偏高，情感价值证据不足",
+    "rating": "Partially agree",
+    "summary": "Toy score too high; emotional value lacks evidence",
     "major_concerns": [
-      "情感价值得分90缺乏具体证据",
-      "将实用性功能误判为情感价值"
+      "Emotional value score 90 lacks concrete evidence",
+      "Practical features misclassified as emotional value"
     ]
   },
   "specific_feedback": [
@@ -206,28 +206,28 @@
       "dimension": "emotional_value",
       "original_score": 90,
       "suggested_score": 65,
-      "reason": "情感价值缺乏具体用户反馈证据，主要基于推测",
-      "evidence_requested": "需要用户情感反馈数据"
+      "reason": "Emotional value lacks specific user feedback evidence, mainly inferred",
+      "evidence_requested": "Need user emotional feedback data"
     },
     {
       "dimension": "aesthetic_design",
       "original_score": 85,
       "suggested_score": 75,
-      "reason": "外观设计一般，无明显美学优势",
-      "evidence": "参考同类产品对比"
+      "reason": "Appearance design average, no obvious aesthetic advantage",
+      "evidence": "Reference similar product comparison"
     }
   ],
   "cross_category_evidence": [
     {
       "type": "supports_tool",
-      "description": "健康监测功能实用，应提高Tool评分",
-      "evidence": ["24小时监测", "医疗级传感器"]
+      "description": "Health monitoring feature practical, should raise Tool score",
+      "evidence": ["24-hour monitoring", "Medical-grade sensors"]
     }
   ]
 }
 ```
 
-### 优化后的报告格式
+### Optimized Report Format
 
 ```json
 {
@@ -240,7 +240,7 @@
         "dimension": "emotional_value",
         "before": 90,
         "after": 65,
-        "reason": "基于Tool Auditor的审查意见，重新评估情感价值",
+        "reason": "Re-evaluated emotional value based on Tool Auditor review",
         "accepted": true,
         "reviewer": "Tool Auditor"
       },
@@ -248,7 +248,7 @@
         "dimension": "aesthetic_design",
         "before": 85,
         "after": 75,
-        "reason": "接受审查意见，降低美学设计评分",
+        "reason": "Accepted review, lowered aesthetic design score",
         "accepted": true,
         "reviewer": "Tool Auditor"
       },
@@ -256,9 +256,9 @@
         "dimension": "interactive_fun",
         "before": 80,
         "after": 80,
-        "reason": "拒绝Tool Auditor的降低建议，保持原评分",
+        "reason": "Rejected Tool Auditor's lower suggestion, kept original score",
         "accepted": false,
-        "rebuttal": "互动乐趣确实存在，用户反馈积极",
+        "rebuttal": "Interactive fun exists; user feedback positive",
         "reviewer": "Tool Auditor"
       }
     ],
@@ -266,7 +266,7 @@
       {
         "type": "supports_tool",
         "added": true,
-        "description": "健康监测功能实用",
+        "description": "Health monitoring feature practical",
         "reviewer": "Tool Auditor"
       }
     ]
@@ -283,80 +283,80 @@
 
 ---
 
-## 审查检查清单
+## Review Checklist
 
-### Tool Auditor审查检查清单
+### Tool Auditor Review Checklist
 
-#### 审查Toy报告时
-- [ ] 情感价值评分是否合理？
-- [ ] 情感价值是否有证据支持？
-- [ ] 是否混淆了实用性和情感价值？
-- [ ] 美学设计评分是否客观？
-- [ ] 互动乐趣评分是否合理？
-- [ ] 社交属性是否有实际功能？
-- [ ] 是否有被忽视的Tool证据？
+#### When reviewing Toy report
+- [ ] Is emotional value score reasonable?
+- [ ] Is emotional value evidence-supported?
+- [ ] Is practicality confused with emotional value?
+- [ ] Is aesthetic design score objective?
+- [ ] Is interactive fun score reasonable?
+- [ ] Does social attribute have actual function?
+- [ ] Is Tool evidence overlooked?
 
-#### 审查Trash报告时
-- [ ] Trash评分是否合理？
-- [ ] 逻辑缺陷是否真实存在？
-- [ ] 营销真实性评估是否客观？
-- [ ] 可持续性判断是否有依据？
-- [ ] 设计违背性是否真实？
-- [ ] 是否对品牌有偏见？
+#### When reviewing Trash report
+- [ ] Is Trash score reasonable?
+- [ ] Are logic defects real?
+- [ ] Is marketing authenticity assessment objective?
+- [ ] Is sustainability judgment grounded?
+- [ ] Are design violations real?
+- [ ] Is there brand bias?
 
-### Toy Auditor审查检查清单
+### Toy Auditor Review Checklist
 
-#### 审查Tool报告时
-- [ ] Tool评分是否过低？
-- [ ] 是否忽视了情感价值？
-- [ ] 美学设计是否被低估？
-- [ ] 体验维度是否缺失？
-- [ ] 是否有被忽视的Toy证据？
+#### When reviewing Tool report
+- [ ] Is Tool score too low?
+- [ ] Is emotional value overlooked?
+- [ ] Is aesthetic design underestimated?
+- [ ] Is experience dimension missing?
+- [ ] Is Toy evidence overlooked?
 
-#### 审查Trash报告时
-- [ ] Trash评分是否合理？
-- [ ] 设计违背性是否真实？
-- [ ] 情感价值是否被误判？
-- [ ] 是否对创意设计有偏见？
-- [ ] 证据是否充分？
+#### When reviewing Trash report
+- [ ] Is Trash score reasonable?
+- [ ] Are design violations real?
+- [ ] Is emotional value misclassified?
+- [ ] Is there bias against creative design?
+- [ ] Is evidence sufficient?
 
-### Trash Auditor审查检查清单
+### Trash Auditor Review Checklist
 
-#### 审查Tool报告时
-- [ ] Tool是否忽略了逻辑缺陷？
-- [ ] 营销真实性是否被忽视？
-- [ ] 可持续性是否被低估？
-- [ ] 功能之间是否有矛盾？
-- [ ] 是否有夸大成分？
+#### When reviewing Tool report
+- [ ] Does Tool overlook logic defects?
+- [ ] Is marketing authenticity overlooked?
+- [ ] Is sustainability underestimated?
+- [ ] Are there feature contradictions?
+- [ ] Is there exaggeration?
 
-#### 审查Toy报告时
-- [ ] Toy评分是否过高？
-- [ ] 情感价值是否有证据？
-- [ ] 是否将营销话术误判为情感价值？
-- [ ] 实用性是否被忽视？
-- [ ] 是否对品牌有偏好？
+#### When reviewing Toy report
+- [ ] Is Toy score too high?
+- [ ] Is emotional value evidenced?
+- [ ] Is marketing misclassified as emotional value?
+- [ ] Is practicality overlooked?
+- [ ] Is there brand preference?
 
 ---
 
-## Peer Review最佳实践
+## Peer Review Best Practices
 
-### 审查者（Reviewer）
-1. **基于证据**：所有审查意见必须有具体证据
-2. **保持客观**：避免主观偏见和情绪化表达
-3. **具体明确**：提供具体的改进建议，而非模糊批评
-4. **建设性**：关注如何改进，而非单纯指出问题
-5. **尊重对方**：承认其他Auditor的专业性
+### Reviewer
+1. **Evidence-based**: All comments must have concrete evidence
+2. **Objective**: Avoid subjective bias and emotional language
+3. **Specific**: Provide concrete improvement suggestions, not vague criticism
+4. **Constructive**: Focus on how to improve, not just on problems
+5. **Respectful**: Acknowledge other Auditors' expertise
 
-### 被审查者（Reviewee）
-1. **开放心态**：认真考虑所有审查意见
-2. **理性分析**：客观评估每个意见的合理性
-3. **诚实回应**：接受合理的意见，反驳不合理的意见
-4. **记录完整**：记录所有修改和理由
-5. **保持一致**：修改后保持整体逻辑的一致性
+### Reviewee
+1. **Open-minded**: Seriously consider all comments
+2. **Rational analysis**: Objectively assess each comment's reasonableness
+3. **Honest response**: Accept reasonable comments; rebut unreasonable ones
+4. **Complete documentation**: Document all changes and rationale
+5. **Consistency**: Keep overall logic consistent after changes
 
-### 最终报告
-1. **透明记录**：完整记录Peer Review过程
-2. **修改说明**：清楚说明每个修改的理由
-3. **拒绝理由**：对不接受的意见提供反驳理由
-4. **影响评估**：评估修改对最终评分的影响
-5. **一致性检查**：确保修改后的报告内部一致
+### Final Report
+1. **Transparent documentation**: Fully document Peer Review process
+2. **Change explanation**: Clearly explain rationale for each change
+3. **Rejection rationale**: Provide rebuttal for rejected comments
+4. **Impact assessment**: Assess impact of changes on final score
+5. **Consistency check**: Ensure internal consistency of revised report

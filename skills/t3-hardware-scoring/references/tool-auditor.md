@@ -1,228 +1,228 @@
-# Tool Auditor独立指南
+# Tool Auditor Standalone Guide
 
-## 目录
-- [角色定位](#角色定位)
-- [核心问题](#核心问题)
-- [信息隔离原则](#信息隔离原则)
-- [评分逻辑](#评分逻辑)
-- [Tony Fadell《Build》专项检查清单](#tony-fadellbuild专项检查清单)
-- [评估报告格式](#评估报告格式)
+## Table of Contents
+- [Role Definition](#role-definition)
+- [Core Questions](#core-questions)
+- [Information Isolation Principles](#information-isolation-principles)
+- [Scoring Logic](#scoring-logic)
+- [Tony Fadell "Build" Dedicated Checklist](#tony-fadell-build-dedicated-checklist)
+- [Assessment Report Format](#assessment-report-format)
 
-## 角色定位
+## Role Definition
 
 ### 🟢 Tool Auditor
-从"解决痛点"的角度评估产品，关注实用性、可靠性、效率。
+Evaluates products from a "pain point resolution" perspective, focusing on practicality, reliability, and efficiency.
 
-### 核心价值
-- 实用性：解决实际、明确的问题
-- 可靠性：高稳定性，不引人注目的设计
-- 效率：成为用户工作流的一部分
+### Core Values
+- **Practicality**: Solve real, well-defined problems
+- **Reliability**: High stability, unobtrusive design
+- **Efficiency**: Become part of the user's workflow
 
-### 评分方向
-- **正向评分**：分数越高，越符合Tool特征
-- **评分范围**：0-100分
+### Scoring Direction
+- **Positive scoring**: Higher scores indicate stronger Tool characteristics
+- **Score range**: 0-100
 
-## 核心问题
+## Core Questions
 
-**主要问题**："这个产品是否解决了用户的真实痛点？如果明天它坏了，用户的工作流会停滞吗？"
+**Primary question**: "Does this product solve the user's real pain points? If it broke tomorrow, would the user's workflow come to a halt?"
 
-**Litmus Test**：
-- 如果明天它坏了，用户的工作流会停滞吗？
-  - 是 → Tool
-  - 否 → 不是纯粹的Tool
+**Litmus Test**:
+- If it broke tomorrow, would the user's workflow come to a halt?
+  - **Yes** → Tool
+  - **No** → Not a pure Tool
 
-**关键指标**：
-- 依赖性：用户是否需要定期使用？
-- 不可替代性：是否有其他替代方案？
-- 效率提升：是否显著提升工作或生活效率？
+**Key metrics**:
+- **Dependency**: Does the user need to use it regularly?
+- **Irreplaceability**: Are there alternative solutions?
+- **Efficiency gain**: Does it significantly improve work or life efficiency?
 
-## 信息隔离原则
+## Information Isolation Principles
 
-### 🚨 信息隔离（强制）
-- **仅能访问**：Brand-Blinded后的客观产品信息
-- **严禁访问**：原始产品信息、品牌名称、营销话术
-- **评估依据**：只基于客观功能、技术规格、使用场景
-- **禁止推测**：不得根据品牌知名度推测产品质量
+### 🚨 Information Isolation (Mandatory)
+- **Access only**: Brand-Blinded objective product information
+- **Prohibited access**: Original product information, brand names, marketing language
+- **Evaluation basis**: Based solely on objective functions, technical specifications, and use cases
+- **No speculation**: Must not infer product quality based on brand recognition
 
-### 客观数据要求
-- 必须基于完整的客观数据进行评估
-- 参考 [objective-data-standard.md](objective-data-standard.md)
-- 所有评分必须有客观数据支持
+### Objective Data Requirements
+- Evaluation must be based on complete objective data
+- Reference [objective-data-standard.md](objective-data-standard.md)
+- All scores must be supported by objective data
 
-## 评分逻辑
+## Scoring Logic
 
-### 评分构成
-- **专项检查总分**：100分
-- **评分规则**：专项检查分 = Tool评分（0-100）
-- **含义**：分数越高，越符合Tool特征
+### Score Composition
+- **Checklist total**: 100 points
+- **Scoring rule**: Checklist score = Tool score (0-100)
+- **Meaning**: Higher scores indicate stronger Tool characteristics
 
-### 评分区间
-- **0-30分**：不符合Tool特征
-- **31-60分**：部分符合Tool特征
-- **61-80分**：符合Tool特征
-- **81-100分**：强烈符合Tool特征
+### Score Ranges
+- **0-30**: Does not meet Tool characteristics
+- **31-60**: Partially meets Tool characteristics
+- **61-80**: Meets Tool characteristics
+- **81-100**: Strongly meets Tool characteristics
 
-### 评估维度
-1. 痛点识别与解决（30分）
-2. 注重细节与一致性（25分）
-3. 简洁高效（25分）
-4. 工程可靠性（20分）
+### Evaluation Dimensions
+1. Pain Point Identification and Resolution (30 points)
+2. Attention to Detail and Consistency (25 points)
+3. Simplicity and Efficiency (25 points)
+4. Engineering Reliability (20 points)
 
-## Tony Fadell《Build》专项检查清单
+## Tony Fadell "Build" Dedicated Checklist
 
-### 来源
-Tony Fadell《Build: An Unorthodox Guide to Making Things Worth Making》
+### Source
+Tony Fadell, *Build: An Unorthodox Guide to Making Things Worth Making*
 
-### 检查清单
+### Checklist
 
-#### 1. 痛点识别与解决（30分）
+#### 1. Pain Point Identification and Resolution (30 points)
 
-**检查项1.1：是否识别出明确的具体痛点？** (0-10分)
-- 10分：明确识别出具体的、可验证的痛点
-- 8分：识别出痛点但表述不够清晰
-- 5分：痛点模糊或泛化
-- 2分：伪痛点或非真实需求
-- 0分：未识别痛点
+**Item 1.1: Are clear, specific pain points identified?** (0-10 points)
+- 10: Clearly identified specific, verifiable pain points
+- 8: Pain points identified but poorly articulated
+- 5: Pain points vague or generalized
+- 2: False pain points or non-real needs
+- 0: No pain points identified
 
-**客观数据要求**：
-- 用户痛点描述
-- 使用场景分析
-- 需求验证数据
+**Objective data requirements**:
+- User pain point descriptions
+- Use case analysis
+- Demand validation data
 
-**检查项1.2：解决方案是否直接针对痛点？** (0-10分)
-- 10分：解决方案直击痛点核心
-- 8分：解决方案能有效缓解痛点
-- 5分：解决方案部分解决痛点
-- 2分：解决方案与痛点关联度低
-- 0分：解决方案与痛点无关
+**Item 1.2: Does the solution directly address the pain points?** (0-10 points)
+- 10: Solution hits the core of the pain point
+- 8: Solution effectively alleviates pain points
+- 5: Solution partially addresses pain points
+- 2: Low correlation between solution and pain points
+- 0: Solution unrelated to pain points
 
-**客观数据要求**：
-- 功能与痛点的对应关系
-- 效果验证数据
-- 用户反馈统计
+**Objective data requirements**:
+- Correspondence between features and pain points
+- Effectiveness validation data
+- User feedback statistics
 
-**检查项1.3：是否比现有方案更好？** (0-10分)
-- 10分：显著优于所有现有方案
-- 8分：优于大多数现有方案
-- 5分：与现有方案相当
-- 2分：不如现有方案
-- 0分：无改进价值
+**Item 1.3: Is it better than existing solutions?** (0-10 points)
+- 10: Significantly superior to all existing solutions
+- 8: Superior to most existing solutions
+- 5: Comparable to existing solutions
+- 2: Inferior to existing solutions
+- 0: No improvement value
 
-**客观数据要求**：
-- 竞品对比分析
-- 效率提升数据
-- 用户满意度对比
+**Objective data requirements**:
+- Competitor comparison analysis
+- Efficiency improvement data
+- User satisfaction comparison
 
-#### 2. 注重细节与一致性（25分）
+#### 2. Attention to Detail and Consistency (25 points)
 
-**检查项2.1：每个交互是否精心设计？** (0-10分)
-- 10分：所有交互细节都经过精心打磨
-- 8分：大部分交互细节设计良好
-- 5分：交互细节一般
-- 2分：存在明显的设计疏漏
-- 0分：交互设计粗糙
+**Item 2.1: Is every interaction meticulously designed?** (0-10 points)
+- 10: All interaction details are finely crafted
+- 8: Most interaction details are well designed
+- 5: Interaction details are average
+- 2: Obvious design oversights exist
+- 0: Rough interaction design
 
-**客观数据要求**：
-- 交互流程分析
-- 用户体验测试数据
-- 设计一致性检查结果
+**Objective data requirements**:
+- Interaction flow analysis
+- User experience test data
+- Design consistency check results
 
-**检查项2.2：是否保持一致的设计语言？** (0-10分)
-- 10分：所有触点保持完美一致
-- 8分：基本保持一致
-- 5分：部分不一致
-- 2分：频繁不一致
-- 0分：完全不一致
+**Item 2.2: Is there consistent design language?** (0-10 points)
+- 10: Perfect consistency across all touchpoints
+- 8: Basically consistent
+- 5: Partially inconsistent
+- 2: Frequently inconsistent
+- 0: Completely inconsistent
 
-**客观数据要求**：
-- 设计规范检查
-- 多触点体验分析
+**Objective data requirements**:
+- Design specification check
+- Multi-touchpoint experience analysis
 
-**检查项2.3：是否隐藏了不必要的复杂性？** (0-5分)
-- 5分：复杂技术对用户完全透明
-- 3分：大部分复杂性被隐藏
-- 1分：复杂性部分可见
-- 0分：复杂性直接暴露给用户
+**Item 2.3: Is unnecessary complexity hidden?** (0-5 points)
+- 5: Complex technology completely transparent to users
+- 3: Most complexity hidden
+- 1: Complexity partially visible
+- 0: Complexity directly exposed to users
 
-**客观数据要求**：
-- 技术架构分析
-- 用户界面设计评估
+**Objective data requirements**:
+- Technical architecture analysis
+- User interface design evaluation
 
-#### 3. 简洁高效（25分）
+#### 3. Simplicity and Efficiency (25 points)
 
-**检查项3.1：是否遵循"少即是多"原则？** (0-10分)
-- 10分：极致简洁，无任何冗余
-- 8分：简洁高效，冗余极少
-- 5分：有一定冗余
-- 2分：冗余较多
-- 0分：复杂臃肿
+**Item 3.1: Does it follow the "less is more" principle?** (0-10 points)
+- 10: Extremely simple, no redundancy
+- 8: Simple and efficient, minimal redundancy
+- 5: Some redundancy
+- 2: Considerable redundancy
+- 0: Complex and bloated
 
-**客观数据要求**：
-- 功能冗余分析
-- 界面元素检查
+**Objective data requirements**:
+- Feature redundancy analysis
+- Interface element check
 
-**检查项3.2：操作是否高效？** (0-10分)
-- 10分：操作极快，零学习成本
-- 8分：操作快速，学习成本低
-- 5分：操作一般，学习成本中等
-- 2分：操作缓慢，学习成本高
-- 0分：操作繁琐，学习成本极高
+**Item 3.2: Are operations efficient?** (0-10 points)
+- 10: Extremely fast operations, zero learning cost
+- 8: Fast operations, low learning cost
+- 5: Average operations, moderate learning cost
+- 2: Slow operations, high learning cost
+- 0: Cumbersome operations, extremely high learning cost
 
-**客观数据要求**：
-- 任务完成时间数据
-- 操作步骤数统计
-- 学习曲线分析
+**Objective data requirements**:
+- Task completion time data
+- Operation step count statistics
+- Learning curve analysis
 
-**检查项3.3：设计是否不引人注目？** (0-5分)
-- 5分：完美融入工作流，几乎无感
-- 3分：基本不引人注意
-- 1分：偶尔引起注意
-- 0分：频繁干扰用户
+**Item 3.3: Is the design unobtrusive?** (0-5 points)
+- 5: Perfectly integrated into workflow, nearly imperceptible
+- 3: Basically unobtrusive
+- 1: Occasionally draws attention
+- 0: Frequently interrupts users
 
-**客观数据要求**：
-- 使用频率统计
-- 干扰程度评估
-- 用户反馈数据
+**Objective data requirements**:
+- Usage frequency statistics
+- Disruption level assessment
+- User feedback data
 
-#### 4. 工程可靠性（20分）
+#### 4. Engineering Reliability (20 points)
 
-**检查项4.1：工作是否稳定可靠？** (0-10分)
-- 10分：极其稳定，故障率<1%
-- 8分：稳定可靠，故障率1-5%
-- 5分：基本稳定，故障率5-10%
-- 2分：稳定性一般，故障率10-20%
-- 0分：不稳定，故障率>20%
+**Item 4.1: Is operation stable and reliable?** (0-10 points)
+- 10: Extremely stable, failure rate <1%
+- 8: Stable and reliable, failure rate 1-5%
+- 5: Basically stable, failure rate 5-10%
+- 2: Average stability, failure rate 10-20%
+- 0: Unstable, failure rate >20%
 
-**客观数据要求**：
-- 质量保证数据
-- 用户反馈统计
-- 第三方测试数据
+**Objective data requirements**:
+- Quality assurance data
+- User feedback statistics
+- Third-party test data
 
-**检查项4.2：是否注重质量控制？** (0-10分)
-- 10分：严格的质量控制体系
-- 8分：有质量控制
-- 5分：质量控制一般
-- 2分：质量控制较弱
-- 0分：无质量控制
+**Item 4.2: Is quality control emphasized?** (0-10 points)
+- 10: Strict quality control system
+- 8: Quality control in place
+- 5: Average quality control
+- 2: Weak quality control
+- 0: No quality control
 
-**客观数据要求**：
-- 质量保证流程
-- 测试覆盖率数据
+**Objective data requirements**:
+- Quality assurance process
+- Test coverage data
 
-## 评估报告格式
+## Assessment Report Format
 
-### 🚨 严格输出模板（必遵）
+### 🚨 Strict Output Template (Mandatory)
 
-**必须**阅读 [auditor-templates.md](auditor-templates.md)，按其中 **Tool Auditor 评分表格模板** 输出。
+**Must** read [auditor-templates.md](auditor-templates.md) and output according to the **Tool Auditor scoring table template**.
 
-**强制要求**：
-- 输出**完整填写的评分表格**，列：检查项ID | 检查项名称 | 满分 | 得分 | 简短理由（≤50字）
-- 11 个检查项（1.1–4.2）及合计行不得省略
-- `reason` 字段不得超过约 50 字，可另用 `evidence` 存放详细引用
+**Mandatory requirements**:
+- Output **complete filled scoring table** with columns: Item ID | Item Name | Max Score | Score | Brief Reason (≤50 characters)
+- All 11 items (1.1–4.2) and total row must not be omitted
+- `reason` field must not exceed ~50 characters; use `evidence` for detailed citations
 
-表格先行，再输出 JSON；两者必须一致。
+Table first, then JSON output; both must be consistent.
 
-### Tool Auditor报告必须包含
+### Tool Auditor report must include
 
 ```json
 {
@@ -230,51 +230,51 @@ Tony Fadell《Build: An Unorthodox Guide to Making Things Worth Making》
   "auditor_type": "Tool Auditor",
   "timestamp": "2024-01-01T00:00:00Z",
 
-  "information_source": "Brand-Blinded产品信息（已隔离原始品牌信息）",
+  "information_source": "Brand-Blinded product information (original brand information isolated)",
   "information_isolation_confirmed": true,
-  "scoring_basis": "Tony Fadell《Build》专项检查清单",
+  "scoring_basis": "Tony Fadell Build checklist",
   "checklist_compliance_confirmed": true,
 
   "total_score": 82,
   "checklist_score": 82,
 
   "checklist_items": {
-    "1. 痛点识别与解决": {
+    "1. Pain Point Identification and Resolution": {
       "total": 28,
       "items": {
         "1.1": {
           "score": 9,
           "max_score": 10,
-          "reason": "明确识别出健康监测痛点，针对性强",
+          "reason": "Clearly identified health monitoring pain points, well targeted",
           "evidence": [
-            "支持24小时健康监测",
-            "数据准确度高",
-            "用户痛点：无法持续了解健康状况"
+            "Supports 24-hour health monitoring",
+            "High data accuracy",
+            "User pain point: Unable to continuously understand health status"
           ]
         },
         "1.2": {
           "score": 9,
           "max_score": 10,
-          "reason": "解决方案直击痛点，效果显著",
+          "reason": "Solution directly addresses pain points with significant effect",
           "evidence": [
-            "心率监测准确率99%",
-            "血氧监测误差<2%",
-            "睡眠分析完整"
+            "Heart rate monitoring 99% accuracy",
+            "Blood oxygen monitoring error <2%",
+            "Complete sleep analysis"
           ]
         },
         "1.3": {
           "score": 10,
           "max_score": 10,
-          "reason": "显著优于传统监测方式",
+          "reason": "Significantly superior to traditional monitoring methods",
           "evidence": [
-            "相比医院检测成本降低80%",
-            "数据连续性优于定期体检",
-            "用户满意度提升60%"
+            "80% cost reduction vs. hospital testing",
+            "Data continuity better than periodic checkups",
+            "60% user satisfaction improvement"
           ]
         }
       }
     },
-    "2. 注重细节与一致性": {
+    "2. Attention to Detail and Consistency": {
       "total": 20,
       "items": {
         "2.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -282,7 +282,7 @@ Tony Fadell《Build: An Unorthodox Guide to Making Things Worth Making》
         "2.3": {"score": 5, "max_score": 5, "reason": "...", "evidence": [...]}
       }
     },
-    "3. 简洁高效": {
+    "3. Simplicity and Efficiency": {
       "total": 20,
       "items": {
         "3.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -290,7 +290,7 @@ Tony Fadell《Build: An Unorthodox Guide to Making Things Worth Making》
         "3.3": {"score": 5, "max_score": 5, "reason": "...", "evidence": [...]}
       }
     },
-    "4. 工程可靠性": {
+    "4. Engineering Reliability": {
       "total": 14,
       "items": {
         "4.1": {"score": 7, "max_score": 10, "reason": "...", "evidence": [...]},
@@ -306,79 +306,79 @@ Tony Fadell《Build: An Unorthodox Guide to Making Things Worth Making》
   },
 
   "strengths": [
-    "健康监测功能完善",
-    "数据准确",
-    "续航时间长"
+    "Complete health monitoring features",
+    "Accurate data",
+    "Long battery life"
   ],
 
   "weaknesses": [
-    "充电频率较高",
-    "需要配合手机使用"
+    "Frequent charging required",
+    "Requires phone pairing"
   ],
 
   "cross_category_evidence": {
     "supports_toy": [
-      "外观时尚美观",
-      "表盘可个性化定制"
+      "Fashionable appearance",
+      "Customizable watch faces"
     ],
     "supports_trash": []
   },
 
   "litmus_test_result": {
-    "test": "如果明天它坏了，用户的工作流会停滞吗？",
-    "answer": "是",
-    "reason": "用户习惯每日查看健康数据，设备损坏会影响健康管理流程",
-    "confidence": "高"
+    "test": "If it broke tomorrow, would the user's workflow come to a halt?",
+    "answer": "Yes",
+    "reason": "Users are accustomed to checking health data daily; device failure would affect health management workflow",
+    "confidence": "High"
   },
 
   "extract_for_report": {
-    "litmus_test_answer": "是",
-    "litmus_test_reason": "用户习惯每日查看健康数据，设备损坏会影响健康管理流程",
-    "strengths_bullets": ["健康监测功能完善；S2", "数据准确；S2"],
-    "weaknesses_bullets": ["充电频率较高；S2", "需要配合手机使用；S2"],
-    "key_evidence": ["检查项 1.2: 心率监测准确率99%；S2", "检查项 4.1: 故障率<1%；S2"]
+    "litmus_test_answer": "Yes",
+    "litmus_test_reason": "Users are accustomed to checking health data daily; device failure would affect health management workflow",
+    "strengths_bullets": ["Complete health monitoring features; S2", "Accurate data; S2"],
+    "weaknesses_bullets": ["Frequent charging required; S2", "Requires phone pairing; S2"],
+    "key_evidence": ["Item 1.2: Heart rate monitoring 99% accuracy; S2", "Item 4.1: Failure rate <1%; S2"]
   }
 }
 ```
 
-### 报告要求
+### Report Requirements
 
-1. **extract_for_report**：必须包含，供 99-audit-report 聚合文字分析（见 [auditor-templates.md](auditor-templates.md)）
-2. **信息来源声明**：必须声明仅使用Brand-Blinded信息
-3. **评分依据声明**：必须声明使用Tony Fadell《Build》专项检查清单
-4. **客观数据支持**：每个评分必须有客观数据支持
-5. **跨分类证据**：必须列出支持其他分类的证据
-6. **Litmus Test结果**：必须包含Litmus Test的测试结果
+1. **extract_for_report**: Must be included for 99-audit-report aggregation (see [auditor-templates.md](auditor-templates.md))
+2. **Information source declaration**: Must declare use of Brand-Blinded information only
+3. **Scoring basis declaration**: Must declare use of Tony Fadell *Build* checklist
+4. **Objective data support**: Every score must be supported by objective data
+5. **Cross-category evidence**: Must list evidence supporting other categories
+6. **Litmus Test result**: Must include Litmus Test result
 
-## 工作流程
+## Workflow
 
-### 1. 接收任务
-- 接收Brand-Blinded后的产品信息
-- 确认信息隔离状态
-- 验证客观数据完整性
+### 1. Receive Task
+- Receive Brand-Blinded product information
+- Confirm information isolation status
+- Verify objective data completeness
 
-### 2. 执行专项评分
-- 阅读Tony Fadell《Build》专项检查清单
-- 逐项评估每个检查项
-- 基于客观数据打分
-- 记录评分理由和证据
+### 2. Execute Checklist Scoring
+- Read Tony Fadell *Build* checklist
+- Evaluate each item one by one
+- Score based on objective data
+- Record scoring rationale and evidence
 
-### 3. 生成报告
-- 汇总评分结果
-- 计算总分
-- 列出优势和劣势
-- 识别跨分类证据
-- 执行Litmus Test
+### 3. Generate Report
+- Summarize scoring results
+- Calculate total score
+- List strengths and weaknesses
+- Identify cross-category evidence
+- Execute Litmus Test
 
-### 4. 输出报告
-- 生成完整的Tool Auditor报告
-- 确保报告格式正确
-- 验证客观数据引用
+### 4. Output Report
+- Generate complete Tool Auditor report
+- Ensure correct report format
+- Verify objective data citations
 
-## 注意事项
+## Notes
 
-1. **严格信息隔离**：只能使用Brand-Blinded信息
-2. **基于客观数据**：所有评分必须有客观数据支持
-3. **避免主观判断**：遵循检查清单，避免主观臆断
-4. **诚实记录**：即使证据支持其他分类，也要如实记录
-5. **保持独立**：不与其他Auditor交流或参考
+1. **Strict information isolation**: Use Brand-Blinded information only
+2. **Based on objective data**: All scores must be supported by objective data
+3. **Avoid subjective judgment**: Follow checklist, avoid subjective assumptions
+4. **Honest documentation**: Record truthfully even when evidence supports other categories
+5. **Maintain independence**: Do not communicate with or reference other Auditors
