@@ -130,54 +130,54 @@ def calculate_composite_score(tool_score, toy_score, trash_score):
 ```
 
 **Score interpretation**:
-- **Composite > 30**: Strong Tool/Toy bias
-- **Composite 0-30**: Tool/Toy bias
-- **Composite -30 to 0**: Trash bias
-- **Composite < -30**: Strong Trash bias
+- **Composite > 40**: Strong Tool/Toy bias
+- **Composite 0-40**: Tool/Toy bias
+- **Composite -40 to 0**: Trash bias
+- **Composite < -40**: Strong Trash bias
 
 ### Step 2: Determine Primary Classification
 
 #### Determine if Tool is primary
 **Conditions** (satisfy 2+):
-- Tool score ≥ 70
-- Tool score > Toy score + 15
-- Tool score > Trash score + 15
+- Tool score ≥ 75
+- Tool score > Toy score + 20
+- Tool score > Trash score + 20
 - Litmus Test result is "Yes"
 
 #### Determine if Toy is primary
 **Conditions** (satisfy 2+):
-- Toy score ≥ 70
-- Toy score > Tool score + 15
-- Toy score > Trash score + 15
+- Toy score ≥ 75
+- Toy score > Tool score + 20
+- Toy score > Trash score + 20
 - Litmus Test result is "Yes"
 
 #### Determine if Trash is primary
 **Conditions** (satisfy 2+):
-- Trash score ≥ 70 (positive scoring; higher = more Trash)
-- Trash score > Tool score + 15
-- Trash score > Toy score + 15
+- Trash score ≥ 75 (positive scoring; higher = more Trash)
+- Trash score > Tool score + 20
+- Trash score > Toy score + 20
 - Litmus Test result is "Better"
 
 ### Step 3: Determine Secondary Classification
 
 **When Tool is primary, secondary classification**:
-- Toy score ≥ 60 and Toy score > Trash score + 15 → Secondary: Toy
-- Trash score ≥ 60 and Trash score > Toy score + 15 → Secondary: Trash
+- Toy score ≥ 65 and Toy score > Trash score + 20 → Secondary: Toy
+- Trash score ≥ 65 and Trash score > Toy score + 20 → Secondary: Trash
 
 **When Toy is primary, secondary classification**:
-- Tool score ≥ 60 and Tool score > Trash score + 15 → Secondary: Tool
-- Trash score ≥ 60 and Trash score > Toy score + 15 → Secondary: Trash
+- Tool score ≥ 65 and Tool score > Trash score + 20 → Secondary: Tool
+- Trash score ≥ 65 and Trash score > Toy score + 20 → Secondary: Trash
 
 **When Trash is primary, secondary classification**:
-- Tool score ≥ 50 → Secondary: Tool
-- Toy score ≥ 50 → Secondary: Toy
-- Both Tool and Toy ≥ 50 → Secondary: Tool + Toy
+- Tool score ≥ 55 → Secondary: Tool
+- Toy score ≥ 55 → Secondary: Toy
+- Both Tool and Toy ≥ 55 → Secondary: Tool + Toy
 
 ### Step 4: Special Case Handling
 
 **No clear primary**:
-- All three scores close (difference <15) → Mixed classification
-- Composite between -15 and 15 → Mixed classification
+- All three scores close (difference <20) → Mixed classification
+- Composite between -20 and 20 → Mixed classification
 
 **Contradictory scores**:
 - High Tool score but Trash Litmus Test "Better" → Deep review
@@ -205,13 +205,13 @@ Composite Score = max(Tool Score, Toy Score) - Trash Score
 
 | Composite Score Range | Classification Bias | Description |
 |-----------------------|---------------------|-------------|
-| 70-100 | Strong Tool/Toy | Clear Tool or Toy characteristics |
-| 40-69 | Clear Tool/Toy | Obvious Tool/Toy characteristics |
-| 15-39 | Tool/Toy bias | Tool/Toy characteristics dominant |
-| -14 to 14 | Mixed | Balanced characteristics, no clear bias |
-| -39 to -15 | Trash bias | Trash characteristics dominant |
-| -69 to -40 | Clear Trash | Obvious Trash characteristics |
-| -100 to -70 | Strong Trash | Clear Trash characteristics |
+| 75-100 | Strong Tool/Toy | Clear Tool or Toy characteristics |
+| 40-74 | Clear Tool/Toy | Obvious Tool/Toy characteristics |
+| 20-39 | Tool/Toy bias | Tool/Toy characteristics dominant |
+| -19 to 19 | Mixed | Balanced characteristics, no clear bias |
+| -39 to -20 | Trash bias | Trash characteristics dominant |
+| -74 to -40 | Clear Trash | Obvious Trash characteristics |
+| -100 to -75 | Strong Trash | Clear Trash characteristics |
 
 ## Classification Decision Flow
 
@@ -270,7 +270,7 @@ Composite Score = max(Tool Score, Toy Score) - Trash Score
         "litmus_test": {"answer": "No impact", "confidence": "Medium"}
       }
     },
-    "composite_score": 44.0,
+    "composite_score": 57.0,
     "classification": {
       "primary": "Tool",
       "secondary": ["Toy"],
@@ -279,7 +279,7 @@ Composite Score = max(Tool Score, Toy Score) - Trash Score
     "decision_reasoning": {
       "primary_reason": "Tool score highest (82), significantly above Trash (57-point gap), clearly meets Tool characteristics",
       "secondary_reason": "Toy score relatively high (75), second only to Tool, product has Toy attributes",
-      "composite_interpretation": "Composite 44, Tool/Toy bias",
+      "composite_interpretation": "Composite 57, Clear Tool/Toy bias",
       "litmus_test_consistency": "Both Tool and Toy Litmus Test results 'Yes', consistent with classification"
     },
     "confidence": "High",

@@ -57,10 +57,10 @@ Evaluates products from a "pain point resolution" perspective, focusing on pract
 - **Meaning**: Higher scores indicate stronger Tool characteristics
 
 ### Score Ranges
-- **0-30**: Does not meet Tool characteristics
-- **31-60**: Partially meets Tool characteristics
-- **61-80**: Meets Tool characteristics
-- **81-100**: Strongly meets Tool characteristics
+- **0-35**: Does not meet Tool characteristics
+- **36-65**: Partially meets Tool characteristics
+- **66-85**: Meets Tool characteristics
+- **86-100**: Strongly meets Tool characteristics
 
 ### Evaluation Dimensions
 1. Pain Point Identification and Resolution (30 points)

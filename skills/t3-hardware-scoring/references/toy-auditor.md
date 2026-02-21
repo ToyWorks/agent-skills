@@ -58,10 +58,10 @@ Evaluates products from a "sensory pleasure" perspective, focusing on fun, surpr
 - **Meaning**: Higher scores indicate stronger Toy characteristics
 
 ### Score Ranges
-- **0-30**: Does not meet Toy characteristics
-- **31-60**: Partially meets Toy characteristics
-- **61-80**: Meets Toy characteristics
-- **81-100**: Strongly meets Toy characteristics
+- **0-35**: Does not meet Toy characteristics
+- **36-65**: Partially meets Toy characteristics
+- **66-85**: Meets Toy characteristics
+- **86-100**: Strongly meets Toy characteristics
 
 ### Evaluation Dimensions
 1. Sensory Pleasure (30 points)

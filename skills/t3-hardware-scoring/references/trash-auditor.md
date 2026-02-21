@@ -62,10 +62,10 @@ Evaluates products from a "design failure" perspective, focusing on design princ
 - **Meaning**: Higher scores indicate stronger Trash characteristics
 
 ### Score Ranges
-- **0-30**: Does not meet Trash characteristics
-- **31-60**: Partially meets Trash characteristics
-- **61-80**: Meets Trash characteristics
-- **81-100**: Strongly meets Trash characteristics
+- **0-35**: Does not meet Trash characteristics
+- **36-65**: Partially meets Trash characteristics
+- **66-85**: Meets Trash characteristics
+- **86-100**: Strongly meets Trash characteristics
 
 ### Evaluation Dimensions
 1. Principle Violation (30 points)
