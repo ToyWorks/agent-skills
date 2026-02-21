@@ -53,7 +53,7 @@
 | `tool` | number | Tool Auditor 总分 (0-100) |
 | `toy` | number | Toy Auditor 总分 (0-100) |
 | `trash` | number | Trash Auditor 总分 (0-100) |
-| `composite` | number | (tool + toy - trash) / 3 |
+| `composite` | number | max(tool, toy) - trash |
 
 ### chart_data
 

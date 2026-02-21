@@ -1,10 +1,9 @@
 ---
 name: t3-hardware-scoring
-description: MantaBase T3硬件审计系统，通过Brand Blinding信息过滤、三Auditor专项评分和Peer Review机制，基于设计理论进行Tool/Toy/Trash客观分类
-dependency:
-  python:
-    - beautifulsoup4==4.12.3
-    - requests>=2.31.0
+description: MantaBase T3硬件审计系统。通过Brand Blinding、三Auditor（Tool/Toy/Trash）专项评分和Peer Review，基于设计理论对硬件产品客观分类。触发：产品链接、T3审计、Tool/Toy/Trash分类、硬件评估、VC投资建议
+compatibility: 需要 Python（beautifulsoup4>=4.12.3, requests>=2.31.0）、网络访问（用于产品页面爬取）
+metadata:
+  version: "1.0"
 ---
 
 # MantaBase T3硬件审计系统
@@ -186,7 +185,7 @@ dependency:
 - 阅读三个Auditor优化后的最终报告
 - 综合分析三个报告的结论和证据
 - 应用T3分类规则：
-  - 计算综合评分：Composite = (Tool评分 + Toy评分 - Trash评分) / 3
+  - 计算综合评分：Composite = max(Tool评分, Toy评分) - Trash评分
   - 确定主导分类（满足2个以上条件）
   - 确定次要分类（如有）
   - 应用Litmus Test一致性分析

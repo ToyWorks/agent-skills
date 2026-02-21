@@ -63,7 +63,7 @@ def determine_final_classification(tool_score: float, toy_score: float, trash_sc
     基于三Auditor评分确定最终分类
     
     判断逻辑（遵循T3分类指南）：
-    1. 计算综合评分：Composite = (Tool + Toy - Trash) / 3
+    1. 计算综合评分：Composite = max(Tool, Toy) - Trash
     2. 确定主导分类（满足2个以上条件）
     3. 确定次要分类（如有）
     4. 应用Litmus Test一致性分析
@@ -77,7 +77,7 @@ def determine_final_classification(tool_score: float, toy_score: float, trash_sc
         包含分类结果和置信度的字典
     """
     # 计算综合评分
-    composite_score = (tool_score + toy_score - trash_score) / 3
+    composite_score = max(tool_score, toy_score) - trash_score
     
     # 确定主导分类
     # Tool为主导的条件：评分≥70，且显著高于其他分类

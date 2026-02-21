@@ -122,9 +122,9 @@ def calculate_composite_score(tool_score, toy_score, trash_score):
     Returns:
         composite_score: 综合评分（-100到100）
     """
-    # 综合评分 = (Tool + Toy - Trash) / 3
-    # 所有Auditor都是正向评分，Trash分数越高越Trash
-    composite = (tool_score + toy_score - trash_score) / 3
+    # 综合评分 = max(Tool, Toy) - Trash
+    # 产品以 Tool 或 Toy 为主导，取主导优势减去 Trash 负向分
+    composite = max(tool_score, toy_score) - trash_score
     return composite
 ```
 
@@ -192,13 +192,13 @@ def calculate_composite_score(tool_score, toy_score, trash_score):
 
 ### 计算公式
 ```
-综合评分 = (Tool评分 + Toy评分 - Trash评分) / 3
+综合评分 = max(Tool评分, Toy评分) - Trash评分
 ```
 
 ### 评分范围
-- **最小值**：-100（Tool=0, Toy=0, Trash=100）
-- **最大值**：100（Tool=100, Toy=100, Trash=0）
-- **中值**：0（Tool=33.3, Toy=33.3, Trash=33.3）
+- **最小值**：-100（max(Tool,Toy)=0, Trash=100）
+- **最大值**：100（max(Tool,Toy)=100, Trash=0）
+- **中值**：0（max(Tool,Toy)=Trash，如三者均为50）
 
 ### 评分解释
 
@@ -224,7 +224,7 @@ def calculate_composite_score(tool_score, toy_score, trash_score):
                   ▼
 ┌─────────────────────────────────────┐
 │ 2. 计算综合评分                     │
-│    Composite = (Tool + Toy - Trash)/3 │
+│    Composite = max(Tool, Toy) - Trash │
 └─────────────────┬───────────────────┘
                   │
                   ▼
