@@ -1,11 +1,10 @@
 ---
 name: t3-hardware-scoring
-description: >-
-  MantaBase T3 Hardware Audit System. Objectively classifies hardware products via
-  Brand Blinding, Triple-Auditor (Tool/Toy/Trash) specialized scoring, and Peer
-  Review based on design theory. Triggers: product links, T3 audit, Tool/Toy/Trash
-  classification, hardware evaluation, VC investment advice
-compatibility: Network access (for product page crawling)
+description: T3 Hardware Audit System. Brand Blinding, Triple-Auditor (Tool/Toy/Trash) scoring, and Peer Review for objective hardware classification. Triggers: product links, T3 audit, hardware evaluation
+dependency:
+  python:
+    - requests==2.32.5
+    - beautifulsoup4==4.12.3
 metadata:
   version: "1.0"
 ---
@@ -52,30 +51,30 @@ Identify site type (Shopify / Kickstarter) and crawl product pages for consisten
 
 #### 4. Triple Auditor Specialized Scoring (Agent, Parallel)
 - Each Auditor evaluates **independently and in parallel**
-- Each Auditor reads only their own guide, not others’ guides or reports
+- Each Auditor reads only their own guide, not others' guides or reports
 
 **🟢 Tool Auditor**
 - Read [references/tool-auditor.md](references/tool-auditor.md)
 - Focus: Pain-point solving, practicality, reliability
 - Reference: Tony Fadell "Build" checklist
 - Dimensions:
-  - Pain point identification (30 pts)
-  - Attention to detail and consistency (25 pts)
-  - Simplicity and efficiency (25 pts)
-  - Engineering reliability (20 pts)
-- Output: Scoring report (100 pts total) with item scores, reasons, evidence
-- Litmus Test: If it broke tomorrow, would the user’s workflow stall?
+  - Pain point identification and resolution
+  - Attention to detail and consistency
+  - Simplicity and efficiency
+  - Engineering reliability
+- Output: Scoring report (0-33 points, higher = stronger Tool) with item scores, reasons, evidence
+- Litmus Test: If it broke tomorrow, would the user's workflow stall?
 
 **🟡 Toy Auditor**
 - Read [references/toy-auditor.md](references/toy-auditor.md)
 - Focus: Emotional value, enjoyment, aesthetic design
 - Reference: Don Norman "The Design of Everyday Things" checklist
 - Dimensions:
-  - Sensory pleasure (30 pts)
-  - Surprise and discovery (25 pts)
-  - Emotional connection (25 pts)
-  - Explorability (20 pts)
-- Output: Scoring report (100 pts total) with item scores, reasons, evidence
+  - Sensory pleasure (visceral & behavioral)
+  - Surprise and discovery
+  - Emotional connection (reflective)
+  - Explorability
+- Output: Scoring report (0-33 points, higher = stronger Toy) with item scores, reasons, evidence
 - Litmus Test: Would the user put it on display or keep it as a collectible?
 
 **🔴 Trash Auditor**
@@ -84,11 +83,11 @@ Identify site type (Shopify / Kickstarter) and crawl product pages for consisten
 - Focus: Logical flaws, marketing deception, design violations
 - Reference: Dieter Rams Ten Principles violation checklist
 - Dimensions:
-  - Principle violations (30 pts)
-  - Problem creation (25 pts)
-  - Value deficit (25 pts)
-  - Replaceability (20 pts)
-- Output: Scoring report (0–100 pts, higher = more Trash) with item scores, reasons, evidence
+  - Principle violation (innovative/useful/aesthetic/understandable/honest/long-lasting)
+  - Problem creation
+  - Value deficit
+  - Replaceability
+- Output: Scoring report (0-42 points, higher = stronger Trash) with item scores, reasons, evidence
 - Litmus Test: If this product disappeared tomorrow, would the world be better or worse?
 
 **Key Principles**:
@@ -148,7 +147,7 @@ Identify site type (Shopify / Kickstarter) and crawl product pages for consisten
 
 **Report structure** (see [references/report-schema.md](references/report-schema.md)):
 1. **YAML metadata** (wrapped in `---`): For leaderboard parsing: `case_id`, `source_url`, `scores`, `chart_data`, `litmus_tests`, `classification`, etc.
-2. **Text analysis**: Aggregated from Auditors’ `extract_for_report`: Product Overview, Tool Highlights, Toy Highlights, Trash Highlights, Final Judge Reasoning, Improvement Suggestions
+2. **Text analysis**: Aggregated from Auditors' `extract_for_report`: Product Overview, Tool Highlights, Toy Highlights, Trash Highlights, Final Judge Reasoning, Improvement Suggestions
 
 **Must include**:
 - Basic product info (raw vs Brand-Blinded)
@@ -201,66 +200,3 @@ Identify site type (Shopify / Kickstarter) and crawl product pages for consisten
 - **Checklist-based scoring**: Use reference checklists; each score must link to checklist items and evidence
 
 - **Triple Auditor independence**: Evaluate in parallel, no information sharing
-
-- **Peer Review objectivity**: Evidence-based; specific suggestions; open to feedback
-
-- **Transparency**: Process, reasoning, and evidence clearly documented
-
-- **Agent-led**: Brand Blinding, scoring, Peer Review, Final Judge run by agent; scripts only for crawl and formatting
-
-## Examples
-
-### Example 1: Full T3 Audit
-- **Flow**: Full Brand Blinding + scoring + Peer Review + Final Judge
-- **Execution**: Agent crawls → Brand Blinding → parallel Auditors → Peer Review → optimization → Final Judge → report
-- **Output**: Full audit report with all sections
-
-### Example 2: Quick T3 Classification
-- **Flow**: Simplified; focus on Brand Blinding and core scoring
-- **Focus**: Core value proposition, Litmus Tests, key checklist items
-
-### Example 3: Competitor Audit
-- **Flow**: Batch crawl + parallel Auditors + Peer Review + comparison
-- **Output**: Comparison table + per-product reports
-
-## Audit Flow Diagram
-
-```
-User input URL
-    ↓
-Crawl product info (raw)
-    ↓
-Brand Blinding (Agent debrands)
-    ├─ Raw info 🔒 (sealed)
-    └─ Brand-Blinded info ✅ (only input for Auditors)
-    ↓
-┌─────────────────────────────────────────┐
-│ Triple Auditor Scoring (Agent, parallel)│
-│ 🔒 Isolation: Each Auditor only sees    │
-│    Brand-Blinded info                   │
-├───────────────┬─────────────┬────────────┤
-│ 🟢 Tool       │ 🟡 Toy      │ 🔴 Trash   │
-└───────┬───────┴─────┬───────┴──────┬────┘
-        └─────────────┼──────────────┘
-                      ↓
-         Peer Review
-                      ↓
-         Auditor Optimization
-                      ↓
-         Final Judge
-                      ↓
-         99-audit-report.md
-```
-
-## 🔒 Information Isolation
-
-1. **Raw (Level 0)**: Brand names, marketing, emotional language — sealed, only Brand Blinding and Final Judge (for comparison)
-2. **Brand-Blinded (Level 1)**: Functional and objective data — accessible to Auditors and Final Judge
-
-Agent checklist when acting as Auditor:
-- [ ] Explicitly state use of Brand-Blinded info only
-- [ ] Base scores on reference checklists
-- [ ] No brand names referenced
-- [ ] No marketing language referenced
-- [ ] Report includes "Information source: Brand-Blinded product info"
-- [ ] Report includes "Scoring basis: [checklist name]"
