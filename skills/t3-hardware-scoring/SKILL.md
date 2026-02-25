@@ -1,6 +1,10 @@
 ---
 name: t3-hardware-scoring
-description: MantaBase T3 Hardware Audit System. Objectively classifies hardware products via Brand Blinding, Triple-Auditor (Tool/Toy/Trash) specialized scoring, and Peer Review based on design theory. Triggers: product links, T3 audit, Tool/Toy/Trash classification, hardware evaluation, VC investment advice
+description: >-
+  MantaBase T3 Hardware Audit System. Objectively classifies hardware products via
+  Brand Blinding, Triple-Auditor (Tool/Toy/Trash) specialized scoring, and Peer
+  Review based on design theory. Triggers: product links, T3 audit, Tool/Toy/Trash
+  classification, hardware evaluation, VC investment advice
 compatibility: Network access (for product page crawling)
 metadata:
   version: "1.0"
