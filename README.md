@@ -1,6 +1,6 @@
 # ToyWorks Agent Skills
 
-This repository hosts the ToyWorks Team agent skill `/create-skill`.
+This repository hosts public agent skills maintained by the ToyWorks Team.
 
 ## What are Agent Skills?
 
