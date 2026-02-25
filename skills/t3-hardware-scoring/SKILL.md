@@ -1,6 +1,9 @@
 ---
 name: t3-hardware-scoring
-description: T3 Hardware Audit System. Brand Blinding, Triple-Auditor (Tool/Toy/Trash) scoring, and Peer Review for objective hardware classification. Triggers: product links, T3 audit, hardware evaluation
+description: >-
+  T3 Hardware Audit System. Brand Blinding, Triple-Auditor (Tool/Toy/Trash) scoring,
+  and Peer Review for objective hardware classification. Triggers: product links,
+  T3 audit, hardware evaluation
 dependency:
   python:
     - requests==2.32.5
