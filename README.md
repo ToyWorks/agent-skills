@@ -1,6 +1,6 @@
 # ToyWorks Agent Skills
 
-This repository contains a collection of agent skills for toyworks. These skills are designed to enhance the capabilities of agents by providing them with specialized functionalities.
+This repository hosts the ToyWorks Team agent skill `/create-skill`.
 
 ## What are Agent Skills?
 
@@ -83,10 +83,7 @@ This will create the skill structure and automatically update this README and th
 
 ## Contributing
 
-1. Fork this repository
-2. Create a new skill using `node scripts/add-skill.js`
-3. Edit the skill's `SKILL.md` with your content
-4. Submit a pull request
+We welcome contributions to improve existing skills or add new skills. Please submit a pull request.
 
 ## License
 
