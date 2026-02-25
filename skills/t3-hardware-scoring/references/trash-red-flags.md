@@ -2,110 +2,75 @@
 
 ## Purpose
 
-Beyond the standard Dieter Rams checklist, identify **high Trash risk** product patterns and evidence to avoid overly lenient scoring. When the following trigger conditions are satisfied, the Trash Auditor should **proactively adjust scores upward** and strengthen evidence citations.
+Beyond the standard Dieter Rams checklist, the Eagle Eye protocol identifies **critical Trash risk** product patterns. To eliminate AI subjectivity and leniency, if any of the following trigger conditions are explicitly supported by objective data, the Trash Auditor must **automatically assign a maximum score of 3** for the corresponding item and flag it as a critical failure.
 
 ---
 
-## I. Honesty Principle Reinforcement (1.5 Honest)
+## I. Honesty Principle Reinforcement (Item 1.5: Honest)
 
-### Trigger Conditions
+### Trigger Conditions (Automatic Score 3)
 
-| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
-|-----------------|--------------|----------------------------|
-| **Privacy claim vs. implementation tension** | Marketing claims "local/no-cloud/doesn't store" + product requires continuous collection of sensitive signals (acoustic, biometric) | +1~2 |
-| **Inconsistent claims** | Conflicting statements from different sources (product page vs. privacy policy, FAQ) on the same fact | +1~2 |
-| **"Never/Not ever" type promise** | Claims "never listen/store/share" etc., but technical implementation requires collecting or transmitting that type of data | +1~2 |
-
-### Scoring Anchors
-
-- **No trigger**: Score within original 0–5 range
-- **Satisfies 1 item**: Honesty item recommendation ≥ 3 points
-- **Satisfies 2+ items**: Honesty item recommendation ≥ 4 points
-- **If obvious contradiction exists with no reasonable explanation**: Honesty item may receive full 5 points
+| Trigger Pattern | Evidence Requirement (Must extract verbatim) |
+| --- | --- |
+| **Privacy Tension** | Text contains marketing claims of "local/no-cloud/doesn't store" AND technical specs/user data showing it requires continuous cloud collection of sensitive signals (acoustic, biometric). |
+| **Inconsistent Claims** | Explicit, conflicting statements from different official sources (e.g., product page says "100% waterproof," user manual says "do not expose to moisture"). |
+| **Broken "Never" Promise** | Claims "never listen/store/share," but the technical architecture inherently requires transmitting that exact type of data to function. |
 
 ### Objective Data Requirements
 
-- Cite specific source ID and original text/summary
-- Annotate conflicting statements from both sides
-- Do not speculate on undisclosed facts; judge only based on disclosed information
+* The AI must extract **both** conflicting quotes into the `verbatim_evidence` array to prove the contradiction.
+* Do not speculate on undisclosed facts; judge only based on disclosed, clashing information.
 
 ---
 
-## II. Usefulness Principle Reinforcement (1.2 Useful)
+## II. Usefulness Principle Reinforcement (Item 1.2: Useful)
 
-### Trigger Conditions
+### Trigger Conditions (Automatic Score 3)
 
-| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
-|-----------------|--------------|----------------------------|
-| **Core capability negatively reviewed by users** | User reviews explicitly question product's claimed core functionality (accuracy, reliability, effectiveness) | +1~2 |
-| **Claimed vs. unverified** | Product claims capability (e.g., emotion recognition, AI insight) but has no third-party/independent verification or accuracy data | +1 |
-| **False pain point/false need** | "Pain point" addressed lacks verifiable demand evidence, or can be replaced by low-cost means | +1~2 |
-| **Health/psychological claims without medical backing** | Claims health/emotion/psychological-related capability but explicitly disclaims non-medical device, and has no clinical or academic verification | +1 |
-
-### Scoring Anchors
-
-- **No trigger**: Score within original 0–5 range
-- **Core capability negatively reviewed**: Usefulness recommendation ≥ 3 points
-- **Core capability negatively reviewed + unverified**: Usefulness recommendation ≥ 4 points
-- **Multiple triggers stacked**: Consider 5 points (complete violation of useful principle)
+| Trigger Pattern | Evidence Requirement (Must extract verbatim) |
+| --- | --- |
+| **Core Flaw** | User reviews or testing data explicitly state the product's *primary marketed capability* fails, hallucinates, or is wildly inaccurate. |
+| **Snake Oil (Health/Psych)** | Product claims a specific health, emotional, or psychological capability BUT explicitly disclaims being a medical device AND lacks any clinical/independent verification data. |
+| **False Pain Point** | Text explicitly details that the "problem" it solves either doesn't exist for the target user, or the device forces users to abandon a vastly superior traditional method. |
 
 ### Objective Data Requirements
 
-- Cite specific user feedback original text or summary
-- Annotate gap between "claimed capability" and "verification status"
-- Distinguish "no data" from "negative data"—the latter carries higher weight
+* Distinguish "no data" from "negative data"—only explicit negative data or explicit lack of required clinical backing triggers a 3.
+* If data is simply missing (not explicitly disclaimed), score a 1 or 2 based on the standard rubric.
 
 ---
 
-## III. Value Deficit Reinforcement (3.2 Cost-effectiveness, 3.3 Sustainable Value)
+## III. Value Deficit Reinforcement (Items 3.2: Cost-effectiveness, 3.3: Sustainable Value)
 
-### Trigger Conditions
+### Trigger Conditions (Automatic Score 3)
 
-| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
-|-----------------|--------------|----------------------------|
-| **High price + core capability in doubt** | Price ≥ $200 and core functionality questioned by users or lacks verification | 3.2 +1~2 |
-| **Promise vs. delivery gap** | Clear marketing promise, but user feedback "didn't meet promise", "overhyped" | 3.2 +1~2 |
-| **Reliance on unverified algorithm** | Long-term value depends on algorithm/AI effectiveness, but no accuracy, retention, or effectiveness data | 3.3 +1~2 |
-
-### Scoring Anchors
-
-- **High price + core capability in doubt**: 3.2 recommendation ≥ 6 points (low cost-effectiveness)
-- **Promise vs. delivery gap**: 3.2 recommendation ≥ 7 points
-- **Reliance on unverified algorithm + no long-term data**: 3.3 recommendation ≥ 4 points
+| Trigger Pattern | Evidence Requirement (Must extract verbatim) |
+| --- | --- |
+| **Price vs. Doubt (Item 3.2)** | Price is explicitly stated as high (e.g., ≥$200) AND the text contains data showing the core capability is unreliable or unverified. |
+| **Promise vs. Delivery (Item 3.2)** | Explicit user feedback directly mocking or lamenting the gap between the marketing hype and the actual delivery (e.g., "overhyped," "scam," "nothing like the ad"). |
+| **Subscription Trap / Brick (Item 3.3)** | The hardware becomes non-functional (a "brick") if a mandatory software subscription is not maintained, completely killing its sustainable physical value. |
 
 ---
 
-## IV. Problem Creation Reinforcement (2.1 Creating New Problems)
+## IV. Problem Creation Reinforcement (Item 2.1: Creating New Problems)
 
-### Trigger Conditions
+### Trigger Conditions (Automatic Score 3)
 
-| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
-|-----------------|--------------|----------------------------|
-| **Expectation vs. reality gap** | User disappointment, trust damage due to product not meeting expectations | +1~2 |
-| **Privacy/security potential risk** | Product continuously collects sensitive data (audio, biometric), but implementation is opaque or claims conflict | +1~2 |
-| **Increased maintenance burden** | Requires charging, pairing, firmware updates, multi-device sync, and troubleshooting documentation exists | +1 |
-
-### Scoring Anchors
-
-- **Expectation gap + involves core value**: 2.1 recommendation ≥ 6 points
-- **Privacy/security risk + claim conflict**: 2.1 recommendation ≥ 7 points
+| Trigger Pattern | Evidence Requirement (Must extract verbatim) |
+| --- | --- |
+| **Severe Side Effects** | Text explicitly documents the product creating new hazards (e.g., device overheating, severe security vulnerabilities, data loss, physical discomfort). |
+| **Workflow Sabotage** | Text explicitly shows the device adds massive friction to a previously simple task (e.g., "takes 3 minutes to pair just to turn on a light"). |
 
 ---
 
-## V. Replaceability Reinforcement (4.1, 4.2)
+## V. Replaceability Reinforcement (Items 4.1, 4.2)
 
-### Trigger Conditions
+### Trigger Conditions (Automatic Score 3)
 
-| Trigger Pattern | Evidence Type | Suggested Score Adjustment |
-|-----------------|--------------|----------------------------|
-| **No unique verification** | Claims unique capability but no third-party accuracy, certification, or comparison data | +1~2 |
-| **Low-cost alternatives exist** | Journal app, meditation app, existing wearables, etc. can partly achieve same purpose | +1 |
-| **Reason to exist depends on unverified assumption** | "If algorithm works then valuable"—but effectiveness unverified | +1~2 |
-
-### Scoring Anchors
-
-- **No unique verification + alternatives exist**: 4.1, 4.2 each recommendation ≥ 6 points
-- **Reason to exist entirely depends on unverified assumption**: 4.2 recommendation ≥ 7 points
+| Trigger Pattern | Evidence Requirement (Must extract verbatim) |
+| --- | --- |
+| **App Redundancy (Item 4.1)** | The text explicitly mentions that a standard, free smartphone application can achieve the exact same utility with less friction. |
+| **Delusional Raison d'être (Item 4.2)** | Product relies entirely on an unverified "what if" algorithm to justify its physical existence, validated by 0% market adoption or universal reviewer panning. |
 
 ---
 
@@ -113,25 +78,38 @@ Beyond the standard Dieter Rams checklist, identify **high Trash risk** product 
 
 ### Insert Point in Trash Auditor Workflow
 
-1. **First pass**: Complete routine scoring per Dieter Rams checklist
-2. **Second pass**: Check against this Eagle Eye trigger list item by item
-3. **Score adjustment**: For satisfied items, adjust scores upward within reasonable range and add evidence
-4. **Documentation**: Note in `reason` "Triggered [specific trigger pattern], score adjusted upward"
+1. **Extraction Pass**: Read the Brand-Blinded text and extract relevant `verbatim_evidence` for the 14 Dieter Rams items.
+2. **Eagle Eye Check**: Compare the extracted quotes against this trigger list.
+3. **Score Override**: If a trigger condition is met:
+* Set the score for that item to **3**.
+* Start the `reason` field with: `"Triggered: [Pattern Name]."` (e.g., `"Triggered: App Redundancy. Free app does it better."`)
 
-### Reflection in Report
 
-- In `checklist_items` `reason` field, cite trigger pattern (e.g., "Triggered: Core capability negatively reviewed by users")
-- List satisfied high-sensitivity triggers in `critical_issues`
-- Remain objective: Based only on objective facts in Brand-Blinded information; do not guess undisclosed content
+4. **Report Compilation**: Add every triggered pattern to the `critical_issues` array in the final JSON output.
+
+### JSON Output Example
+
+```json
+"1.5": {
+  "verbatim_evidence": [
+    "Claims: All voice processing is done locally on-device.",
+    "Tear-down: Device sends unencrypted audio files to AWS servers."
+  ],
+  "score": 3,
+  "max_score": 3,
+  "reason": "Triggered: Privacy Tension. Claims local, uses cloud."
+}
+
+```
 
 ---
 
-## VII. Counterexamples: Avoid Over-Adjustment
+## VII. Counterexamples: Avoid Over-Inference
 
-The following situations **should not** trigger score adjustment based on speculation alone:
+The following situations **should not** trigger an Eagle Eye override (Score 3). Do not speculate; rely only on facts.
 
-- When no user feedback exists, do not heavily penalize usefulness solely for "no verification" (may moderately +1, avoid excessive)
-- When no claim conflict evidence exists, do not trigger full Honesty score for assumptions like "possible cloud processing"
-- When product has clear advantages (e.g., hardware specs, after-sales), must record in `strengths` and `cross_category_evidence` honestly
+* **Missing Reviews:** If there is simply no user feedback available, do not trigger "Core Flaw" just because usefulness isn't proven. Score it a 1 (Claimed) or 0 (No data) on the standard scale.
+* **Assumed Cloud Usage:** If the device uses AI, but there is no explicit text stating it secretly uses the cloud against its claims, do not trigger "Privacy Tension."
+* **Valid Niche:** If a product is expensive and niche, but works exactly as advertised for that specific niche, do not trigger "Price vs. Doubt."
 
-**Principle**: Eagle Eye = more sensitive to **existing evidence**, not over-inferring from **missing evidence**.
+**Golden Rule**: Eagle Eye means you are highly sensitive to **existing evidence of failure**, not that you penalize the product for **missing evidence of success**.

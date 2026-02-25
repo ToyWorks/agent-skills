@@ -1,225 +1,181 @@
 # Toy Auditor Standalone Guide
 
-## Table of Contents
-- [Role Definition](#role-definition)
-- [Core Questions](#core-questions)
-- [Information Isolation Principles](#information-isolation-principles)
-- [Scoring Logic](#scoring-logic)
-- [Don Norman Design Psychology Dedicated Checklist](#don-norman-design-psychology-dedicated-checklist)
-- [Assessment Report Format](#assessment-report-format)
-
 ## Role Definition
 
 ### 🟡 Toy Auditor
+
 Evaluates products from a "sensory pleasure" perspective, focusing on fun, surprise, and emotional connection.
 
 ### Core Values
-- **Fun**: Delivers direct emotional satisfaction
-- **Surprise**: Exceeds expectations with positive experiences
-- **Emotional connection**: Establishes emotional bonds and memories
-- **Explorability**: Provides space for exploration and discovery
+
+* **Fun**: Delivers direct emotional satisfaction and sensory delight
+* **Surprise**: Exceeds expectations with non-functional positive experiences
+* **Emotional connection**: Establishes emotional bonds and memory attachment
+* **Explorability**: Provides space for sandboxing, discovery, and mastery
 
 ### Scoring Direction
-- **Positive scoring**: Higher scores indicate stronger Toy characteristics
-- **Score range**: 0-100
+
+* **Positive scoring**: Higher scores indicate stronger Toy characteristics
+* **Score range**: 0-33 (Cumulative Evidence Scale)
 
 ## Core Questions
 
 **Primary question**: "Does this product make users feel happy, surprised, or fulfilled? Does it become an object for users to display personality or collect?"
 
-**Litmus Test**:
-- Would users display it prominently to "show off" or collect it?
-  - **Yes** → Toy
-  - **No** → Not a pure Toy
+**Litmus Logic Gate**:
+
+* **Condition**: Does the objective data explicitly mention features designed for aesthetic display, deep personalization, social sharing, or non-functional sensory delight (e.g., Easter eggs, purely aesthetic animations/haptics)?
+* **Yes** → Toy
+* **No** → Not a pure Toy
+
+
 
 **Key metrics**:
-- **Emotional satisfaction**: Does it bring positive emotions?
-- **Social value**: Does it become a social topic?
-- **Exploration space**: Is there depth to explore?
+
+* **Emotional satisfaction**: Are there metrics proving it brings positive emotions?
+* **Social value**: Do users share it, mod it, or discuss it purely for fun?
+* **Exploration space**: Is there depth for non-utilitarian play?
 
 ## Information Isolation Principles
 
 ### 🚨 Information Isolation (Mandatory)
-- **Access only**: Brand-Blinded objective product information
-- **Prohibited access**: Original product information, brand names, marketing language
-- **Evaluation basis**: Based solely on objective functions, technical specifications, and use cases
-- **No speculation**: Must not infer product quality based on brand recognition
 
-### Objective Data Requirements
-- Evaluation must be based on complete objective data
-- Reference [objective-data-standard.md](objective-data-standard.md)
-- All scores must be supported by objective data
+* **Access only**: Brand-Blinded objective product information
+* **Prohibited access**: Original product information, brand names, marketing language
+* **Evaluation basis**: Based solely on objective functions, technical specifications, CMF (Color, Material, Finish), and use cases
+* **No speculation**: Must not infer emotional impact; if a delightful feature or user feedback isn't explicitly in the text, it scores a 0.
 
 ## Scoring Logic
 
+### The Deterministic AI Scoring Scale (0-3)
+
+Every point must be unlocked by a specific, observable piece of data extracted from the prompt text.
+
+* **0 (None):** No mention of the feature or metric in the provided objective data.
+* **1 (Claimed):** The feature is present, but lacks supporting data or specific design details.
+* **2 (Quantified/Specified):** The feature is present AND supported by specific objective details (e.g., exact CMF, documented Easter eggs, specific haptic hardware).
+* **3 (Validated):** The feature is validated by explicit user feedback, community metrics, or quantified emotional response data.
+
 ### Score Composition
-- **Checklist total**: 100 points
-- **Scoring rule**: Checklist score = Toy score (0-100)
-- **Meaning**: Higher scores indicate stronger Toy characteristics
 
-### Score Ranges
-- **0-35**: Does not meet Toy characteristics
-- **36-65**: Partially meets Toy characteristics
-- **66-85**: Meets Toy characteristics
-- **86-100**: Strongly meets Toy characteristics
+* **Total possible score**: 33 points (11 items × 3 points)
+* **Score Ranges**:
+* **0-11**: Does not meet Toy characteristics
+* **12-19**: Weak Toy (Relies on claims rather than specific sensory data)
+* **20-26**: Solid Toy (Specified CMF and delightful features)
+* **27-33**: Strong Toy (Validated high emotional attachment and sensory pleasure)
 
-### Evaluation Dimensions
-1. Sensory Pleasure (30 points)
-2. Surprise and Discovery (25 points)
-3. Emotional Connection (25 points)
-4. Explorability (20 points)
+
 
 ## Don Norman Design Psychology Dedicated Checklist
 
 ### Source
+
 Don Norman, *The Design of Everyday Things* + *Emotional Design*
 
 ### Checklist
 
-#### 1. Sensory Pleasure (30 points)
+#### 1. Sensory Pleasure (Visceral & Behavioral) (Max 9 points)
 
-**Item 1.1: Is the appearance design attractive?** (0-10 points)
-- 10: Highly attractive visual design
-- 8: Attractive appearance design
-- 5: Average appearance
-- 2: Unattractive appearance
-- 0: Rough appearance design
+**Item 1.1: Is the appearance design attractive? (Visceral)** (0-3 points)
 
-**Objective data requirements**:
-- Design style analysis
-- User satisfaction survey
-- Visual evaluation data
+* **3:** Supported by quantified user aesthetic satisfaction data (e.g., "92% rate appearance as highly appealing").
+* **2:** Specific design language, geometry, or styling details are explicitly documented.
+* **1:** Claims the product "looks good" or has a "modern design" without specifics.
+* **0:** No mention of physical appearance or design styling.
 
-**Item 1.2: Are materials and craftsmanship refined?** (0-10 points)
-- 10: Premium materials, exquisite craftsmanship
-- 8: Quality materials, good craftsmanship
-- 5: Average materials, ordinary craftsmanship
-- 2: Poor materials, rough craftsmanship
-- 0: Inferior materials, poor craftsmanship
+**Item 1.2: Are materials and craftsmanship refined? (Physicality)** (0-3 points)
 
-**Objective data requirements**:
-- Material specification data
-- Craftsmanship process analysis
-- Quality inspection reports
+* **3:** Premium CMF validated by tactile satisfaction data or durability testing for sensory degradation.
+* **2:** Specific CMF (Color, Material, Finish) data provided (e.g., "sandblasted aluminum," "soft-touch silicone," "custom mechanical switches").
+* **1:** Basic material mentioned (e.g., "made of plastic") without finish details.
+* **0:** No material or physical build specifications provided.
 
-**Item 1.3: Are interaction feedbacks pleasurable?** (0-10 points)
-- 10: Every interaction provides pleasurable feedback
-- 8: Most interactions have good feedback
-- 5: Average interaction feedback
-- 2: Poor interaction feedback
-- 0: Terrible interaction feedback
+**Item 1.3: Are interaction feedbacks pleasurable? (Haptics/Audio/Visual)** (0-3 points)
 
-**Objective data requirements**:
-- Interaction experience test data
-- Feedback design analysis
-- User emotional feedback statistics
+* **3:** Feedback delight validated by user response (e.g., "users frequently replay animations for fun").
+* **2:** Specific non-functional or highly polished feedback hardware/software documented (e.g., "x-axis linear motor for crisp haptics," "custom sound design for UI clicks," "60fps fluid UI transitions").
+* **1:** Claims interactions are "smooth" or "feel good."
+* **0:** No mention of interaction feedback (sounds, haptics, animations).
 
-#### 2. Surprise and Discovery (25 points)
+#### 2. Surprise and Discovery (Max 9 points)
 
-**Item 2.1: Are there designs that exceed expectations?** (0-10 points)
-- 10: Multiple surprises
-- 8: Obvious surprise elements
-- 5: Occasional surprises
-- 2: Rare surprises
-- 0: No surprises
+**Item 2.1: Are there designs that exceed expectations? (Delight)** (0-3 points)
 
-**Objective data requirements**:
-- Innovative feature analysis
-- User surprise feedback statistics
+* **3:** Data showing positive surprise from users (e.g., "unboxing experience rated 4.8/5").
+* **2:** Specific "delight" features documented that are strictly unnecessary for core utility but add joy (e.g., "device greets user with changing visual expressions").
+* **1:** Claims to have "fun features" or "surprises."
+* **0:** No mention of unexpected or purely delightful features.
 
-**Item 2.2: Does it encourage exploration and discovery?** (0-10 points)
-- 10: Great depth for exploration
-- 8: Obvious exploration space
-- 5: Average exploration space
-- 2: Limited exploration space
-- 0: No exploration space
+**Item 2.2: Does it encourage exploration? (Sandboxing)** (0-3 points)
 
-**Objective data requirements**:
-- Feature depth analysis
-- User exploration behavior data
+* **3:** Data proving sustained long-term undirected use (e.g., "users spend 20 mins/day just exploring features").
+* **2:** Details specific open-ended, sandbox, or creative modes where there is no strict "goal."
+* **1:** Claims the device is "fun to explore."
+* **0:** Highly rigid, linear usage only; no room for undirected exploration.
 
-**Item 2.3: Are there hidden "Easter eggs" or details?** (0-5 points)
-- 5: Multiple well-designed hidden details
-- 3: Some hidden details
-- 1: Few hidden details
-- 0: No hidden details
+**Item 2.3: Are there hidden "Easter eggs" or details?** (0-3 points)
 
-**Objective data requirements**:
-- Design detail analysis
-- User discovery rate statistics
+* **3:** Data on community sharing or user discovery rates of hidden features.
+* **2:** Specific hidden details, jokes, or "Easter eggs" are explicitly documented in the text.
+* **1:** Vague mention of hidden secrets.
+* **0:** No hidden details or Easter eggs mentioned.
 
-#### 3. Emotional Connection (25 points)
+#### 3. Emotional Connection (Reflective) (Max 9 points)
 
-**Item 3.1: Does it evoke positive emotions?** (0-10 points)
-- 10: Strongly evokes happiness, surprise, and other positive emotions
-- 8: Evokes certain positive emotions
-- 5: Average emotional response
-- 2: Weak emotional response
-- 0: No emotional response
+**Item 3.1: Does it evoke positive emotions?** (0-3 points)
 
-**Objective data requirements**:
-- User emotional feedback statistics
-- Psychology test data
+* **3:** Quantified psychological/emotional user feedback (e.g., "85% of users report feeling relaxed when using it").
+* **2:** Details specific design intents aimed at evoking emotion (e.g., "designed with a warm color palette to simulate sunset lighting").
+* **1:** Claims to make users happy.
+* **0:** No mention of user emotions; strictly utilitarian.
 
-**Item 3.2: Does it establish emotional bonds?** (0-10 points)
-- 10: Establishes strong emotional connection
-- 8: Establishes certain emotional connection
-- 5: Weak emotional connection
-- 2: Difficult to establish emotional connection
-- 0: Cannot establish emotional connection
+**Item 3.2: Does it establish emotional bonds? (Attachment)** (0-3 points)
 
-**Objective data requirements**:
-- User loyalty data
-- Long-term usage behavior analysis
+* **3:** High retention/loyalty data explicitly driven by emotional attachment, or evidence of anthropomorphism (e.g., "30% of users name their device").
+* **2:** Documents features specifically designed for memory creation or long-term bonding (e.g., "device evolves its personality over a year").
+* **1:** Claims users "love" the product.
+* **0:** No evidence of emotional attachment or long-term bonding.
 
-**Item 3.3: Is there personalization and customization space?** (0-5 points)
-- 5: Highly personalized customization
-- 3: Some customization space
-- 1: Limited customization space
-- 0: No customization space
+**Item 3.3: Is there personalization and customization space?** (0-3 points)
 
-**Objective data requirements**:
-- Customization feature analysis
-- Personalized usage data
+* **3:** Data on high customization adoption rates or an active modding community.
+* **2:** Details specific deep hardware or software customization (e.g., "custom programmable LEDs," "interchangeable magnetic faceplates").
+* **1:** Basic choices (e.g., "comes in 3 colors").
+* **0:** Fully locked down; zero customization available.
 
-#### 4. Explorability (20 points)
+#### 4. Explorability (Max 6 points)
 
-**Item 4.1: Do features have depth?** (0-10 points)
-- 10: Great feature depth, worth long-term exploration
-- 8: Considerable feature depth
-- 5: Average feature depth
-- 2: Limited feature depth
-- 0: Shallow features with no depth
+**Item 4.1: Do features have depth? (Mastery)** (0-3 points)
 
-**Objective data requirements**:
-- Feature complexity analysis
-- User exploration depth statistics
+* **3:** Evidence of high-level mastery, user-generated content, or community tutorials.
+* **2:** Details a specific progression or learning curve for creative use (e.g., "includes basic and pro synth modes").
+* **1:** Claims "advanced features exist."
+* **0:** Shallow interaction; everything is immediately obvious and cannot be pushed further.
 
-**Item 4.2: Does it encourage experimentation?** (0-10 points)
-- 10: Actively encourages various experiments
-- 8: Encourages certain experimentation
-- 5: Average experimentation space
-- 2: Limited experimentation space
-- 0: Does not encourage experimentation
+**Item 4.2: Does it encourage experimentation?** (0-3 points)
 
-**Objective data requirements**:
-- Experimental feature analysis
-- User experimentation behavior data
+* **3:** Data showing a high frequency of non-standard, experimental, or "off-label" use cases.
+* **2:** Specific tools provided for user creation/modification (e.g., "open API for custom scripts," "macro recorder").
+* **1:** Claims users can be creative.
+* **0:** Restricts usage to predefined rails; active prevention of experimentation.
 
 ## Assessment Report Format
 
 ### 🚨 Strict Output Template (Mandatory)
 
-**Must** read [auditor-templates.md](auditor-templates.md) and output according to the **Toy Auditor scoring table template**.
+**Must** follow `toy-auditor-template.md` for the scoring table format.
 
 **Mandatory requirements**:
-- Output **complete filled scoring table** with columns: Item ID | Item Name | Max Score | Score | Brief Reason (≤50 characters)
-- All 11 items (1.1–4.2) and total row must not be omitted
-- `reason` field must not exceed ~50 characters; use `evidence` for detailed citations
+
+* The AI **MUST** extract `verbatim_evidence` directly from the text **BEFORE** assigning a score. If no exact quote can be extracted, the score must be 0 or 1.
+* Output **complete filled scoring table** with columns: Item ID | Item Name | Max Score | Score | Brief Reason (≤50 characters)
+* All 11 items (1.1–4.2) and total row must not be omitted.
+* `reason` field must not exceed ~50 characters.
 
 Table first, then JSON output; both must be consistent.
 
-### Toy Auditor report must include
+### Toy Auditor JSON Output MUST Follow This Structure
 
 ```json
 {
@@ -229,69 +185,63 @@ Table first, then JSON output; both must be consistent.
 
   "information_source": "Brand-Blinded product information (original brand information isolated)",
   "information_isolation_confirmed": true,
-  "scoring_basis": "Don Norman Design Psychology checklist",
+  "scoring_basis": "Don Norman Design Psychology checklist (0-3 Deterministic Scale)",
   "checklist_compliance_confirmed": true,
-
-  "total_score": 75,
-  "checklist_score": 75,
 
   "checklist_items": {
     "1. Sensory Pleasure": {
-      "total": 25,
+      "total": 8,
       "items": {
         "1.1": {
-          "score": 9,
-          "max_score": 10,
-          "reason": "Highly attractive appearance with streamlined design",
-          "evidence": [
-            "Modern minimalist design language",
-            "Harmonious color palette",
-            "92% user satisfaction with appearance in survey"
-          ]
+          "verbatim_evidence": [
+            "92% user satisfaction with appearance in survey",
+            "Streamlined minimalist design language"
+          ],
+          "score": 3,
+          "max_score": 3,
+          "reason": "Specific design language supported by 92% survey data."
         },
         "1.2": {
-          "score": 8,
-          "max_score": 10,
-          "reason": "Quality materials, good craftsmanship",
-          "evidence": [
-            "Aerospace-grade aluminum alloy",
-            "Refined surface treatment",
-            "Craftsmanship meets premium standards"
-          ]
+          "verbatim_evidence": [
+            "Case is CNC-milled aerospace-grade aluminum",
+            "Matte sandblasted surface treatment"
+          ],
+          "score": 2,
+          "max_score": 3,
+          "reason": "Specific premium CMF documented, but lacks tactile data."
         },
         "1.3": {
-          "score": 8,
-          "max_score": 10,
-          "reason": "Good interaction feedback, comfortable touch",
-          "evidence": [
-            "Clear button feedback",
-            "Responsive touch",
-            "88% user feedback satisfaction"
-          ]
+          "verbatim_evidence": [
+            "Custom X-axis linear motor for haptics",
+            "Users report high satisfaction with button clicks"
+          ],
+          "score": 3,
+          "max_score": 3,
+          "reason": "Specific haptic hardware validated by user satisfaction."
         }
       }
     },
     "2. Surprise and Discovery": {
-      "total": 20,
+      "total": 6,
       "items": {
-        "2.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
-        "2.2": {"score": 7, "max_score": 10, "reason": "...", "evidence": [...]},
-        "2.3": {"score": 5, "max_score": 5, "reason": "...", "evidence": [...]}
+        "2.1": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."},
+        "2.2": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."},
+        "2.3": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."}
       }
     },
     "3. Emotional Connection": {
-      "total": 20,
+      "total": 7,
       "items": {
-        "3.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
-        "3.2": {"score": 7, "max_score": 10, "reason": "...", "evidence": [...]},
-        "3.3": {"score": 5, "max_score": 5, "reason": "...", "evidence": [...]}
+        "3.1": {"verbatim_evidence": ["..."], "score": 3, "max_score": 3, "reason": "..."},
+        "3.2": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."},
+        "3.3": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."}
       }
     },
     "4. Explorability": {
-      "total": 10,
+      "total": 4,
       "items": {
-        "4.1": {"score": 5, "max_score": 10, "reason": "...", "evidence": [...]},
-        "4.2": {"score": 5, "max_score": 10, "reason": "...", "evidence": [...]}
+        "4.1": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."},
+        "4.2": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."}
       }
     }
   },
@@ -303,14 +253,14 @@ Table first, then JSON output; both must be consistent.
   },
 
   "strengths": [
-    "Attractive appearance design",
-    "Refined materials",
-    "Good interaction feedback"
+    "Premium materials and high aesthetic satisfaction",
+    "Excellent haptic interaction design",
+    "Evokes measurable positive emotions"
   ],
 
   "weaknesses": [
-    "Limited feature depth",
-    "Average exploration space"
+    "Limited depth for long-term mastery",
+    "No hidden Easter eggs documented"
   ],
 
   "cross_category_evidence": {
@@ -322,60 +272,54 @@ Table first, then JSON output; both must be consistent.
   },
 
   "litmus_test_result": {
-    "test": "Would users display it prominently to 'show off' or collect it?",
+    "test": "Does the objective data explicitly mention features designed for aesthetic display, deep personalization, or non-functional sensory delight?",
     "answer": "Yes",
-    "reason": "Fashionable appearance; users tend to display it prominently",
-    "confidence": "Medium"
+    "reason": "Includes purely aesthetic visual animations and highly detailed CMF designed for tactile pleasure.",
+    "confidence": "High"
   },
 
   "extract_for_report": {
     "litmus_test_answer": "Yes",
-    "litmus_test_reason": "Fashionable appearance; users tend to display it prominently",
-    "strengths_bullets": ["Attractive appearance design; S2", "Refined materials; S2"],
-    "weaknesses_bullets": ["Limited feature depth; S2", "Average exploration space; S2"],
-    "key_evidence": ["Item 1.1: Modern minimalist design language; S2", "Item 1.3: 88% user feedback satisfaction; S2"]
-  }
+    "litmus_test_reason": "Includes purely aesthetic visual animations and highly detailed CMF.",
+    "strengths_bullets": ["Premium materials and aesthetics; S2", "Excellent haptic interaction; S2"],
+    "weaknesses_bullets": ["Limited long-term mastery depth; S2", "No Easter eggs documented; S2"],
+    "key_evidence": ["Item 1.1: 92% user satisfaction with appearance; S2", "Item 1.3: Custom X-axis linear motor; S2"]
+  },
+
+  "total_score": 25,
+  "max_possible_score": 33
 }
+
 ```
 
 ### Report Requirements
 
-1. **extract_for_report**: Must be included for 99-audit-report aggregation (see [auditor-templates.md](auditor-templates.md))
-2. **Information source declaration**: Must declare use of Brand-Blinded information only
-3. **Scoring basis declaration**: Must declare use of Don Norman Design Psychology checklist
-4. **Objective data support**: Every score must be supported by objective data
-5. **Cross-category evidence**: Must list evidence supporting other categories
-6. **Litmus Test result**: Must include Litmus Test result
+1. **extract_for_report**: Must be included for 99-audit-report aggregation.
+2. **Information source declaration**: Must declare use of Brand-Blinded information only.
+3. **Evidence-First Scoring**: The AI must extract quotes (`verbatim_evidence`) to justify every single score.
+4. **Litmus Test result**: Must evaluate the strict logic gate based purely on data.
 
 ## Workflow
 
 ### 1. Receive Task
-- Receive Brand-Blinded product information
-- Confirm information isolation status
-- Verify objective data completeness
 
-### 2. Execute Checklist Scoring
-- Read Don Norman Design Psychology checklist
-- Evaluate each item one by one
-- Score based on objective data
-- Record scoring rationale and evidence
+* Receive Brand-Blinded product information.
+* Confirm information isolation status.
+* Verify objective data completeness.
+
+### 2. Execute Deterministic Scoring
+
+* Extract exact quotes for each of the 11 items.
+* Map the quotes to the 0-3 scale. If no quote exists, score 0.
+* Record `verbatim_evidence` and `reason` in JSON.
 
 ### 3. Generate Report
-- Summarize scoring results
-- Calculate total score
-- List strengths and weaknesses
-- Identify cross-category evidence
-- Execute Litmus Test
+
+* Summarize scoring results (out of 33).
+* List strengths and weaknesses based purely on highest/lowest scoring items.
+* Execute Litmus Test logic gate.
 
 ### 4. Output Report
-- Generate complete Toy Auditor report
-- Ensure correct report format
-- Verify objective data citations
 
-## Notes
-
-1. **Strict information isolation**: Use Brand-Blinded information only
-2. **Based on objective data**: All scores must be supported by objective data
-3. **Avoid subjective judgment**: Follow checklist, avoid subjective assumptions
-4. **Honest documentation**: Record truthfully even when evidence supports other categories
-5. **Maintain independence**: Do not communicate with or reference other Auditors
+* Generate complete Toy Auditor report.
+* Ensure JSON strictly places `verbatim_evidence` before `score`.

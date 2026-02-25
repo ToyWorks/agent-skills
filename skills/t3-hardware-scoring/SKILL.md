@@ -1,7 +1,7 @@
 ---
 name: t3-hardware-scoring
-description: "MantaBase T3 Hardware Audit System. Objectively classifies hardware products via Brand Blinding, Triple-Auditor (Tool/Toy/Trash) specialized scoring, and Peer Review based on design theory. Triggers: product links, T3 audit, Tool/Toy/Trash classification, hardware evaluation, VC investment advice"
-compatibility: Python (beautifulsoup4>=4.12.3, requests>=2.31.0) and network access (for product page crawling)
+description: MantaBase T3 Hardware Audit System. Objectively classifies hardware products via Brand Blinding, Triple-Auditor (Tool/Toy/Trash) specialized scoring, and Peer Review based on design theory. Triggers: product links, T3 audit, Tool/Toy/Trash classification, hardware evaluation, VC investment advice
+compatibility: Network access (for product page crawling)
 metadata:
   version: "1.0"
 ---
@@ -25,57 +25,16 @@ metadata:
 - Ask user for hardware product links (e-commerce, official sites, review sites, etc.)
 - Optional: Ask about specific dimensions or audit focus
 
-#### 2. Get Product Information (Agent Method Recommended)
+#### 2. Get Product Information (Pipeline Tools)
 
-**Required read** [references/mandatory-page-list.md](references/mandatory-page-list.md). Execute the fixed crawl list by site type (Shopify / Kickstarter) for consistent data input.
+Identify site type (Shopify / Kickstarter) and crawl product pages for consistent data input.
 
-**Method A: Agent Direct Fetch (Recommended)**
-- Read [references/web-fetch-guide.md](references/web-fetch-guide.md) for full extraction strategy
-- Identify site type, then fetch per mandatory-page-list, write to `01-level0-source-urls.md`, `02-level0-extracts.md`
-- Use web_fetch tool to access product pages
-- Advantages:
-  - ✅ High data completeness (smart extraction)
-  - ✅ Adapts to different site structures
-  - ✅ Handles complex pages (dynamic content, tabs)
-  - ✅ Can visit multiple related pages (product, specs, reviews)
-  - ✅ Agent can identify and fill gaps
-- Execution notes:
-  ```
-  ⚠️ Important: A single page may be incomplete. Agent should:
-
-  1. Multi-page visits:
-     - Product page → basic info, price
-     - Specs page → technical params
-     - Reviews page → user feedback
-     - Review/editorial pages → professional evaluation
-
-  2. Price extraction:
-     - Check schema.org structured data
-     - Try cart/checkout pages
-     - Search "product name + price"
-     - If missing: state clearly in report
-
-  3. Dynamic content:
-     - Use paginated fetch (offset params)
-     - Try different URL variants
-     - Check mobile pages
-
-  4. Data completeness:
-     - Basic info: must be complete
-     - Specs: at least 50%
-     - User feedback: at least one source
-  ```
-
-**Method B: Python Script (Bulk/Offline)**
-- Use when: batch products, offline analysis
-- Call script to extract product content:
-  ```bash
-  python scripts/crawl_product_info.py --url <product_url> --pretty
-  ```
-- Params: `--url` (required), `--pretty` (optional), `--output` (optional)
-- Note: Script may miss data; prefer Agent method
-
-- Script returns: product name, description, features, price, target users, objective data, etc.
+- Use `crawlProductInfo` to collect source URLs and raw extracts.
+- Write outputs to `01-level0-source-urls.md` and `02-level0-extracts.md`.
+- Then run organize phase before defluffing:
+  - Read [references/organize-guide.md](references/organize-guide.md)
+  - Merge multi-page extracts into a single chain-of-evidence markdown
+  - Preserve source tags so downstream auditors can cite exact evidence
 
 #### 3. Brand Blinding (Agent)
 - Read [references/defluff-guide.md](references/defluff-guide.md) for Brand Blinding rules
@@ -93,7 +52,6 @@ metadata:
 
 **🟢 Tool Auditor**
 - Read [references/tool-auditor.md](references/tool-auditor.md)
-- **Follow** [references/auditor-templates.md](references/auditor-templates.md) strictly
 - Focus: Pain-point solving, practicality, reliability
 - Reference: Tony Fadell "Build" checklist
 - Dimensions:
@@ -106,7 +64,6 @@ metadata:
 
 **🟡 Toy Auditor**
 - Read [references/toy-auditor.md](references/toy-auditor.md)
-- **Follow** [references/auditor-templates.md](references/auditor-templates.md) strictly
 - Focus: Emotional value, enjoyment, aesthetic design
 - Reference: Don Norman "The Design of Everyday Things" checklist
 - Dimensions:
@@ -119,7 +76,6 @@ metadata:
 
 **🔴 Trash Auditor**
 - Read [references/trash-auditor.md](references/trash-auditor.md)
-- **Follow** [references/auditor-templates.md](references/auditor-templates.md) strictly
 - **Required** [references/trash-red-flags.md](references/trash-red-flags.md) high-sensitivity triggers
 - Focus: Logical flaws, marketing deception, design violations
 - Reference: Dieter Rams Ten Principles violation checklist
@@ -192,7 +148,7 @@ metadata:
 
 **Must include**:
 - Basic product info (raw vs Brand-Blinded)
-- Triple Auditor score tables (format in [auditor-templates.md](references/auditor-templates.md))
+- Triple Auditor score tables (format required by each auditor guide)
 - Peer Review summary
 - Final Judge result
 
@@ -205,27 +161,20 @@ metadata:
 
 ## Resource Index
 
-- **Scripts** (batch/offline):
-  - [scripts/crawl_product_info.py](scripts/crawl_product_info.py) — Web crawling and product extraction; params: `--url <product_url> [--pretty] [--output <file>]`
-  - [scripts/synthesize_results.py](scripts/synthesize_results.py) — Format Auditor results and compute classification; params: `--input <auditor_reports.json> [--pretty] [--output <file>]`
+- **Pipeline tools**:
+  - `crawlProductInfo` + `identifySiteType` — Crawl source pages and produce raw extracts
+  - `organizeExtracts` — Build organized chain-of-evidence markdown for downstream phases
 
 - **References**:
-  - [references/mandatory-page-list.md](references/mandatory-page-list.md) — Step 2, required; fixed crawl list
+  - [references/organize-guide.md](references/organize-guide.md) — Organizing phase rules and output structure
   - [references/report-schema.md](references/report-schema.md) — Step 8, required; YAML schema
-  - [references/file-naming-convention.md](references/file-naming-convention.md) — When creating report dirs; file naming
-  - [references/isolation-manifest-template.md](references/isolation-manifest-template.md) — When creating 00-isolation-manifest.md
-  - [references/web-fetch-guide.md](references/web-fetch-guide.md) — When using web_fetch for product info
   - [references/tool-auditor.md](references/tool-auditor.md) — Tool Auditor scoring
   - [references/toy-auditor.md](references/toy-auditor.md) — Toy Auditor scoring
   - [references/trash-auditor.md](references/trash-auditor.md) — Trash Auditor scoring
   - [references/trash-red-flags.md](references/trash-red-flags.md) — Trash high-sensitivity triggers
-  - [references/auditor-templates.md](references/auditor-templates.md) — Scoring tables; all Auditors must follow
   - [references/t3-classification.md](references/t3-classification.md) — Final Judge classification
-  - [references/scoring-checklists.md](references/scoring-checklists.md) — Checklist index
   - [references/defluff-guide.md](references/defluff-guide.md) — Brand Blinding
   - [references/peer-review-guide.md](references/peer-review-guide.md) — Peer Review
-  - [references/objective-data-standard.md](references/objective-data-standard.md) — Objective data across stages
-  - [references/design-theories.md](references/design-theories.md) — Design theory background
 
 ## Important Notes
 
@@ -239,7 +188,6 @@ metadata:
   - Collect complete objective data (specs, performance, reliability, market, sustainability, cost)
   - Brand Blinding must **retain** all objective data
   - Scores must be backed by verifiable objective data
-  - See [references/objective-data-standard.md](references/objective-data-standard.md)
   - Report must include objective data summary and completeness score
 
 - **Brand Blinding**:

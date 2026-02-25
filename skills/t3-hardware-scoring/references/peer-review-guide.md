@@ -1,362 +1,216 @@
 # Peer Review Guide
 
-## Table of Contents
-- [Overview](#overview)
-- [Peer Review Process](#peer-review-process)
-- [Review Focus Points](#review-focus-points)
-- [Optimized Report Format](#optimized-report-format)
-- [Review Checklist](#review-checklist)
-
 ## Overview
 
 ### Purpose
-Through cross-Auditor review, identify bias, omissions, and errors in assessments to improve report consistency and accuracy.
+
+Through cross-Auditor review, identify hallucinated quotes, ignored data, and misapplied 0-3 scoring rules to ensure total deterministic accuracy before the Final Judge makes a ruling.
 
 ### Core Principles
-- **Objectivity**: Review based on facts and evidence; not personal
-- **Constructive**: Provide specific improvement suggestions, not criticism
-- **Bidirectional feedback**: Reviewer provides input; reviewee may rebut
-- **Iterative improvement**: Optimize reports based on review results
+
+* **Evidence-Centric**: Arguments must revolve around the presence or absence of explicit quotes in the Brand-Blinded text.
+* **Fact-Checking**: Verify that the `verbatim_evidence` actually supports the assigned 0-3 score.
+* **Trigger Auditing**: Ensure Eagle Eye triggers were not missed (or falsely applied).
+* **Iterative improvement**: Optimize reports based on review results.
 
 ### Information Isolation
-- During Peer Review, Auditors may see **other Auditors' Brand-Blinded reports**
-- Still may not see original product information
-- Review based only on Brand-Blinded information and the other report
+
+* During Peer Review, Auditors may see **other Auditors' Brand-Blinded reports** (including their extracted quotes and scores).
+* Review is based *only* on the Brand-Blinded information and the strict 0-3 rubric rules.
 
 ---
 
 ## Peer Review Process
 
-### Round 1: Cross-Review
+### Round 1: Cross-Review (Fact-Checking)
 
 Each Auditor reviews the other two Auditors' reports:
 
-**Tool Auditor reviews**:
-- 🟡 Toy Auditor's report
-- 🔴 Trash Auditor's report
+**🟢 Tool Auditor reviews**:
 
-**Toy Auditor reviews**:
-- 🟢 Tool Auditor's report
-- 🔴 Trash Auditor's report
+* 🟡 Toy Auditor's report
+* 🔴 Trash Auditor's report
 
-**Trash Auditor reviews**:
-- 🟢 Tool Auditor's report
-- 🟡 Toy Auditor's report
+**🟡 Toy Auditor reviews**:
 
-### Round 2: Report Optimization
+* 🟢 Tool Auditor's report
+* 🔴 Trash Auditor's report
+
+**🔴 Trash Auditor reviews**:
+
+* 🟢 Tool Auditor's report
+* 🟡 Toy Auditor's report
+
+### Round 2: Report Optimization (Rebuttal & Revision)
 
 Each Auditor improves their own report based on review feedback:
-- Assess reasonableness of review comments
-- Accept reasonable suggestions and revise report
-- Provide rebuttal for unreasonable comments
-- Document all changes and rationale
 
-### Round 3: Final Confirmation
+* Assess if the reviewer correctly identified a missing quote or rubric misapplication.
+* Accept reasonable suggestions, adjust the 0-3 score, and update the `verbatim_evidence`.
+* Provide rebuttal if the reviewer's suggestion violates the strict isolation or extraction rules.
+* Document all changes.
 
-Each Auditor submits optimized final report:
-- Include original and revised versions
-- Document all changes and rationale
-- Note whether review comments were accepted
+### Round 3: Final Submission
+
+Each Auditor submits an optimized final report to the Final Judge.
 
 ---
 
 ## Review Focus Points
 
-### Tool Auditor Reviewing Toy Report
+### 🟢 Tool Auditor Reviewing 🟡 Toy Report
 
 **Focus**:
-1. **Emotional value over-assessment**
-   - Does Toy misclassify practical features as emotional value?
-   - Is "pleasure" confused with "efficiency"?
 
-2. **Evidence sufficiency**
-   - Is emotional value supported by concrete evidence?
-   - Is user experience inferred without basis?
+1. **Quote Hallucination**: Did Toy extract a quote that doesn't exist to justify a Score of 3 for Emotional Connection?
+2. **Rubric Misapplication**: Did Toy give a Score of 3 for Item 1.1 (Appearance) based on a vague claim ("looks nice") instead of required quantified data (e.g., "92% satisfaction")?
+3. **Cross-category evidence**: Did Toy overlook a quote detailing a workflow efficiency improvement that should be in `cross_category_evidence`?
 
-3. **Cross-category evidence**
-   - Did Toy overlook Tool-supporting evidence?
-   - Were functional strengths missed?
-
-**Review questions**:
-- [ ] Is Toy score too high?
-- [ ] Is emotional value supported by evidence?
-- [ ] Is there overlooked practicality evidence?
-
-### Tool Auditor Reviewing Trash Report
+### 🟢 Tool Auditor Reviewing 🔴 Trash Report
 
 **Focus**:
-1. **Logic defects real or not**
-   - Does Trash misclassify normal features as logic defects?
-   - Is "principle violation" over-interpreted?
 
-2. **Marketing authenticity**
-   - Is factual description mislabeled as marketing?
-   - Is there brand bias?
+1. **False Eagle Eye Triggers**: Did Trash apply a "Core Flaw" veto (Score 3) based on a minor bug rather than explicit failure of the primary feature?
+2. **Contextual Misinterpretation**: Did Trash score a 3 for "Unnecessary Complexity" on a feature that a specific quote proves actually saves time?
+3. **Missing Baseline**: Did Trash give a 3 for "Low ROI" without a quote explicitly comparing it to a cheaper alternative?
 
-3. **Sustainability judgment**
-   - Is sustainability based on actual conditions?
-   - Is there actual usage evidence?
-
-**Review questions**:
-- [ ] Is Trash score reasonable?
-- [ ] Are logic defects real?
-- [ ] Is marketing authenticity assessment objective?
-
-### Toy Auditor Reviewing Tool Report
+### 🟡 Toy Auditor Reviewing 🟢 Tool Report
 
 **Focus**:
-1. **Emotional value overlooked**
-   - Does Tool ignore aesthetic design value?
-   - Is user emotional need underestimated?
 
-2. **Experience dimension missing**
-   - Does it only focus on function, not experience?
-   - Are emotional design elements overlooked?
+1. **Ignored CMF Data**: Did Tool ignore explicit quotes about premium materials (Aluminum, custom haptics) that should be noted in `cross_category_evidence`?
+2. **Efficiency vs. Delight**: Did Tool misclassify a purely aesthetic UI animation as a "workflow efficiency" feature?
+3. **Over-scoring Reliability**: Did Tool give a 3 for Reliability (Item 4.1) based purely on a marketing claim without extracting quantified uptime/failure rate data?
 
-3. **Cross-category evidence**
-   - Did Tool overlook Toy-supporting evidence?
-   - Were aesthetic or interaction strengths missed?
-
-**Review questions**:
-- [ ] Is Tool score too low?
-- [ ] Is emotional value overlooked?
-- [ ] Is aesthetic design underestimated?
-
-### Toy Auditor Reviewing Trash Report
+### 🟡 Toy Auditor Reviewing 🔴 Trash Report
 
 **Focus**:
-1. **Design violation real or not**
-   - Does Trash misclassify normal design as principle violation?
-   - Is there bias against creative design?
 
-2. **Emotional value misclassified**
-   - Is emotional value mislabeled as marketing?
-   - Is user emotional experience ignored?
+1. **Aesthetic Penalization**: Did Trash give a Score 3 for "Uselessness" (Item 1.2) simply because a feature is designed for non-functional sensory delight (Easter eggs)?
+2. **Missed Customization**: Did Trash flag the product as having "No Value" while ignoring explicit quotes about deep personalization or modding communities?
+3. **Eagle Eye Accuracy**: Verify that any "Privacy Tension" triggers extracted actual conflicting quotes.
 
-3. **Evidence sufficiency**
-   - Do Trash allegations have concrete evidence?
-   - Is design issue inferred without basis?
-
-**Review questions**:
-- [ ] Is Trash score reasonable?
-- [ ] Are design violations real?
-- [ ] Is emotional value misclassified?
-
-### Trash Auditor Reviewing Tool Report
+### 🔴 Trash Auditor Reviewing 🟢 Tool Report
 
 **Focus**:
-1. **Logic completeness**
-   - Does Tool overlook potential logic issues?
-   - Are there contradictions between features?
 
-2. **Marketing language detection**
-   - Does Tool misclassify marketing as feature description?
-   - Is exaggeration overlooked?
+1. **Missed Eagle Eye Triggers**: Did Tool give a 3 for "Solves Pain Points" while completely ignoring a quote stating the device hallucinates 60% of the time?
+2. **Marketing Blindness**: Did Tool accept a "zero learning curve" claim (Score 2 or 3) despite text evidence showing a massive onboarding manual is required?
+3. **Subscription Traps**: Did Tool praise long-term efficiency while missing a quote about a mandatory subscription that bricks the device?
 
-3. **Sustainability analysis**
-   - Does Tool underestimate long-term cost?
-   - Are hidden maintenance burdens present?
-
-**Review questions**:
-- [ ] Does Tool overlook logic defects?
-- [ ] Is marketing authenticity overlooked?
-- [ ] Is sustainability underestimated?
-
-### Trash Auditor Reviewing Toy Report
+### 🔴 Trash Auditor Reviewing 🟡 Toy Report
 
 **Focus**:
-1. **Over-emotionalization**
-   - Does Toy misclassify marketing as emotional value?
-   - Is there brand preference?
 
-2. **Practicality overlooked**
-   - Does Toy ignore feature practicality?
-   - Are useful features misclassified as toy traits?
-
-3. **Evidence sufficiency**
-   - Is emotional value verifiable?
-   - Is user emotion inferred without basis?
-
-**Review questions**:
-- [ ] Is Toy score too high?
-- [ ] Is emotional value evidenced?
-- [ ] Is practicality overlooked?
+1. **Ignored Friction**: Did Toy praise the "fun" of an interaction while ignoring a quote stating the interaction takes 5 times longer than a traditional button?
+2. **False Praise**: Did Toy give a 3 for "Honesty" when there is an explicit contradiction in the text regarding data collection?
+3. **E-waste Verification**: Did Toy overlook that the "fun" device has a sealed battery that dies in 6 months?
 
 ---
 
 ## Optimized Report Format
 
-### Review Comment Format
+### Review Comment Format (Strict JSON)
 
 ```json
 {
-  "reviewer": "Tool Auditor",
-  "target": "Toy Auditor",
+  "reviewer": "Trash Auditor",
+  "target": "Tool Auditor",
   "review_date": "2024-01-01",
   "overall_assessment": {
-    "rating": "Partially agree",
-    "summary": "Toy score too high; emotional value lacks evidence",
-    "major_concerns": [
-      "Emotional value score 90 lacks concrete evidence",
-      "Practical features misclassified as emotional value"
-    ]
+    "rating": "Major Corrections Needed",
+    "summary": "Tool Auditor missed a critical Eagle Eye trigger regarding feature reliability."
   },
   "specific_feedback": [
     {
-      "dimension": "emotional_value",
-      "original_score": 90,
-      "suggested_score": 65,
-      "reason": "Emotional value lacks specific user feedback evidence, mainly inferred",
-      "evidence_requested": "Need user emotional feedback data"
+      "item_id": "1.2",
+      "dimension": "Solves Pain Points",
+      "original_score": 3,
+      "suggested_score": 0,
+      "reason": "You scored a 3, but missed the quote: 'Users report the OCR fails 40% of the time.' This contradicts your extracted evidence.",
+      "evidence_requested": "Must incorporate the 40% failure rate quote and adjust score."
     },
     {
-      "dimension": "aesthetic_design",
-      "original_score": 85,
-      "suggested_score": 75,
-      "reason": "Appearance design average, no obvious aesthetic advantage",
-      "evidence": "Reference similar product comparison"
+      "item_id": "4.1",
+      "dimension": "Engineering Reliability",
+      "original_score": 2,
+      "suggested_score": 1,
+      "reason": "The quote extracted ('Built to last') is a marketing claim, not quantified data. Rubric requires a Score of 1.",
+      "evidence_requested": "Downgrade to 1 unless specific IP-rating or failure rate data can be extracted."
     }
   ],
   "cross_category_evidence": [
     {
-      "type": "supports_tool",
-      "description": "Health monitoring feature practical, should raise Tool score",
-      "evidence": ["24-hour monitoring", "Medical-grade sensors"]
+      "type": "supports_trash",
+      "description": "Device requires continuous cloud sync despite local-processing claims.",
+      "evidence": ["Quote: 'Uploads telemetry data every 5 minutes'"]
     }
   ]
 }
+
 ```
 
-### Optimized Report Format
+### Optimized Report Format (Post-Review Update)
 
 ```json
 {
-  "auditor": "Toy",
-  "original_report": {...},
+  "auditor": "Tool",
+  "original_report_total": 26,
   "optimized_report": {
-    "total_score": 65,
+    "total_score": 22,
+    "max_possible_score": 33,
     "changes": [
       {
-        "dimension": "emotional_value",
-        "before": 90,
-        "after": 65,
-        "reason": "Re-evaluated emotional value based on Tool Auditor review",
+        "item_id": "1.2",
+        "before_score": 3,
+        "after_score": 1,
+        "reason": "Accepted Trash Auditor review. The extracted quote was incomplete and ignored the 40% failure rate limitation.",
         "accepted": true,
-        "reviewer": "Tool Auditor"
+        "reviewer": "Trash Auditor"
       },
       {
-        "dimension": "aesthetic_design",
-        "before": 85,
-        "after": 75,
-        "reason": "Accepted review, lowered aesthetic design score",
-        "accepted": true,
-        "reviewer": "Tool Auditor"
-      },
-      {
-        "dimension": "interactive_fun",
-        "before": 80,
-        "after": 80,
-        "reason": "Rejected Tool Auditor's lower suggestion, kept original score",
+        "item_id": "4.1",
+        "before_score": 2,
+        "after_score": 2,
+        "reason": "Rejected Trash Auditor review. A secondary quote was found confirming 'IP68 water resistance', justifying the Score of 2.",
         "accepted": false,
-        "rebuttal": "Interactive fun exists; user feedback positive",
-        "reviewer": "Tool Auditor"
-      }
-    ],
-    "cross_category_evidence_updated": [
-      {
-        "type": "supports_tool",
-        "added": true,
-        "description": "Health monitoring feature practical",
-        "reviewer": "Tool Auditor"
+        "rebuttal": "Quote found: 'Certified IP68 rating'.",
+        "reviewer": "Trash Auditor"
       }
     ]
   },
   "peer_review_summary": {
     "reviews_received": 2,
-    "reviews_accepted": 5,
-    "reviews_rejected": 1,
-    "score_change": -15,
-    "confidence_improved": true
+    "changes_accepted": 1,
+    "changes_rejected": 1,
+    "net_score_change": -4,
+    "eagle_eye_flags_added": 0
   }
 }
+
 ```
 
 ---
 
 ## Review Checklist
 
-### Tool Auditor Review Checklist
+### 🟢 Tool Auditor Review Checklist
 
-#### When reviewing Toy report
-- [ ] Is emotional value score reasonable?
-- [ ] Is emotional value evidence-supported?
-- [ ] Is practicality confused with emotional value?
-- [ ] Is aesthetic design score objective?
-- [ ] Is interactive fun score reasonable?
-- [ ] Does social attribute have actual function?
-- [ ] Is Tool evidence overlooked?
+* [ ] Did Toy/Trash extract an exact quote for every score > 1?
+* [ ] Did Toy misclassify a workflow efficiency as a "fun" feature?
+* [ ] Did Trash apply a veto based on subjective feelings rather than explicit text?
+* [ ] Are there workflow metrics (time saved, accuracy) ignored by the other auditors?
 
-#### When reviewing Trash report
-- [ ] Is Trash score reasonable?
-- [ ] Are logic defects real?
-- [ ] Is marketing authenticity assessment objective?
-- [ ] Is sustainability judgment grounded?
-- [ ] Are design violations real?
-- [ ] Is there brand bias?
+### 🟡 Toy Auditor Review Checklist
 
-### Toy Auditor Review Checklist
+* [ ] Did Tool/Trash hallucinate a quote?
+* [ ] Did Tool ignore CMF (Color, Material, Finish) data?
+* [ ] Did Trash penalize an explicitly declared "Easter Egg" as a useless distraction?
+* [ ] Did the other auditors miss quotes proving deep user emotional attachment?
 
-#### When reviewing Tool report
-- [ ] Is Tool score too low?
-- [ ] Is emotional value overlooked?
-- [ ] Is aesthetic design underestimated?
-- [ ] Is experience dimension missing?
-- [ ] Is Toy evidence overlooked?
+### 🔴 Trash Auditor Review Checklist
 
-#### When reviewing Trash report
-- [ ] Is Trash score reasonable?
-- [ ] Are design violations real?
-- [ ] Is emotional value misclassified?
-- [ ] Is there bias against creative design?
-- [ ] Is evidence sufficient?
-
-### Trash Auditor Review Checklist
-
-#### When reviewing Tool report
-- [ ] Does Tool overlook logic defects?
-- [ ] Is marketing authenticity overlooked?
-- [ ] Is sustainability underestimated?
-- [ ] Are there feature contradictions?
-- [ ] Is there exaggeration?
-
-#### When reviewing Toy report
-- [ ] Is Toy score too high?
-- [ ] Is emotional value evidenced?
-- [ ] Is marketing misclassified as emotional value?
-- [ ] Is practicality overlooked?
-- [ ] Is there brand preference?
-
----
-
-## Peer Review Best Practices
-
-### Reviewer
-1. **Evidence-based**: All comments must have concrete evidence
-2. **Objective**: Avoid subjective bias and emotional language
-3. **Specific**: Provide concrete improvement suggestions, not vague criticism
-4. **Constructive**: Focus on how to improve, not just on problems
-5. **Respectful**: Acknowledge other Auditors' expertise
-
-### Reviewee
-1. **Open-minded**: Seriously consider all comments
-2. **Rational analysis**: Objectively assess each comment's reasonableness
-3. **Honest response**: Accept reasonable comments; rebut unreasonable ones
-4. **Complete documentation**: Document all changes and rationale
-5. **Consistency**: Keep overall logic consistent after changes
-
-### Final Report
-1. **Transparent documentation**: Fully document Peer Review process
-2. **Change explanation**: Clearly explain rationale for each change
-3. **Rejection rationale**: Provide rebuttal for rejected comments
-4. **Impact assessment**: Assess impact of changes on final score
-5. **Consistency check**: Ensure internal consistency of revised report
+* [ ] Did Tool/Toy give a Score of 3 to an item that actually triggers an Eagle Eye Veto (e.g., Privacy Tension, Core Flaw)?
+* [ ] Did Tool accept a marketing claim as a "Quantified" (Score 2) or "Validated" (Score 3) fact?
+* [ ] Did Toy ignore quotes regarding severe battery drain, high pricing, or subscription lock-ins?
+* [ ] Are any extracted quotes taken out of context to sound positive when the surrounding text is negative?

@@ -1,287 +1,216 @@
 # Trash Auditor Standalone Guide
 
-## Table of Contents
-- [Role Definition](#role-definition)
-- [Core Questions](#core-questions)
-- [Information Isolation Principles](#information-isolation-principles)
-- [Scoring Logic](#scoring-logic)
-- [Dieter Rams Ten Principles Violation Checklist](#dieter-rams-ten-principles-violation-checklist)
-- [Eagle Eye: High-Sensitivity Trigger Checklist](#eagle-eye-high-sensitivity-trigger-checklist)
-- [Assessment Report Format](#assessment-report-format)
-
 ## Role Definition
 
 ### 🔴 Trash Auditor
+
 Evaluates products from a "design failure" perspective, focusing on design principle violations, lack of clear value, and creating problems rather than solving them.
 
 ### Core Values
-- **Problem identification**: Identify fundamental design issues
-- **Principle violation**: Assess the degree of Dieter Rams design principle violations
-- **Value deficit**: Judge whether the product lacks clear value proposition
-- **Replaceability**: Assess whether the product is easily obsolete or replaceable
+
+* **Problem identification**: Identify fundamental design flaws and friction
+* **Principle violation**: Assess the degree to which Dieter Rams' design principles are ignored
+* **Value deficit**: Expose solutions in search of a problem
+* **Replaceability**: Assess whether the product is e-waste (easily obsolete or instantly replaceable by a smartphone)
 
 ### Scoring Direction
-- **Positive scoring**: Higher scores indicate stronger Trash characteristics
-- **Score range**: 0-100
-- **Meaning**: Higher scores indicate stronger Trash characteristics
+
+* **Positive scoring**: Higher scores indicate **STRONGER Trash characteristics** (More failures).
+* **Score range**: 0-42 (Cumulative Evidence Scale)
 
 ## Core Questions
 
 **Primary question**: "Does this product violate fundamental design principles? Does it create more problems than it solves?"
 
-**Litmus Test**:
-- If this product disappeared tomorrow, would the world become better or worse?
-  - **Better** → Trash
-  - **Worse** → Not Trash
-  - **No impact** → Possibly Trash (no raison d'être)
+**Litmus Logic Gate**:
+
+* **Condition**: Does the objective data explicitly show the product causes more friction, expense, or privacy risk than the traditional alternative, leading to quantifiable user regret, high return rates, or rapid abandonment?
+* **Yes** → Trash
+* **No** → Not purely Trash
+
+
 
 **Key metrics**:
-- **Design violation**: Does it violate fundamental design principles?
-- **Problem creation**: Does it create new problems?
-- **Value deficit**: Does it lack clear value?
-- **Replaceability**: Is it easily replaceable?
+
+* **Design violation**: Are there quantifiable complaints about aesthetics, build, or honesty?
+* **Problem creation**: Are new workflows or dependencies forced on the user?
+* **Replaceability**: Can a free app do the exact same thing?
 
 ## Information Isolation Principles
 
 ### 🚨 Information Isolation (Mandatory)
-- **Access only**: Brand-Blinded objective product information
-- **Prohibited access**: Original product information, brand names, marketing language
-- **Evaluation basis**: Based solely on objective functions, technical specifications, and use cases
-- **No speculation**: Must not infer product quality based on brand recognition
 
-### Objective Data Requirements
-- Evaluation must be based on complete objective data
-- Reference [objective-data-standard.md](objective-data-standard.md)
-- All scores must be supported by objective data
+* **Access only**: Brand-Blinded objective product information
+* **Prohibited access**: Original product information, brand names, marketing language
+* **Evaluation basis**: Based solely on objective functions, technical specifications, use cases, and user reviews.
+* **No speculation**: Must not infer failure; if a flaw is not explicitly documented in the text or user data, it scores a 0.
 
 ## Scoring Logic
 
+### The Deterministic AI Scoring Scale (0-3)
+
+Every point must be unlocked by a specific, observable piece of data extracted from the prompt text.
+
+* **0 (Fine):** No mention of this flaw/violation in the provided objective data.
+* **1 (Claimed Issue):** Minor complaints, vague negative feedback, or theoretical issues mentioned.
+* **2 (Quantified Flaw):** Specific data showing failure (e.g., "50% of features unused," specific redundant steps, measured battery drain).
+* **3 (Severe/Eagle Eye):** Critical failure backed by data, explicit contradiction (Eagle Eye trigger), or severe user backlash.
+
 ### Score Composition
-- **Checklist total**: 100 points
-- **Scoring rule**: Checklist score = Trash score (0-100)
-- **Meaning**: Higher scores indicate stronger Trash characteristics
 
-### Score Ranges
-- **0-35**: Does not meet Trash characteristics
-- **36-65**: Partially meets Trash characteristics
-- **66-85**: Meets Trash characteristics
-- **86-100**: Strongly meets Trash characteristics
+* **Total possible score**: 42 points (14 items × 3 points)
+* **Score Ranges**:
+* **0-10**: Does not meet Trash characteristics (Good design)
+* **11-20**: Flawed but functional (Minor friction/redundancy)
+* **21-32**: High Trash characteristics (Severe usability issues, low value)
+* **33-42**: Absolute Trash (Deceptive, useless, actively harmful e-waste)
 
-### Evaluation Dimensions
-1. Principle Violation (30 points)
-2. Problem Creation (25 points)
-3. Value Deficit (25 points)
-4. Replaceability (20 points)
+
 
 ## Dieter Rams Ten Principles Violation Checklist
 
 ### Source
-Dieter Rams Ten Principles ("Good Design is...")
-- Here we assess the **degree of violation**, i.e., how many principles are violated
+
+Dieter Rams Ten Principles ("Good Design is...") - Evaluated for **Violations**.
 
 ### Checklist
 
-#### 1. Principle Violation (30 points)
+#### 1. Principle Violation (Max 18 points)
 
-**Item 1.1: Does it violate the "Innovative" principle?** (0-5 points)
-- 0: Significant innovation
-- 1: Some innovation
-- 3: Minimal innovation
-- 5: Complete violation, no innovation
+**Item 1.1: Does it violate the "Innovative" principle? (Copycat/Obsolete)** (0-3 points)
 
-**Objective data requirements**:
-- Innovation feature analysis
-- Comparison with existing solutions
-- User innovation feedback
+* **3:** Data shows it relies on entirely outdated tech masquerading as new, or is a documented 1:1 clone.
+* **2:** Explicitly matches competitors' specs with zero differentiation.
+* **1:** Claims to be "just like" another product.
+* **0:** Described as novel or unique.
 
-**Item 1.2: Does it violate the "Useful" principle?** (0-5 points)
-- 0: Good practicality
-- 1: Some practicality
-- 3: Very low practicality
-- 5: Completely useless, no practical value
+**Item 1.2: Does it violate the "Useful" principle? (Uselessness)** (0-3 points)
 
-**Objective data requirements**:
-- Use case analysis
-- Actual effectiveness data
-- User usefulness feedback
+* **3:** **[Eagle Eye Trigger]** Core capability negatively reviewed (e.g., "The AI transcription, its main feature, hallucinates 40% of the time").
+* **2:** Data shows extremely low usage rates for core features (e.g., "70% of users abandon after 1 week").
+* **1:** Minor complaints about utility.
+* **0:** High utility and retention data.
 
-**Item 1.3: Does it violate the "Aesthetic" principle?** (0-5 points)
-- 0: Good aesthetic design
-- 1: Average aesthetic design
-- 3: Poor aesthetic design
-- 5: Complete violation, ugly appearance
+**Item 1.3: Does it violate the "Aesthetic" principle? (Ugly/Intrusive)** (0-3 points)
 
-**Objective data requirements**:
-- Design aesthetic evaluation
-- User visual feedback
+* **3:** Quantified negative physical feedback causing abandonment (e.g., "80% find it too heavy to wear daily").
+* **2:** Specific physical design flaws documented (e.g., "blocks adjacent USB ports," "screen glares in daylight").
+* **1:** Vague aesthetic complaints.
+* **0:** No aesthetic complaints.
 
-**Item 1.4: Does it violate the "Understandable" principle?** (0-5 points)
-- 0: Easy to understand and use
-- 1: Basically understandable
-- 3: Difficult to understand
-- 5: Incomprehensible, difficult to use
+**Item 1.4: Does it violate the "Understandable" principle? (Confusing)** (0-3 points)
 
-**Objective data requirements**:
-- Usage experience testing
-- Learning curve analysis
+* **3:** Data shows users cannot operate it without support (e.g., "high return rate due to setup failure").
+* **2:** Specific complex onboarding steps or high learning curve data documented.
+* **1:** Mentions of the product being "confusing."
+* **0:** Easy to use.
 
-**Item 1.5: Does it violate the "Honest" principle?** (0-5 points)
-- 0: Honest and reliable
-- 1: Basically honest
-- 3: Exists false advertising
-- 5: Complete violation, false advertising
+**Item 1.5: Does it violate the "Honest" principle? (Deceptive)** (0-3 points)
 
-**Objective data requirements**:
-- Marketing vs. reality comparison
-- User trust data
+* **3:** **[Eagle Eye Trigger]** Privacy claim vs. implementation tension (claims local but uploads to cloud), or inconsistent claims/false advertising.
+* **2:** Specific discrepancies between marketing claims and actual hardware specs.
+* **1:** Ambiguous or "over-hyped" marketing language noted.
+* **0:** Transparent and honest.
 
-**Item 1.6: Does it violate the "Long-lasting" principle?** (0-5 points)
-- 0: Good durability
-- 1: Average durability
-- 3: Poor durability
-- 5: Not durable at all, easily damaged
+**Item 1.6: Does it violate the "Long-lasting" principle? (Fragile/E-waste)** (0-3 points)
 
-**Objective data requirements**:
-- Quality assurance data
-- Service life statistics
+* **3:** Quantified high hardware failure rate or forced hardware obsolescence (e.g., "sealed battery dies after 1 year, unrepairable").
+* **2:** Specific hardware degradation documented (e.g., "hinge squeaks after 100 uses," "severe battery drain").
+* **1:** Feels "cheap" or fragile.
+* **0:** Durable and repairable.
 
-#### 2. Problem Creation (25 points)
+#### 2. Problem Creation (Max 9 points)
 
-**Item 2.1: Does it create new problems?** (0-10 points)
-- 0: No new problems
-- 2: Basically does not create problems
-- 5: Few problems created
-- 8: Created some new problems
-- 10: Created multiple serious new problems
+**Item 2.1: Does it create new problems? (Side Effects)** (0-3 points)
 
-**Objective data requirements**:
-- Problem analysis report
-- User complaint statistics
-- Negative impact assessment
+* **3:** **[Eagle Eye Trigger]** Expectation gap leading to severe side effects (e.g., creates security risks, device overheating, data loss).
+* **2:** Specific new workflow bottlenecks created (e.g., "requires pairing via Bluetooth every single time").
+* **1:** Minor annoyances created.
+* **0:** Solves problems smoothly.
 
-**Item 2.2: Does it increase user burden?** (0-10 points)
-- 0: Reduces user burden
-- 2: Basically does not increase burden
-- 5: Slight burden increase
-- 8: Increases user burden
-- 10: Significantly increases user burden
+**Item 2.2: Does it increase user burden? (Friction)** (0-3 points)
 
-**Objective data requirements**:
-- Usage burden analysis
-- Learning cost statistics
-- Time cost assessment
+* **3:** Quantified massive time/effort sink compared to doing nothing (e.g., "correcting the AI takes longer than writing it manually").
+* **2:** Specific added maintenance steps (e.g., "requires daily charging for a passive device," "needs companion app open").
+* **1:** Feels "heavy" or burdensome.
+* **0:** Reduces user burden.
 
-**Item 2.3: Does it introduce unnecessary complexity?** (0-5 points)
-- 0: No unnecessary complexity
-- 1: Moderate complexity
-- 3: Introduces some unnecessary complexity
-- 5: Introduces significant unnecessary complexity
+**Item 2.3: Does it introduce unnecessary complexity? (Over-engineered)** (0-3 points)
 
-**Objective data requirements**:
-- Feature redundancy analysis
-- Interface complexity evaluation
+* **3:** Complexity actively breaks the core loop (e.g., "touchscreen menus replace a simple light switch, causing 5-second delays").
+* **2:** Specific redundant hardware/software (e.g., adding a screen to a device that is controlled by voice).
+* **1:** Described as over-engineered.
+* **0:** Simple and direct.
 
-#### 3. Value Deficit (25 points)
+#### 3. Value Deficit (Max 9 points)
 
-**Item 3.1: Is there a clear value proposition?** (0-10 points)
-- 0: Very clear value proposition
-- 2: Clear value proposition
-- 5: Average value proposition
-- 8: Vague value proposition
-- 10: No clear value proposition
+**Item 3.1: Is there a clear value proposition? (Solution without a problem)** (0-3 points)
 
-**Objective data requirements**:
-- Value proposition analysis
-- User value perception survey
+* **3:** Explicit data showing users don't know why they need it (e.g., "Survey: 90% of buyers say they wouldn't buy it again").
+* **2:** Specific overlapping use-cases making it highly redundant to items the user already owns.
+* **1:** Confusing target audience.
+* **0:** Clear, distinct value proposition.
 
-**Item 3.2: Is it worth the user's cost?** (0-10 points)
-- 0: High cost-effectiveness
-- 2: Good cost-effectiveness
-- 5: Average cost-effectiveness
-- 8: Low cost-effectiveness
-- 10: Not worth it at all, very low cost-effectiveness
+**Item 3.2: Is it worth the user's cost? (Low ROI)** (0-3 points)
 
-**Objective data requirements**:
-- Cost-benefit analysis
-- Price vs. value comparison
-- User satisfaction data
+* **3:** **[Eagle Eye Trigger]** High price (e.g., ≥$200) + core capability in doubt/unverified claims.
+* **2:** Specific data showing cheaper alternatives achieve the exact same metrics.
+* **1:** Perceived as expensive.
+* **0:** Great cost-effectiveness.
 
-**Item 3.3: Is there sustainable value?** (0-5 points)
-- 0: High sustainable value
-- 2: Some sustainable value
-- 3: Low sustainable value
-- 5: No sustainable value, easily obsolete
+**Item 3.3: Is there sustainable value? (Subscription Trap/Brick)** (0-3 points)
 
-**Objective data requirements**:
-- Market lifecycle analysis
-- User long-term value assessment
+* **3:** Explicit subscription lock-in for basic local features, turning the hardware into a brick if unpaid.
+* **2:** Specific data showing it becomes useless after a short novelty period.
+* **1:** Novelty wears off quickly.
+* **0:** Long-term sustainable value.
 
-#### 4. Replaceability (20 points)
+#### 4. Replaceability (Max 6 points)
 
-**Item 4.1: Is it easily replaceable?** (0-10 points)
-- 0: Difficult to replace
-- 2: Relatively difficult to replace
-- 5: Average replaceability
-- 8: Easily replaceable
-- 10: Extremely easily replaceable, no uniqueness
+**Item 4.1: Is it easily replaceable? (Smartphone redundancy)** (0-3 points)
 
-**Objective data requirements**:
-- Competitor analysis
-- Unique value assessment
-- User stickiness data
+* **3:** **[Eagle Eye Trigger]** A free smartphone app can do *exactly* what this dedicated hardware does, faster and better.
+* **2:** Specific competitor metrics showing equivalent or superior features for less friction.
+* **1:** Many alternatives exist.
+* **0:** Highly unique and irreplaceable.
 
-**Item 4.2: Is there sufficient reason to exist?** (0-10 points)
-- 0: Very strong reason to exist
-- 2: Strong reason to exist
-- 5: Average reason to exist
-- 8: Weak reason to exist
-- 10: No reason to exist, no unique value
+**Item 4.2: Is there sufficient reason to exist? (Raison d'être)** (0-3 points)
 
-**Objective data requirements**:
-- Market positioning analysis
-- User need matching
-- Differentiated value assessment
+* **3:** "Solution in search of a problem" validated by 0% market adoption or universal reviewer panning.
+* **2:** Specific analysis showing it solves a highly niche, non-existent problem for the general public.
+* **1:** Questionable existence.
+* **0:** Strong, validated reason to exist.
 
 ## Eagle Eye: High-Sensitivity Trigger Checklist
 
-### Required Reference
+### Integration Rule
 
-When executing Trash scoring, **must** read [trash-red-flags.md](trash-red-flags.md) and apply the Eagle Eye trigger logic after routine Dieter Rams scoring.
+During scoring, if a condition below is met based on the text, the corresponding item **MUST** be scored a **3**, and the `reason` field must start with `"Triggered: [Pattern Name]"`.
 
-### Two-Pass Scoring Flow
-
-1. **First pass**: Complete routine scoring per Dieter Rams checklist
-2. **Second pass**: Check against `trash-red-flags.md` trigger conditions for high-sensitivity patterns
-3. **Score adjustment**: For items satisfying conditions, adjust scores upward within reasonable range and note in `reason` "Triggered [specific pattern]"
-4. **Record critical_issues**: Satisfied high-sensitivity triggers must be listed in `critical_issues`
-
-### Trigger Pattern Quick Reference
-
-| Pattern | Corresponding Item | Trigger Condition Summary |
-|---------|-------------------|---------------------------|
-| Privacy claim vs. implementation tension | 1.5 Honest | Claims local/no-cloud + requires continuous collection of sensitive signals |
-| Inconsistent claims | 1.5 Honest | Conflicting statements from different sources on same fact |
-| Core capability negatively reviewed | 1.2 Useful | User reviews question claimed core functionality |
-| Unverified claims | 1.2 Useful, 4.1/4.2 | Claims capability without independent verification |
-| High price + core in doubt | 3.2 Cost-effectiveness | Price ≥$200 and core capability questioned |
-| Expectation gap | 2.1, 3.2 | User feedback "didn't meet promise", "overhyped" |
-
-Principle: **Be more sensitive to existing evidence**, avoid over-inferring from missing evidence.
+| Pattern Name | Corresponding Item | Trigger Condition Summary |
+| --- | --- | --- |
+| **Privacy Tension** | 1.5 Honest | Claims local/no-cloud but requires continuous cloud sync for core features. |
+| **Inconsistent Claims** | 1.5 Honest | Marketing says X, spec sheet or teardown proves Y. |
+| **Core Flaw** | 1.2 Useful | User reviews explicitly state the primary advertised feature fails to work. |
+| **Price vs. Doubt** | 3.2 Worth Cost | Costs ≥$200 AND core capability is unverified/hallucinates. |
+| **App Redundancy** | 4.1 Replaceable | Hardware is entirely redundant to a standard smartphone app. |
 
 ## Assessment Report Format
 
 ### 🚨 Strict Output Template (Mandatory)
 
-**Must** read [auditor-templates.md](auditor-templates.md) and output according to the **Trash Auditor scoring table template**.
+**Must** follow `trash-auditor-template.md` for the scoring table format.
 
 **Mandatory requirements**:
-- Output **complete filled scoring table** with columns: Item ID | Item Name | Max Score | Score | Brief Reason (≤50 characters)
-- All 14 items (1.1–4.2) and total row must not be omitted
-- `reason` field must not exceed ~50 characters; when Eagle Eye score adjustment is applied, note in reason "Triggered: [pattern name]"
+
+* The AI **MUST** extract `verbatim_evidence` directly from the text **BEFORE** assigning a score. If no exact quote can be extracted, the score must be 0 or 1.
+* Output **complete filled scoring table** with columns: Item ID | Item Name | Max Score | Score | Brief Reason (≤50 characters)
+* All 14 items (1.1–4.2) and total row must not be omitted.
+* `reason` field must not exceed ~50 characters.
 
 Table first, then JSON output; both must be consistent.
 
-### Trash Auditor report must include
+### Trash Auditor JSON Output MUST Follow This Structure
 
 ```json
 {
@@ -291,63 +220,52 @@ Table first, then JSON output; both must be consistent.
 
   "information_source": "Brand-Blinded product information (original brand information isolated)",
   "information_isolation_confirmed": true,
-  "scoring_basis": "Dieter Rams Ten Principles Violation checklist",
+  "scoring_basis": "Dieter Rams Checklist & Eagle Eye Triggers (0-3 Scale)",
   "checklist_compliance_confirmed": true,
-
-  "total_score": 82,
-  "checklist_score": 82,
 
   "checklist_items": {
     "1. Principle Violation": {
-      "total": 25,
+      "total": 13,
       "items": {
         "1.1": {
-          "score": 5,
-          "max_score": 5,
-          "reason": "Complete violation of innovation principle, no unique features",
-          "evidence": [
-            "Features identical to existing products",
-            "No significant technical breakthrough",
-            "Innovation score 15/100"
-          ]
+          "verbatim_evidence": ["No new technology used, identical internals to 2021 model"],
+          "score": 2,
+          "max_score": 3,
+          "reason": "Uses identical internal specs to older models."
         },
         "1.2": {
-          "score": 4,
-          "max_score": 5,
-          "reason": "Very low practicality, feature redundancy",
-          "evidence": [
-            "50% of features unused by users",
-            "Addresses false pain points",
-            "35% user usefulness satisfaction"
-          ]
+          "verbatim_evidence": ["Reviews note the AI vision fails to identify objects 60% of the time"],
+          "score": 3,
+          "max_score": 3,
+          "reason": "Triggered: Core Flaw. Primary AI vision fails."
         },
-        "1.3": {"score": 2, "max_score": 5, "reason": "...", "evidence": [...]},
-        "1.4": {"score": 3, "max_score": 5, "reason": "...", "evidence": [...]},
-        "1.5": {"score": 3, "max_score": 5, "reason": "...", "evidence": [...]},
-        "1.6": {"score": 2, "max_score": 5, "reason": "...", "evidence": [...]}
+        "1.3": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."},
+        "1.4": {"verbatim_evidence": ["..."], "score": 1, "max_score": 3, "reason": "..."},
+        "1.5": {"verbatim_evidence": ["claims on-device AI but requires cellular data to function"], "score": 3, "max_score": 3, "reason": "Triggered: Privacy Tension."},
+        "1.6": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."}
       }
     },
     "2. Problem Creation": {
-      "total": 22,
+      "total": 8,
       "items": {
-        "2.1": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
-        "2.2": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
-        "2.3": {"score": 4, "max_score": 5, "reason": "...", "evidence": [...]}
+        "2.1": {"verbatim_evidence": ["..."], "score": 3, "max_score": 3, "reason": "..."},
+        "2.2": {"verbatim_evidence": ["..."], "score": 3, "max_score": 3, "reason": "..."},
+        "2.3": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."}
       }
     },
     "3. Value Deficit": {
-      "total": 20,
+      "total": 7,
       "items": {
-        "3.1": {"score": 10, "max_score": 10, "reason": "...", "evidence": [...]},
-        "3.2": {"score": 8, "max_score": 10, "reason": "...", "evidence": [...]},
-        "3.3": {"score": 4, "max_score": 5, "reason": "...", "evidence": [...]}
+        "3.1": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."},
+        "3.2": {"verbatim_evidence": ["Cost is $699", "AI hallucinates"], "score": 3, "max_score": 3, "reason": "Triggered: Price vs. Doubt."},
+        "3.3": {"verbatim_evidence": ["..."], "score": 2, "max_score": 3, "reason": "..."}
       }
     },
     "4. Replaceability": {
-      "total": 20,
+      "total": 6,
       "items": {
-        "4.1": {"score": 10, "max_score": 10, "reason": "...", "evidence": [...]},
-        "4.2": {"score": 10, "max_score": 10, "reason": "...", "evidence": [...]}
+        "4.1": {"verbatim_evidence": ["A free translation app performs the exact same task faster"], "score": 3, "max_score": 3, "reason": "Triggered: App Redundancy."},
+        "4.2": {"verbatim_evidence": ["..."], "score": 3, "max_score": 3, "reason": "..."}
       }
     }
   },
@@ -359,13 +277,14 @@ Table first, then JSON output; both must be consistent.
   },
 
   "critical_issues": [
-    "Violates multiple Dieter Rams design principles",
-    "Creates user burden",
-    "Lacks clear value proposition",
-    "Extremely easily replaceable"
+    "Triggered Privacy Tension: Claims local but requires cloud.",
+    "Triggered Core Flaw: Primary vision feature fails 60% of the time.",
+    "Hardware is entirely redundant to a smartphone app."
   ],
 
-  "strengths": [],
+  "strengths": [
+    "Compact form factor"
+  ],
 
   "cross_category_evidence": {
     "supports_tool": [],
@@ -373,67 +292,60 @@ Table first, then JSON output; both must be consistent.
   },
 
   "litmus_test_result": {
-    "test": "If this product disappeared tomorrow, would the world become better or worse?",
-    "answer": "Better",
-    "reason": "Product lacks value; its existence consumes user time and resources",
+    "test": "Does the data explicitly show the product causes more friction than the traditional alternative?",
+    "answer": "Yes",
+    "reason": "AI translation takes 5 seconds longer than using a phone app, adding severe conversational friction.",
     "confidence": "High"
   },
 
   "extract_for_report": {
-    "litmus_test_answer": "Better",
-    "litmus_test_reason": "Product lacks value; its existence consumes user time and resources",
-    "strengths_bullets": [],
-    "weaknesses_bullets": ["Violates multiple design principles; S2", "Creates user burden; S2"],
-    "key_evidence": ["Item 1.2: 50% of features unused by users; S2", "Item 4.1: Extremely easily replaceable; S2"],
+    "litmus_test_answer": "Yes",
+    "litmus_test_reason": "AI translation takes 5 seconds longer than using a phone app.",
+    "strengths_bullets": ["Compact form factor; S2"],
+    "weaknesses_bullets": ["Core AI vision fails 60% of the time; S2", "Redundant to free smartphone apps; S2"],
+    "key_evidence": ["Item 1.2: AI vision fails 60% of time; S2", "Item 1.5: Claims on-device but needs cellular; S2"],
     "critical_issues": [
-      "Violates multiple Dieter Rams design principles",
-      "Creates user burden",
-      "Lacks clear value proposition",
-      "Extremely easily replaceable"
+      "Privacy Tension: False claims of local processing.",
+      "Core Flaw: Primary marketed feature is unreliable."
     ]
-  }
+  },
+
+  "total_score": 34,
+  "max_possible_score": 42
 }
+
 ```
 
 ### Report Requirements
 
-1. **extract_for_report**: Must be included; `critical_issues` is required (see [auditor-templates.md](auditor-templates.md))
-2. **Information source declaration**: Must declare use of Brand-Blinded information only
-3. **Scoring basis declaration**: Must declare use of Dieter Rams Ten Principles Violation checklist
-4. **Objective data support**: Every score must be supported by objective data
-5. **Cross-category evidence**: Must list evidence supporting other categories (even if little)
-6. **Litmus Test result**: Must include Litmus Test result
+1. **extract_for_report**: Must be included; `critical_issues` is required.
+2. **Information source declaration**: Must declare use of Brand-Blinded information only.
+3. **Evidence-First Scoring**: The AI must extract quotes (`verbatim_evidence`) to justify every single score.
+4. **Eagle Eye Enforcement**: If an Eagle Eye trigger is met, it MUST be noted in the `reason` and score an automatic 3.
+5. **Litmus Test result**: Must evaluate the strict logic gate based purely on data.
 
 ## Workflow
 
 ### 1. Receive Task
-- Receive Brand-Blinded product information
-- Confirm information isolation status
-- Verify objective data completeness
 
-### 2. Execute Checklist Scoring
-- Read Dieter Rams Ten Principles Violation checklist
-- Evaluate each item one by one
-- Score based on objective data (inverted scoring)
-- Record scoring rationale and evidence
+* Receive Brand-Blinded product information.
+* Confirm information isolation status.
+* Verify objective data completeness.
+
+### 2. Execute Deterministic Scoring
+
+* Extract exact quotes for each of the 14 items.
+* Check against Eagle Eye triggers.
+* Map the quotes to the 0-3 scale. If no quote exists, score 0.
+* Record `verbatim_evidence` and `reason` in JSON.
 
 ### 3. Generate Report
-- Summarize scoring results
-- Calculate total score (higher = stronger Trash characteristics)
-- List critical issues
-- Identify cross-category evidence
-- Execute Litmus Test
+
+* Summarize scoring results (out of 42). *Note: High score = Trash.*
+* Compile all Eagle Eye triggers and severe flaws into `critical_issues`.
+* Execute Litmus Test logic gate.
 
 ### 4. Output Report
-- Generate complete Trash Auditor report
-- Ensure correct report format
-- Verify objective data citations
 
-## Notes
-
-1. **Strict information isolation**: Use Brand-Blinded information only
-2. **Based on objective data**: All scores must be supported by objective data
-3. **Avoid subjective judgment**: Follow checklist, avoid subjective assumptions
-4. **Honest documentation**: Record truthfully even when evidence supports other categories
-5. **Maintain independence**: Do not communicate with or reference other Auditors
-6. **Positive scoring**: Higher scores = stronger Trash characteristics (0-100)
+* Generate complete Trash Auditor report.
+* Ensure JSON strictly places `verbatim_evidence` before `score`.
