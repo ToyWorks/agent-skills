@@ -1,347 +1,305 @@
 #!/usr/bin/env python3
 """
-T3 audit result synthesis script
-Formats three Auditor evaluation reports and computes final classification
+T3 Audit Result Synthesis Script — v2.0
+Implements correct normalization, Eagle Eye Veto, and Litmus Gate logic
+per t3-classification.md specification.
 """
 
 import argparse
 import json
 import sys
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 
+
+# ─── Constants ───────────────────────────────────────────────────────────────
+
+TOOL_MAX = 33
+TOY_MAX  = 33
+TRASH_MAX = 42
+
+
+# ─── Normalization ────────────────────────────────────────────────────────────
+
+def normalize(raw: float, max_raw: float) -> float:
+    """Normalize raw score to 0-100 scale."""
+    if max_raw == 0:
+        return 0.0
+    return round((raw / max_raw) * 100, 1)
+
+
+# ─── Classification ───────────────────────────────────────────────────────────
+
+def check_primary_conditions(norm_tool: float, norm_toy: float, norm_trash: float,
+                              litmus_tool: bool, litmus_toy: bool, litmus_trash: bool) -> Dict[str, int]:
+    """
+    Count how many primary-classification conditions each category meets.
+    Per t3-classification.md: need 2+ conditions to become Primary.
+    """
+    tool_count = 0
+    if norm_tool >= 75:         tool_count += 1
+    if norm_tool > norm_toy  + 20: tool_count += 1
+    if norm_tool > norm_trash + 20: tool_count += 1
+    if litmus_tool:             tool_count += 1
+
+    toy_count = 0
+    if norm_toy >= 75:          toy_count += 1
+    if norm_toy > norm_tool  + 20: toy_count += 1
+    if norm_toy > norm_trash + 20: toy_count += 1
+    if litmus_toy:              toy_count += 1
+
+    trash_count = 0
+    if norm_trash >= 60:        trash_count += 1  # lower threshold per spec
+    if norm_trash > norm_tool + 20: trash_count += 1
+    if norm_trash > norm_toy  + 20: trash_count += 1
+    if litmus_trash:            trash_count += 1
+
+    return {"tool": tool_count, "toy": toy_count, "trash": trash_count}
+
+
+def determine_secondary(primary: str, norm_tool: float, norm_toy: float, norm_trash: float) -> List[str]:
+    """Determine secondary classification per t3-classification.md rules."""
+    secondary = []
+    if primary == "Tool":
+        if norm_toy   >= 60: secondary.append("Toy")
+        if norm_trash >= 50: secondary.append("Trash")
+    elif primary == "Toy":
+        if norm_tool  >= 60: secondary.append("Tool")
+        if norm_trash >= 50: secondary.append("Trash")
+    elif primary == "Trash":
+        if norm_tool  >= 50: secondary.append("Tool")
+        if norm_toy   >= 50: secondary.append("Toy")
+    return secondary
+
+
+def classify(norm_tool: float, norm_toy: float, norm_trash: float,
+             litmus_tool: bool, litmus_toy: bool, litmus_trash: bool,
+             eagle_eye_triggers: List[str]) -> Dict[str, Any]:
+    """
+    Full classification logic per t3-classification.md.
+    Eagle Eye Veto forces Trash into label when critical issues are flagged.
+    """
+    composite = max(norm_tool, norm_toy) - norm_trash
+    counts = check_primary_conditions(norm_tool, norm_toy, norm_trash,
+                                      litmus_tool, litmus_toy, litmus_trash)
+
+    # ── Determine Primary ──────────────────────────────────────────────────
+    primary = None
+    if counts["tool"] >= 2 or counts["toy"] >= 2 or counts["trash"] >= 2:
+        # Pick the category with the most conditions; break ties by normalized score
+        order = sorted(
+            [("Tool", counts["tool"], norm_tool),
+             ("Toy",  counts["toy"],  norm_toy),
+             ("Trash",counts["trash"],norm_trash if counts["trash"] >= 2 else -1)],
+            key=lambda x: (-x[1], -x[2])
+        )
+        if order[0][1] >= 2:
+            primary = order[0][0]
+
+    if primary is None:
+        # Gray Zone: fall back to composite score
+        if composite > 0:
+            primary = "Tool" if norm_tool >= norm_toy else "Toy"
+        elif composite < 0:
+            primary = "Trash"
+        else:
+            primary = "Tool" if norm_tool >= norm_toy else "Toy"
+
+    # ── Secondary ──────────────────────────────────────────────────────────
+    secondary = determine_secondary(primary, norm_tool, norm_toy, norm_trash)
+
+    # ── Eagle Eye Veto ─────────────────────────────────────────────────────
+    eagle_eye_activated = len(eagle_eye_triggers) > 0
+    if eagle_eye_activated:
+        # Trash MUST appear somewhere in the label
+        if primary != "Trash" and "Trash" not in secondary:
+            secondary.append("Trash")
+
+    # ── Confidence ────────────────────────────────────────────────────────
+    gray_zone = (counts["tool"] < 2 and counts["toy"] < 2 and counts["trash"] < 2)
+    if eagle_eye_activated:
+        confidence = "Review Required"
+    elif gray_zone:
+        confidence = "Low"
+    elif max(counts.values()) >= 3:
+        confidence = "High"
+    else:
+        confidence = "Medium"
+
+    # ── Build label ───────────────────────────────────────────────────────
+    parts = [primary] + secondary
+    label_suffix = " (Eagle Eye)" if eagle_eye_activated else (" (Gray Zone)" if gray_zone else "")
+    final_label = " + ".join(parts) + label_suffix
+
+    return {
+        "primary": primary,
+        "secondary": secondary,
+        "final_label": final_label,
+        "eagle_eye_veto_activated": eagle_eye_activated,
+        "eagle_eye_triggers": eagle_eye_triggers,
+        "confidence": confidence,
+        "composite_score": round(composite, 1),
+        "condition_counts": counts,
+        "gray_zone": gray_zone,
+    }
+
+
+# ─── Synthesis ────────────────────────────────────────────────────────────────
 
 def synthesize_results(auditor_reports: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Synthesize three Auditor evaluation reports and compute final classification.
+    Synthesize three Auditor reports into a final T3 audit result.
 
-    Args:
-        auditor_reports: Dict containing three Auditor reports:
-            {"tool": {...}, "toy": {...}, "trash": {...}}
-
-    Returns:
-        Complete audit result including final classification and confidence
+    Expected input keys: "tool", "toy", "trash"
+    Each report must have: total_score (raw int), litmus_gate (str "Yes"/"No")
+    Trash report additionally needs: critical_issues (list[str])
     """
-    # Extract total scores from three Auditors
-    tool_score = auditor_reports.get('tool', {}).get('total_score', 50)
-    toy_score = auditor_reports.get('toy', {}).get('total_score', 50)
-    trash_score = auditor_reports.get('trash', {}).get('total_score', 50)
-    
-    # Extract dimension scores
-    tool_dimensions = auditor_reports.get('tool', {}).get('dimension_scores', {})
-    toy_dimensions = auditor_reports.get('toy', {}).get('dimension_scores', {})
-    trash_dimensions = auditor_reports.get('trash', {}).get('dimension_scores', {})
-    
-    # Final Judge logic
-    judgment = determine_final_classification(tool_score, toy_score, trash_score)
-    
-    # Assemble full result
-    result = {
-        'auditor_reports': auditor_reports,
-        'final_judgment': judgment,
-        'score_comparison': {
-            'tool': tool_score,
-            'toy': toy_score,
-            'trash': trash_score
-        },
-        'dimension_comparison': {
-            'tool': {k: v.get('score', 0) for k, v in tool_dimensions.items()},
-            'toy': {k: v.get('score', 0) for k, v in toy_dimensions.items()},
-            'trash': {k: v.get('score', 0) for k, v in trash_dimensions.items()}
-        },
-        'summary': generate_summary(judgment, tool_score, toy_score, trash_score)
+
+    # ── Extract raw scores ─────────────────────────────────────────────────
+    tool_raw  = auditor_reports.get("tool",  {}).get("total_score", 0)
+    toy_raw   = auditor_reports.get("toy",   {}).get("total_score", 0)
+    trash_raw = auditor_reports.get("trash", {}).get("total_score", 0)
+
+    # ── Normalize ──────────────────────────────────────────────────────────
+    norm_tool  = normalize(tool_raw,  TOOL_MAX)
+    norm_toy   = normalize(toy_raw,   TOY_MAX)
+    norm_trash = normalize(trash_raw, TRASH_MAX)
+
+    # ── Litmus gates (boolean) ────────────────────────────────────────────
+    def parse_litmus(val: Any) -> bool:
+        if isinstance(val, bool):
+            return val
+        return str(val).strip().lower().startswith("yes")
+
+    litmus_tool  = parse_litmus(auditor_reports.get("tool",  {}).get("litmus_gate", "No"))
+    litmus_toy   = parse_litmus(auditor_reports.get("toy",   {}).get("litmus_gate", "No"))
+    litmus_trash = parse_litmus(auditor_reports.get("trash", {}).get("litmus_gate", "No"))
+
+    # ── Eagle Eye triggers ────────────────────────────────────────────────
+    eagle_eye_triggers = auditor_reports.get("trash", {}).get("critical_issues", [])
+    # Accept both top-level and nested formats
+    if not eagle_eye_triggers:
+        extract = auditor_reports.get("trash", {}).get("extract_for_report", {})
+        eagle_eye_triggers = extract.get("critical_issues", [])
+
+    # ── Classify ──────────────────────────────────────────────────────────
+    classification = classify(
+        norm_tool, norm_toy, norm_trash,
+        litmus_tool, litmus_toy, litmus_trash,
+        eagle_eye_triggers,
+    )
+
+    # ── Score table ───────────────────────────────────────────────────────
+    scores = {
+        "tool_raw": tool_raw,   "tool_max": TOOL_MAX,   "tool_normalized": norm_tool,
+        "toy_raw":  toy_raw,    "toy_max":  TOY_MAX,    "toy_normalized":  norm_toy,
+        "trash_raw":trash_raw,  "trash_max":TRASH_MAX,  "trash_normalized":norm_trash,
+        "composite": classification["composite_score"],
     }
-    
-    return result
 
+    # ── Final verdict summary ─────────────────────────────────────────────
+    verdict = _build_verdict(classification, scores, auditor_reports)
 
-def determine_final_classification(tool_score: float, toy_score: float, trash_score: float) -> Dict[str, Any]:
-    """
-    Determine final classification from three Auditor scores.
-
-    Logic (per T3 classification guide):
-    1. Composite = max(Tool, Toy) - Trash
-    2. Determine dominant category (≥2 conditions met)
-    3. Determine secondary category (if any)
-    4. Apply Litmus Test consistency analysis
-
-    Args:
-        tool_score: Tool total (0-100, positive)
-        toy_score: Toy total (0-100, positive)
-        trash_score: Trash total (0-100, positive scale)
-
-    Returns:
-        Dict with classification result and confidence
-    """
-    # Compute composite score
-    composite_score = max(tool_score, toy_score) - trash_score
-    
-    # Determine dominant category
-    # Tool dominant: score ≥70 and significantly higher than others
-    tool_dominant = 0
-    if tool_score >= 70: tool_dominant += 1
-    if tool_score > toy_score + 15: tool_dominant += 1
-    if tool_score > trash_score + 30: tool_dominant += 1
-    
-    # Toy dominant: score ≥70 and significantly higher than others
-    toy_dominant = 0
-    if toy_score >= 70: toy_dominant += 1
-    if toy_score > tool_score + 15: toy_dominant += 1
-    if toy_score > trash_score + 30: toy_dominant += 1
-    
-    # Trash dominant: score ≥70 (positive scale) and significantly higher than others
-    trash_dominant = 0
-    if trash_score >= 70: trash_dominant += 1
-    if trash_score > tool_score + 15: trash_dominant += 1
-    if trash_score > toy_score + 15: trash_dominant += 1
-    
-    # Determine dominant category (≥2 conditions met)
-    dominant_categories = []
-    if tool_dominant >= 2:
-        dominant_categories.append(('Tool', tool_score, tool_dominant))
-    if toy_dominant >= 2:
-        dominant_categories.append(('Toy', toy_score, toy_dominant))
-    if trash_dominant >= 2:
-        dominant_categories.append(('Trash', trash_score, trash_dominant))
-    
-    # If no clear dominant, judge by composite score
-    if len(dominant_categories) == 0:
-        if composite_score > 15:
-            dominant_category = 'Tool' if tool_score > toy_score else 'Toy'
-        elif composite_score < -15:
-            dominant_category = 'Trash'
-        else:
-            dominant_category = 'Mixed'
-    else:
-        # Pick category with most conditions; if tie, highest score (Tool/Toy) or lowest (Trash)
-        dominant_categories.sort(key=lambda x: (-x[2], x[1] if x[0] != 'Trash' else 100-x[1]))
-        dominant_category = dominant_categories[0][0]
-    
-    # Determine secondary categories
-    secondary_categories = []
-    if dominant_category == 'Tool':
-        if toy_score >= 60 and toy_score > trash_score + 20:
-            secondary_categories.append('Toy')
-        if trash_score <= 40 and trash_score < toy_score - 20:
-            secondary_categories.append('Trash')
-    elif dominant_category == 'Toy':
-        if tool_score >= 60 and tool_score > trash_score + 20:
-            secondary_categories.append('Tool')
-        if trash_score <= 40 and trash_score < tool_score - 20:
-            secondary_categories.append('Trash')
-    elif dominant_category == 'Trash':
-        if tool_score >= 50:
-            secondary_categories.append('Tool')
-        if toy_score >= 50:
-            secondary_categories.append('Toy')
-    
-    # Build final classification label
-    if secondary_categories:
-        final_label = f"{dominant_category} + {' + '.join(secondary_categories)}"
-    else:
-        final_label = dominant_category
-    
-    # Compute confidence
-    if dominant_category == 'Tool':
-        score_diff = tool_score - max(toy_score, trash_score)
-        confidence = min(50 + score_diff, 100)
-    elif dominant_category == 'Toy':
-        score_diff = toy_score - max(tool_score, trash_score)
-        confidence = min(50 + score_diff, 100)
-    else:  # Trash
-        score_diff = max(tool_score, toy_score) - trash_score
-        confidence = min(50 + score_diff, 100)
-    
-    confidence_level = 'High' if confidence > 75 else 'Medium' if confidence > 50 else 'Low'
-    
-    # Build reasoning
-    reasoning = {
-        'primary_reason': '',
-        'secondary_reason': '',
-        'composite_interpretation': f"Composite {composite_score:.1f}; {'Tool/Toy-leaning' if composite_score > 0 else 'Trash-leaning' if composite_score < 0 else 'Mixed'}",
-        'litmus_test_consistency': 'Litmus Test results need verification'
-    }
-    
-    if dominant_category == 'Tool':
-        reasoning['primary_reason'] = f"Tool score highest ({tool_score}), {'significantly ' if tool_score - toy_score > 20 else ''}above Toy ({toy_score})"
-        if 'Toy' in secondary_categories:
-            reasoning['secondary_reason'] = f"Toy score high ({toy_score}); product has Toy attributes"
-    elif dominant_category == 'Toy':
-        reasoning['primary_reason'] = f"Toy score highest ({toy_score}), {'significantly ' if toy_score - tool_score > 20 else ''}above Tool ({tool_score})"
-        if 'Tool' in secondary_categories:
-            reasoning['secondary_reason'] = f"Tool score high ({tool_score}); product has Tool attributes"
-    else:  # Trash
-        reasoning['primary_reason'] = f"Trash score high ({trash_score}); design violations or problems indicated"
-    
     return {
-        'classification': final_label,
-        'dominant_category': dominant_category,
-        'secondary_categories': secondary_categories,
-        'confidence': round(confidence, 2),
-        'confidence_level': confidence_level,
-        'composite_score': round(composite_score, 2),
-        'scores': {
-            'tool': tool_score,
-            'toy': toy_score,
-            'trash': trash_score
+        "scores": scores,
+        "litmus_gates": {
+            "tool":  "Yes" if litmus_tool  else "No",
+            "toy":   "Yes" if litmus_toy   else "No",
+            "trash": "Yes" if litmus_trash else "No",
         },
-        'reasoning': reasoning
+        "classification": classification,
+        "final_verdict_summary": verdict,
+        "auditor_reports": auditor_reports,
     }
 
 
-def generate_summary(judgment: Dict[str, Any], tool_score: float, toy_score: float, trash_score: float) -> str:
-    """
-    Generate audit result summary.
+def _build_verdict(classification: Dict, scores: Dict, reports: Dict) -> str:
+    primary = classification["primary"]
+    label   = classification["final_label"]
+    comp    = scores["composite"]
+    eagle   = classification["eagle_eye_activated"] if "eagle_eye_activated" in classification else classification.get("eagle_eye_veto_activated", False)
 
-    Args:
-        judgment: Final Judge result
-        tool_score: Tool score
-        toy_score: Toy score
-        trash_score: Trash score
+    tool_report  = reports.get("tool",  {})
+    toy_report   = reports.get("toy",   {})
+    trash_report = reports.get("trash", {})
 
-    Returns:
-        Summary text
-    """
-    classification = judgment['classification']
-    dominant_category = judgment['dominant_category']
-    confidence = judgment['confidence']
-    composite_score = judgment['composite_score']
-    
-    # Determine main characteristics
-    if dominant_category == 'Trash':
-        summary = f"Product classified as Trash (confidence {confidence}%). Trash score {trash_score}/100 indicates design violations or problems. {judgment['reasoning']['primary_reason']}"
-    elif dominant_category == 'Tool':
-        if 'Toy' in judgment.get('secondary_categories', []):
-            summary = f"Product classified as Tool + Toy (confidence {confidence}%). Primarily a tool ({tool_score}/100) with Toy attributes ({toy_score}/100). {judgment['reasoning']['primary_reason']} {judgment['reasoning']['secondary_reason']}"
-        else:
-            summary = f"Product classified as Tool (confidence {confidence}%). Main value in solving real pain points; Tool score {tool_score}/100. {judgment['reasoning']['primary_reason']} If it broke tomorrow, the user's workflow would be noticeably affected."
-    elif dominant_category == 'Toy':
-        if 'Tool' in judgment.get('secondary_categories', []):
-            summary = f"Product classified as Toy + Tool (confidence {confidence}%). Primarily a toy ({toy_score}/100) with Tool attributes ({tool_score}/100). {judgment['reasoning']['primary_reason']} {judgment['reasoning']['secondary_reason']}"
-        else:
-            summary = f"Product classified as Toy (confidence {confidence}%). Main value in emotional satisfaction; Toy score {toy_score}/100. {judgment['reasoning']['primary_reason']} Users primarily use it for enjoyment."
-    else:  # Mixed
-        summary = f"Product classified as Mixed (confidence {confidence}%). Tool {tool_score}/100, Toy {toy_score}/100, Trash {trash_score}/100. Composite {composite_score:.1f}; traits balanced, no clear leaning. Judgment depends on user needs."
-    
-    return summary
+    tool_str  = tool_report.get("extract_for_report",  {}).get("litmus_test_reason", "")
+    toy_str   = toy_report.get("extract_for_report",   {}).get("litmus_test_reason", "")
+    trash_str = trash_report.get("extract_for_report", {}).get("litmus_test_reason", "")
+
+    verdict = f"Classification: {label}. Composite score {comp:+.1f}. "
+
+    if primary == "Tool":
+        verdict += f"Product delivers quantifiable utility (Tool normalized {scores['tool_normalized']:.0f}/100). "
+        if tool_str: verdict += f"{tool_str}. "
+    elif primary == "Toy":
+        verdict += f"Product delivers emotional/aesthetic value (Toy normalized {scores['toy_normalized']:.0f}/100). "
+        if toy_str: verdict += f"{toy_str}. "
+    else:
+        verdict += f"Product creates more problems than it solves (Trash normalized {scores['trash_normalized']:.0f}/100). "
+
+    if eagle:
+        issues = classification.get("eagle_eye_triggers", [])
+        verdict += f"⚠️ Eagle Eye Veto activated — critical issues: {'; '.join(issues[:2])}."
+
+    return verdict.strip()
 
 
-def format_auditor_report(auditor: str, report: Dict[str, Any]) -> str:
-    """
-    Format a single Auditor report as readable text.
-
-    Args:
-        auditor: Auditor name (Tool/Toy/Trash)
-        report: Auditor report
-
-    Returns:
-        Formatted report text
-    """
-    emoji = {'Tool': '🟢', 'Toy': '🟡', 'Trash': '🔴'}.get(auditor, '')
-    total_score = report.get('total_score', 0)
-    dimension_scores = report.get('dimension_scores', {})
-    
-    lines = [
-        f"\n{emoji} {auditor} Auditor: {total_score}/100",
-        f"{'=' * 50}"
-    ]
-    
-    for dim_name, dim_info in dimension_scores.items():
-        score = dim_info.get('score', 0)
-        weight = dim_info.get('weight', 0)
-        reason = dim_info.get('reason', 'No reason')
-        lines.append(f"\n  {dim_name.replace('_', ' ').title()}: {score}/100 (weight {weight*100}%)")
-        lines.append(f"    Reason: {reason}")
-    
-    # Add cross-category evidence
-    cross_evidence = report.get('cross_category_evidence', {})
-    if cross_evidence:
-        lines.append(f"\n  Cross-category evidence:")
-        for category, evidence_list in cross_evidence.items():
-            if evidence_list:
-                lines.append(f"    Supports {category}: {', '.join(evidence_list[:2])}")
-    
-    return '\n'.join(lines)
-
+# ─── CLI ──────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description='Synthesize T3 evaluation results from three Auditors')
-    parser.add_argument('--input', '-i', required=True, help='Path to three Auditor reports JSON')
-    parser.add_argument('--output', '-o', help='Output file path (JSON)')
-    parser.add_argument('--pretty', action='store_true', help='Pretty-print JSON output')
-    parser.add_argument('--format-text', action='store_true', help='Output readable text format')
-    
+    parser = argparse.ArgumentParser(
+        description="Synthesize T3 audit results from three Auditor reports (v2.0)"
+    )
+    parser.add_argument("--input", "-i", required=True,
+                        help="Path to JSON file containing tool/toy/trash auditor reports")
+    parser.add_argument("--output", "-o", help="Output file path (JSON)")
+    parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")
+    parser.add_argument("--text",   action="store_true", help="Human-readable text summary")
     args = parser.parse_args()
-    
-    # Read Auditor reports
+
     try:
-        with open(args.input, 'r', encoding='utf-8') as f:
+        with open(args.input, "r", encoding="utf-8") as f:
             auditor_reports = json.load(f)
     except FileNotFoundError:
-        print(f"Error: File not found: {args.input}", file=sys.stderr)
-        sys.exit(1)
-    except json.JSONDecodeError:
-        print(f"Error: Invalid JSON: {args.input}", file=sys.stderr)
-        sys.exit(1)
+        print(f"Error: file not found: {args.input}", file=sys.stderr); sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(f"Error: invalid JSON: {e}", file=sys.stderr); sys.exit(1)
 
-    # Validate report format
-    required_auditors = ['tool', 'toy', 'trash']
-    for auditor in required_auditors:
-        if auditor not in auditor_reports:
-            print(f"Error: Missing {auditor.upper()} Auditor report", file=sys.stderr)
-            sys.exit(1)
-    
-    # Synthesize results
-    print("Synthesizing three Auditor results...", file=sys.stderr)
+    for key in ("tool", "toy", "trash"):
+        if key not in auditor_reports:
+            print(f"Error: missing '{key}' auditor report", file=sys.stderr); sys.exit(1)
+
     result = synthesize_results(auditor_reports)
-    
-    # Output result
-    if args.format_text:
-        # Output readable text format
-        print("=" * 60)
-        print("T3 Hardware Audit Report")
-        print("=" * 60)
 
-        judgment = result['final_judgment']
-        print(f"\nFinal classification: {judgment['classification']}")
-        print(f"Confidence: {judgment['confidence']}% ({judgment['confidence_level']})")
-        print(f"Reasoning: {judgment['reasoning']['primary_reason']}")
-
-        print("\n" + "=" * 60)
-        print("Three Auditor Score Comparison")
+    if args.text:
+        s = result["scores"]
+        c = result["classification"]
         print("=" * 60)
-        scores = result['score_comparison']
-        print(f"🟢 Tool:   {scores['tool']}/100")
-        print(f"🟡 Toy:    {scores['toy']}/100")
-        print(f"🔴 Trash:  {scores['trash']}/100")
-        
-        print("\n" + "=" * 60)
-        print("Auditor Detailed Reports")
+        print("T3 AUDIT SYNTHESIS  —  v2.0")
         print("=" * 60)
-        for auditor in ['tool', 'toy', 'trash']:
-            auditor_name = auditor.capitalize()
-            report = auditor_reports[auditor]
-            print(format_auditor_report(auditor_name, report))
-        
-        print("\n" + "=" * 60)
-        print("Summary")
-        print("=" * 60)
-        print(result['summary'])
-        
+        print(f"\n🟢 Tool  : {s['tool_raw']:>2}/{s['tool_max']}  →  {s['tool_normalized']:.1f}/100")
+        print(f"🟡 Toy   : {s['toy_raw']:>2}/{s['toy_max']}  →  {s['toy_normalized']:.1f}/100")
+        print(f"🔴 Trash : {s['trash_raw']:>2}/{s['trash_max']} →  {s['trash_normalized']:.1f}/100")
+        print(f"\nComposite : {s['composite']:+.1f}")
+        print(f"Litmus    : Tool={result['litmus_gates']['tool']}  "
+              f"Toy={result['litmus_gates']['toy']}  Trash={result['litmus_gates']['trash']}")
+        print(f"\n{'─'*60}")
+        print(f"Classification : {c['final_label']}")
+        print(f"Confidence     : {c['confidence']}")
+        if c['eagle_eye_veto_activated']:
+            print(f"\n🚨 Eagle Eye Veto ACTIVE:")
+            for t in c['eagle_eye_triggers']:
+                print(f"   • {t}")
+        print(f"\n{result['final_verdict_summary']}")
     else:
-        # Output JSON format
-        if args.pretty:
-            print(json.dumps(result, ensure_ascii=False, indent=2))
-        else:
-            print(json.dumps(result, ensure_ascii=False))
-    
-    # Save to file (optional)
+        indent = 2 if args.pretty else None
+        out = json.dumps(result, ensure_ascii=False, indent=indent)
+        print(out)
+
     if args.output:
-        with open(args.output, 'w', encoding='utf-8') as f:
-            if args.pretty:
-                json.dump(result, f, ensure_ascii=False, indent=2)
-            else:
-                json.dump(result, f, ensure_ascii=False)
-        print(f"\nResult saved to: {args.output}", file=sys.stderr)
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        print(f"\nSaved to: {args.output}", file=sys.stderr)
 
 
 if __name__ == "__main__":

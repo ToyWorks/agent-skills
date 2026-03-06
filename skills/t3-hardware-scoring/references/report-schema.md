@@ -51,13 +51,19 @@ Enables leaderboard parsing of `99-audit-report.md` YAML metadata. Field names a
 
 ### scores
 
-*Note: These must be the **Normalized Scores** (0-100) calculated by the Final Judge, NOT the raw cumulative evidence scores (33 or 42).*
+*Note: Include BOTH raw and normalized scores. Raw scores are from auditors (max 33/33/42). Normalized scores are Final Judge outputs (0-100). synthesize_results.py computes normalization automatically from raw scores.*
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `tool_normalized` | number | Tool normalized score (0-100) |
-| `toy_normalized` | number | Toy normalized score (0-100) |
-| `trash_normalized` | number | Trash normalized score (0-100) |
+| `tool_raw` | number | Raw Tool score (0-33) |
+| `tool_max` | number | Always 33 |
+| `tool_normalized` | number | Normalized Tool score (0-100) |
+| `toy_raw` | number | Raw Toy score (0-33) |
+| `toy_max` | number | Always 33 |
+| `toy_normalized` | number | Normalized Toy score (0-100) |
+| `trash_raw` | number | Raw Trash score (0-42) |
+| `trash_max` | number | Always 42 |
+| `trash_normalized` | number | Normalized Trash score (0-100) |
 | `composite` | number | max(tool_normalized, toy_normalized) - trash_normalized |
 
 ### chart_data
@@ -72,13 +78,13 @@ Dimension raw subscores for radar/bar charts.
 
 ### litmus_gates
 
-*Note: These are now strict boolean logic gates based purely on extracted evidence.*
+*Note: Strict boolean logic gates based purely on extracted verbatim evidence. Always use `litmus_gates` (not `litmus_tests`) for YAML/JSON consistency with synthesize_results.py.*
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `tool` | string | `Yes` |
-| `toy` | string | `Yes` |
-| `trash` | string | `Yes` |
+| `tool` | string | `"Yes"` or `"No"` |
+| `toy` | string | `"Yes"` or `"No"` |
+| `trash` | string | `"Yes"` or `"No"` |
 
 ### checklist_tables (optional)
 

@@ -9,197 +9,211 @@ dependency:
     - requests==2.32.5
     - beautifulsoup4==4.12.3
 metadata:
-  version: "1.0"
+  version: "2.0"
 ---
 
-# MantaBase T3 Hardware Audit System
+# MantaBase T3 Hardware Audit System — v2.0
 
 ## Objectives
-- This Skill: Automatically crawls product information from hardware product links, applies Brand Blinding for debranding, has three independent Auditors score using authoritative reference checklists, performs Peer Review for mutual critique, and produces objective Tool/Toy/Trash classification
-- Capabilities: Web scraping, Brand Blinding filtering, Triple-Auditor specialized scoring, Peer Review, Final Judge synthesis
-- Triggers: User provides hardware product links requesting T3 audit or classification
-- Core principles: Transparency first, objective evaluation, parallel audits, expert review, continuous improvement
+- Crawl product information → Brand Blind → Triple-Auditor independent scoring → Peer Review → Final Judge synthesis
+- Output: objective Tool / Toy / Trash classification with Eagle Eye safety veto
+- Core principles: evidence-first, parallel audits, zero hallucination, transparent math
 
-## Prerequisites
-- No extra setup; the system handles web content extraction
+## Data Collection Strategy (Step 1-2)
+
+### Primary: crawl_product_info.py
+```bash
+python3 scripts/crawl_product_info.py --url https://example.com/product --pretty
+```
+Uses Jina AI Reader first, then direct HTTP fallback.
+Exit code 2 = content insufficient → trigger Exa fallback.
+
+### Fallback: Exa MCP (use when crawl fails or is insufficient)
+```bash
+mcporter call 'exa.web_search_exa(query: "{product name} specs review", numResults: 5)'
+mcporter call 'exa.company_research_exa(companyName: "{brand}", numResults: 3)'
+```
+Exa is the **preferred fallback** — always available, no API key required.
+Collect at least **3 independent sources** before proceeding.
+
+### Additional sources (check in order)
+1. Official product page (specs, pricing, marketing claims)
+2. Third-party reviews (TechAdvisor, The Verge, Tom's Guide, TrustedReviews)
+3. Community discussion (Reddit, forums) for real-user pain points
+4. Investigation/news coverage (privacy issues, lawsuits, controversies)
+
+### Minimum data threshold
+Proceed only when you have:
+- [ ] At least one official source with **tech specs + price**
+- [ ] At least one **third-party review** with hands-on findings
+- [ ] Marketing claims verbatim (needed for Eagle Eye Honest check)
+
+---
 
 ## Procedure
 
-### Standard Flow
+### Step 1: Collect Raw Data
+- Run `crawl_product_info.py` on official product URL
+- If exit code 2, run Exa MCP queries
+- Save raw extracts to `01-level0-extracts.md` with source tags [S1], [S2], etc.
 
-#### 1. Get User Input
-- Ask user for hardware product links (e-commerce, official sites, review sites, etc.)
-- Optional: Ask about specific dimensions or audit focus
+### Step 2: Organize + Brand Blind (combined step)
+- Read [references/organize-guide.md](references/organize-guide.md)
+- Read [references/defluff-guide.md](references/defluff-guide.md)
+- Merge all sources into one structured document
+- Apply Brand Blinding inline (replace brand names with [BRAND], [PRODUCT], [FEATURE])
+- **Preserve ALL adjectives and marketing claims verbatim** — needed by downstream auditors
+- Save to `02-brand-blinded.md`
 
-#### 2. Get Product Information (Pipeline Tools)
+### Step 3: Triple Auditor Scoring (independent, can be parallel)
 
-Identify site type (Shopify / Kickstarter) and crawl product pages for consistent data input.
+Each Auditor sees **only the Brand-Blinded text** from Step 2.
 
-- Use `crawlProductInfo` to collect source URLs and raw extracts.
-- Write outputs to `01-level0-source-urls.md` and `02-level0-extracts.md`.
-- Then run organize phase before defluffing:
-  - Read [references/organize-guide.md](references/organize-guide.md)
-  - Merge multi-page extracts into a single chain-of-evidence markdown
-  - Preserve source tags so downstream auditors can cite exact evidence
-
-#### 3. Brand Blinding (Agent)
-- Read [references/defluff-guide.md](references/defluff-guide.md) for Brand Blinding rules
-- Agent performs debranding:
-  - Remove brand names and trademark references
-  - Remove marketing language and hype
-  - Identify and remove emotional adjectives
-  - Keep functional and objective information
-  - Preserve factual accuracy
-- Output: Brand-Blinded objective product info
-
-#### 4. Triple Auditor Specialized Scoring (Agent, Parallel)
-- Each Auditor evaluates **independently and in parallel**
-- Each Auditor reads only their own guide, not others' guides or reports
-
-**🟢 Tool Auditor**
+#### 🟢 Tool Auditor
 - Read [references/tool-auditor.md](references/tool-auditor.md)
-- Focus: Pain-point solving, practicality, reliability
-- Reference: Tony Fadell "Build" checklist
-- Dimensions:
-  - Pain point identification and resolution
-  - Attention to detail and consistency
-  - Simplicity and efficiency
-  - Engineering reliability
-- Output: Scoring report (0-33 points, higher = stronger Tool) with item scores, reasons, evidence
-- Litmus Test: If it broke tomorrow, would the user's workflow stall?
+- Use template: [references/tool-auditor-template.md](references/tool-auditor-template.md)
+- Score 11 items (0-3 scale), max 33 points
+- Extract `verbatim_evidence` BEFORE assigning score
+- Output `litmus_gate: "Yes"/"No"` at top level (used by synthesize_results.py)
 
-**🟡 Toy Auditor**
+#### 🟡 Toy Auditor
 - Read [references/toy-auditor.md](references/toy-auditor.md)
-- Focus: Emotional value, enjoyment, aesthetic design
-- Reference: Don Norman "The Design of Everyday Things" checklist
-- Dimensions:
-  - Sensory pleasure (visceral & behavioral)
-  - Surprise and discovery
-  - Emotional connection (reflective)
-  - Explorability
-- Output: Scoring report (0-33 points, higher = stronger Toy) with item scores, reasons, evidence
-- Litmus Test: Would the user put it on display or keep it as a collectible?
+- Use template: [references/toy-auditor-template.md](references/toy-auditor-template.md)
+- Score 11 items (0-3 scale), max 33 points
+- Output `litmus_gate: "Yes"/"No"` at top level
 
-**🔴 Trash Auditor**
+#### 🔴 Trash Auditor
 - Read [references/trash-auditor.md](references/trash-auditor.md)
-- **Required** [references/trash-red-flags.md](references/trash-red-flags.md) high-sensitivity triggers
-- Focus: Logical flaws, marketing deception, design violations
-- Reference: Dieter Rams Ten Principles violation checklist
-- Dimensions:
-  - Principle violation (innovative/useful/aesthetic/understandable/honest/long-lasting)
-  - Problem creation
-  - Value deficit
-  - Replaceability
-- Output: Scoring report (0-42 points, higher = stronger Trash) with item scores, reasons, evidence
-- Litmus Test: If this product disappeared tomorrow, would the world be better or worse?
+- Read [references/trash-red-flags.md](references/trash-red-flags.md) (**required** for Eagle Eye)
+- Score 14 items (0-3 scale), max 42 points
+- Eagle Eye triggers **auto-set score to 3** for flagged items
+- `critical_issues` list is used by synthesize_results.py for Eagle Eye Veto
+- Output `litmus_gate: "Yes"/"No"` and `critical_issues: [...]` at top level
 
-**Key Principles**:
-- **Information isolation**: Auditors only see Brand-Blinded info; never raw product info
-- **Checklist-based**: Must use the reference checklists
-- **Evidence-driven**: Every score backed by evidence
-- **Independent**: Three Auditors evaluate in parallel, no cross-talk
-- **Objective**: Report findings, not defend a category
-- **Honest**: Record evidence even when it supports another category
+**Key principles**:
+- Each auditor works from Brand-Blinded text only
+- No cross-talk between auditors during scoring
+- Evidence FIRST, then score — no score without a verbatim quote
+- If a feature isn't in the text, it scores 0
 
-#### 5. Peer Review (Agent, Parallel)
+### Step 4: Peer Review
 - Read [references/peer-review-guide.md](references/peer-review-guide.md)
-- Each Auditor reviews the other two reports:
+- Tool reviews Toy + Trash reports
+- Toy reviews Tool + Trash reports
+- Trash reviews Tool + Toy reports
+- Focus: hallucinated quotes? missed Eagle Eye triggers? rubric misapplication?
+- Each auditor updates their report with valid feedback
 
-**Cross-review**:
-- Tool reviews: Toy + Trash
-- Toy reviews: Tool + Trash
-- Trash reviews: Tool + Toy
+### Step 5: Final Judge Synthesis
 
-**Review focus**:
-- Are scores reasonable?
-- Is evidence sufficient?
-- Any cross-category evidence missed?
-- Bias or omissions?
+Option A — Script:
+```bash
+python3 scripts/synthesize_results.py --input auditor_reports.json --text
+```
 
-**Output**:
-- Review comments (with suggestions and reasons)
-- Score adjustment suggestions
-- Cross-category evidence
+Option B — Manual (per t3-classification.md):
+1. Normalize scores: Tool=(raw/33)×100, Toy=(raw/33)×100, Trash=(raw/42)×100
+2. Composite = max(NormTool, NormToy) - NormTrash
+3. Check primary conditions (need 2+ of 4 conditions per category)
+4. Check secondary conditions
+5. Apply Eagle Eye Veto (if Trash `critical_issues` non-empty → force Trash into label)
+6. Read [references/t3-classification.md](references/t3-classification.md) for full logic
 
-#### 6. Auditor Report Optimization (Agent)
-- Each Auditor refines their report using review feedback:
-  - Assess validity of feedback
-  - Accept valid suggestions and update report
-  - For invalid suggestions, give rebuttal
-  - Log all changes and reasons
+### Step 6: Generate Audit Report
 
-**Output**:
-- Original report
-- Optimized report
-- Change log (accepted/rejected comments and reasons)
+**Output file**: `99-audit-report.md`
+**Directory**: `tmp/reports/t3-{YYYY-MM-DD}-{slug}/`
 
-#### 7. Final Judge Synthesis (Agent)
-- Read [references/t3-classification.md](references/t3-classification.md)
-- Read all three optimized Auditor reports
-- Synthesize conclusions and evidence
-- Apply T3 rules:
-  - Composite = max(Tool, Toy) - Trash
-  - Determine primary category (≥2 conditions met)
-  - Determine secondary category (if any)
-  - Apply Litmus Test consistency check
-- Output: Final classification, confidence, reasoning, improvement suggestions
+Follow YAML schema in [references/report-schema.md](references/report-schema.md).
 
-#### 8. Generate Audit Report
+---
 
-**Output file**: Always `99-audit-report.md`. Directory: `tmp/reports/t3-{YYYY-MM-DD}-{case-id}/`.
+## Output Format for Messaging Surfaces (WhatsApp / Telegram)
 
-**Report structure** (see [references/report-schema.md](references/report-schema.md)):
-1. **YAML metadata** (wrapped in `---`): For leaderboard parsing: `case_id`, `source_url`, `scores`, `chart_data`, `litmus_tests`, `classification`, etc.
-2. **Text analysis**: Aggregated from Auditors' `extract_for_report`: Product Overview, Tool Highlights, Toy Highlights, Trash Highlights, Final Judge Reasoning, Improvement Suggestions
+When delivering results in a chat interface, **do not paste the full file**.
+Use this condensed format instead:
 
-**Must include**:
-- Basic product info (raw vs Brand-Blinded)
-- Triple Auditor score tables (format required by each auditor guide)
-- Peer Review summary
-- Final Judge result
+```
+🏷️ T3 Audit — {Product Name}
+Price: ${price} | Date: {YYYY-MM-DD}
 
-### Optional Branches
+📊 Scores
+🟢 Tool:  {raw}/{33} → {norm}/100
+🟡 Toy:   {raw}/{33} → {norm}/100
+🔴 Trash: {raw}/{42} → {norm}/100
+Composite: {composite:+.1f}
 
-- **Insufficient product info**: Ask user for more description or references
-- **Near boundary scores**: Analyze dominant factors, explain classification
-- **Auditor disagreement**: Final Judge explains trade-off logic
-- **Controversy**: Offer multi-perspective analysis with evidence for each category
+🏆 Classification: {final_label}
+Confidence: {confidence}
+
+{If Eagle Eye:}
+🚨 Eagle Eye: {trigger name}
+"{verbatim quote A}"
+vs.
+"{verbatim quote B}"
+
+🟢 Tool highlights (3 bullets)
+🟡 Toy highlights (3 bullets)
+🔴 Trash issues (3 bullets)
+
+💬 One-line verdict
+```
+
+Rules for messaging output:
+- No markdown tables (WhatsApp doesn't render them)
+- Use **bold** for emphasis, bullet lists for details
+- Keep total message under 600 words
+- If Eagle Eye triggered, always show the conflicting quotes
+
+---
+
+## Important Constraints
+
+### 🚨 Information Isolation (critical)
+- Brand-Blinded text is the ONLY input for auditors
+- Auditors must never see original brand names, marketing copy, or each other's reports during scoring
+- Final Judge reads only the three auditor JSON outputs, not original product text
+
+### 📊 Objective data completeness
+- Collect specs, performance, reliability, market, and cost data
+- Brand Blinding must **retain** all specs and numbers
+- Every score must link to extracted verbatim evidence
+
+### Eagle Eye enforcement
+- Trash Auditor MUST check every item against [references/trash-red-flags.md](references/trash-red-flags.md)
+- Eagle Eye trigger → automatic score 3 → populate `critical_issues[]`
+- Final Judge must respect Eagle Eye Veto regardless of composite math
+
+### synthesize_results.py input format
+The script expects a JSON file like:
+```json
+{
+  "tool":  { "total_score": <int 0-33>, "litmus_gate": "Yes|No", ... },
+  "toy":   { "total_score": <int 0-33>, "litmus_gate": "Yes|No", ... },
+  "trash": { "total_score": <int 0-42>, "litmus_gate": "Yes|No",
+             "critical_issues": ["<eagle eye trigger text>", ...], ... }
+}
+```
+
+---
 
 ## Resource Index
 
-- **Pipeline tools**:
-  - `crawlProductInfo` + `identifySiteType` — Crawl source pages and produce raw extracts
-  - `organizeExtracts` — Build organized chain-of-evidence markdown for downstream phases
+### Scripts
+- `scripts/crawl_product_info.py` — Multi-strategy product crawler (Jina → direct HTTP fallback)
+- `scripts/synthesize_results.py` — Final Judge math (normalization + Eagle Eye + Litmus Gate)
 
-- **References**:
-  - [references/organize-guide.md](references/organize-guide.md) — Organizing phase rules and output structure
-  - [references/report-schema.md](references/report-schema.md) — Step 8, required; YAML schema
-  - [references/tool-auditor.md](references/tool-auditor.md) — Tool Auditor scoring
-  - [references/toy-auditor.md](references/toy-auditor.md) — Toy Auditor scoring
-  - [references/trash-auditor.md](references/trash-auditor.md) — Trash Auditor scoring
-  - [references/trash-red-flags.md](references/trash-red-flags.md) — Trash high-sensitivity triggers
-  - [references/t3-classification.md](references/t3-classification.md) — Final Judge classification
-  - [references/defluff-guide.md](references/defluff-guide.md) — Brand Blinding
-  - [references/peer-review-guide.md](references/peer-review-guide.md) — Peer Review
-
-## Important Notes
-
-- **🚨 Information isolation (critical)**:
-  - Auditors may only access Brand-Blinded info
-  - Never raw product info, brand names, or marketing copy
-  - Auditor tasks must state they evaluate based solely on Brand-Blinded info
-  - Audit report must include "information source" field
-
-- **📊 Objective data completeness**:
-  - Collect complete objective data (specs, performance, reliability, market, sustainability, cost)
-  - Brand Blinding must **retain** all objective data
-  - Scores must be backed by verifiable objective data
-  - Report must include objective data summary and completeness score
-
-- **Brand Blinding**:
-  - Must precede Auditor evaluation
-  - Remove brand and marketing; keep objective data
-
-- **Checklist-based scoring**: Use reference checklists; each score must link to checklist items and evidence
-
-- **Triple Auditor independence**: Evaluate in parallel, no information sharing
+### References
+| File | Used In |
+|------|---------|
+| [organize-guide.md](references/organize-guide.md) | Step 2 |
+| [defluff-guide.md](references/defluff-guide.md) | Step 2 |
+| [tool-auditor.md](references/tool-auditor.md) | Step 3 |
+| [tool-auditor-template.md](references/tool-auditor-template.md) | Step 3 |
+| [toy-auditor.md](references/toy-auditor.md) | Step 3 |
+| [toy-auditor-template.md](references/toy-auditor-template.md) | Step 3 |
+| [trash-auditor.md](references/trash-auditor.md) | Step 3 |
+| [trash-red-flags.md](references/trash-red-flags.md) | Step 3 (Eagle Eye) |
+| [peer-review-guide.md](references/peer-review-guide.md) | Step 4 |
+| [t3-classification.md](references/t3-classification.md) | Step 5 |
+| [report-schema.md](references/report-schema.md) | Step 6 |
