@@ -164,7 +164,8 @@ Don Norman, *The Design of Everyday Things* + *Emotional Design*
 
 ### 🚨 Strict Output Template (Mandatory)
 
-**Must** follow `toy-auditor-template.md` for the scoring table format.
+**Must** follow [`toy-auditor-template.md`](toy-auditor-template.md) for the scoring table format.
+Template location: `references/toy-auditor-template.md` — contains both the score table and the full JSON structure.
 
 **Mandatory requirements**:
 

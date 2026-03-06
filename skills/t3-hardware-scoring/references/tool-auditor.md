@@ -163,7 +163,8 @@ Tony Fadell, *Build: An Unorthodox Guide to Making Things Worth Making*
 
 ### 🚨 Strict Output Template (Mandatory)
 
-**Must** follow `tool-auditor-template.md` for the scoring table format.
+**Must** follow [`tool-auditor-template.md`](tool-auditor-template.md) for the scoring table format.
+Template location: `references/tool-auditor-template.md` — contains both the score table and the full JSON structure.
 
 **Mandatory requirements**:
 

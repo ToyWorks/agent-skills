@@ -119,6 +119,44 @@ Using the **Normalized Scores (0-100)**, execute the following logic:
 * Normalized Tool ≥ 50 → Secondary: Tool
 * Normalized Toy ≥ 50 → Secondary: Toy
 
+### Step 3: Gray Zone Handling (when no Primary is determined)
+
+**Gray Zone** occurs when all three categories satisfy fewer than 2 conditions in Step 1.
+
+This is a valid and common outcome for products that are genuinely ambiguous. Do not force a classification.
+
+**Gray Zone Resolution Rules (execute in order):**
+
+1. **Composite Score tiebreaker**:
+   - Composite > 0 → Provisional Primary = Tool (if NormTool ≥ NormToy) or Toy (if NormToy > NormTool)
+   - Composite < 0 → Provisional Primary = Trash
+   - Composite = 0 → Provisional Primary = whichever of Tool/Toy is higher; if equal, Tool wins
+
+2. **Litmus Gate override**: If only one category passes its Litmus Gate, that category becomes Primary — even in Gray Zone.
+
+3. **Label suffix**: Append `(Gray Zone)` to the final label to signal low confidence.
+   Example: `Toy + Trash (Gray Zone)`
+
+4. **Confidence**: Always set to `"Low"` in Gray Zone, regardless of score spread.
+
+5. **Verdict note**: The Final Verdict Summary must explicitly state the product is in a Gray Zone and explain which dimension pulled the classification.
+
+**Gray Zone example**:
+```
+NormTool = 36.4  (conditions met: 0)
+NormToy  = 36.4  (conditions met: 1 — Toy Litmus Gate Yes)
+NormTrash = 47.6 (conditions met: 0)
+Composite = -11.2
+
+→ No category has 2+ conditions.
+→ Composite < 0 → provisional Trash; but Toy Litmus Gate passed.
+→ Litmus Gate override: Toy becomes Primary.
+→ Secondary: Trash (NormTrash 47.6 ≥ 50 threshold not met, but composite negative → include).
+→ Final label: "Toy + Trash (Gray Zone)" | Confidence: Low
+```
+
+---
+
 ## Eagle Eye Veto System
 
 **CRITICAL OVERRIDE**: The Final Judge must check the `critical_issues` array from the Trash Auditor Report.
