@@ -36,33 +36,33 @@ Print JSON to stdout (main agent writes file):
       "before": 3,
       "after": 3,
       "action": "upheld",
-      "reason": "Architectural Implausibility confirmed: multimodal LLM inference implausible in pendant form factor without cloud"
+      "reason": "Privacy Tension confirmed. Architectural Implausibility strengthens: on-device claim not credible for form factor."
     },
     {
       "auditor": "Trash",
       "item_id": "3.2",
       "before": 3,
-      "after": 3,
-      "action": "upheld",
-      "reason": "Price vs. Doubt: $299 + zero validation confirmed in text"
+      "after": 2,
+      "action": "downgraded",
+      "reason": "Price is high but independent review confirms core feature works. Downgrade to 2."
     }
   ],
   "architectural_plausibility": {
     "assessed": true,
-    "claim": "fully on-device AI processing",
-    "form_factor": "pendant/necklace",
-    "ai_workload": "real-time multimodal emotion analysis (mmWave + voice + environmental)",
-    "verdict": "implausible",
-    "reasoning": "...",
+    "claim_verbatim": "<exact on-device/local processing claim from text>",
+    "form_factor": "<device form factor>",
+    "ai_workload": "<description of AI tasks claimed>",
+    "verdict": "implausible | plausible | insufficient_data",
+    "reasoning": "<engineering assessment — see framework below>",
     "affects_items": ["1.5"]
   },
   "critical_issues_final": [
-    "Triggered: Privacy Tension + Architectural Implausibility. ...",
-    "Triggered: Price vs. Doubt. ..."
+    "Triggered: <Pattern Name>. <evidence summary>",
+    "..."
   ],
   "score_changes": {
-    "trash_before": 23,
-    "trash_after": 23,
+    "trash_before": 0,
+    "trash_after": 0,
     "net_change": 0
   }
 }
