@@ -16,10 +16,13 @@ Beyond the standard Dieter Rams checklist, the Eagle Eye protocol identifies **c
 | **Inconsistent Claims** | Explicit, conflicting statements from different official sources (e.g., product page says "100% waterproof," user manual says "do not expose to moisture"). |
 | **Broken "Never" Promise** | Claims "never listen/store/share," but the technical architecture inherently requires transmitting that exact type of data to function. |
 
+| **Architectural Implausibility** | Product claims "fully on-device" / "local AI" processing, but the described capabilities (e.g., LLM inference, real-time multi-modal AI fusion) are technically implausible within the disclosed form factor (e.g., pendant, ring, earbuds) without cloud offloading. Evaluate based on: (a) compute requirements of claimed AI tasks, (b) power/thermal constraints of the form factor, (c) absence of disclosed edge AI chipset or model architecture. |
+
 ### Objective Data Requirements
 
 * The AI must extract **both** conflicting quotes into the `verbatim_evidence` array to prove the contradiction.
-* Do not speculate on undisclosed facts; judge only based on disclosed, clashing information.
+* For **Architectural Implausibility**: extract the "on-device" claim AND the description of AI capabilities that would typically require cloud compute. The validator must reason about technical feasibility — this is the one Eagle Eye pattern where **engineering judgment** is expected, not just text-matching.
+* Do not speculate on undisclosed facts for other patterns; judge only based on disclosed, clashing information.
 
 ---
 
@@ -109,7 +112,8 @@ Beyond the standard Dieter Rams checklist, the Eagle Eye protocol identifies **c
 The following situations **should not** trigger an Eagle Eye override (Score 3). Do not speculate; rely only on facts.
 
 * **Missing Reviews:** If there is simply no user feedback available, do not trigger "Core Flaw" just because usefulness isn't proven. Score it a 1 (Claimed) or 0 (No data) on the standard scale.
-* **Assumed Cloud Usage:** If the device uses AI, but there is no explicit text stating it secretly uses the cloud against its claims, do not trigger "Privacy Tension."
+* **Assumed Cloud Usage:** If the device uses AI, but there is no explicit text stating it secretly uses the cloud against its claims, do not trigger "Privacy Tension." However, **do** evaluate Architectural Implausibility — if the AI workload is clearly beyond what the form factor can handle locally, that IS a valid trigger even without leaked cloud evidence.
 * **Valid Niche:** If a product is expensive and niche, but works exactly as advertised for that specific niche, do not trigger "Price vs. Doubt."
+* **Legitimate Edge AI:** If the product discloses a specific edge AI chipset (e.g., "NPU with 10 TOPS") or a known lightweight model architecture (e.g., "TinyML", "quantized ONNX"), do not trigger Architectural Implausibility — the engineering is plausible.
 
-**Golden Rule**: Eagle Eye means you are highly sensitive to **existing evidence of failure**, not that you penalize the product for **missing evidence of success**.
+**Golden Rule**: Eagle Eye means you are highly sensitive to **existing evidence of failure**, not that you penalize the product for **missing evidence of success**. The exception is Architectural Implausibility, where the AI auditor applies engineering reasoning to assess whether "on-device" claims are physically credible.
